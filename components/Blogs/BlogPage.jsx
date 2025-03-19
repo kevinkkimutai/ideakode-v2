@@ -1,13 +1,17 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import QuickLinks from "./QuickLinks";
 
 
 const BlogComp = ({ data }) => {
+  
+  useEffect(() => {
+    data;
+  }, []);
+  
   if (!data || !data.blocks) return <p>No content available</p>;
-
   return (
     <div className="flex">
       {/* Blog Content */}
