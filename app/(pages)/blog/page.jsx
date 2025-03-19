@@ -1,5 +1,8 @@
 "use client"
-import BlogComp from "@/components/Blogs/BlogPage";
+import dynamic from "next/dynamic";
+
+const BlogComp = dynamic(() => import("@/components/Blogs/BlogPage"), { ssr: false });
+
 
 
 const blogData = {
