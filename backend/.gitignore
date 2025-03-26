@@ -1,0 +1,68 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+jspm_packages/
+package-lock.json/
+
+# Environment files
+.env
+
+# Build output
+dist/
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE and editor files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.DS_Store
+
+# Coverage directory
+coverage/
+
+# Temporary files
+tmp/
+temp/
+
+# Debugging
+debug/
+*.rej
+*.orig
+
+# Docker
+docker-compose.override.yml
+
+# Miscellaneous
+*.swp
+*.lock
+*.bak
+*.config.js
+
+# Ignore Mac system files
+Thumbs.db
+.DS_Store
+
+# Ignore Sequelize migrations/seeders (if generated into a folder)
+# migrations/
+seeders/
+
+# Ignore specific local overrides
+local-config.json

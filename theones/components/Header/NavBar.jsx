@@ -108,7 +108,7 @@ const NavBar = () => {
             : "absolute"
         }`}
       >
-        <div className=" border-b w-[1280px] mx-auto px-2">
+        <div className=" border-b max-w-[1280px] w-full mx-auto px-2">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="w-60 max-w-full px-4 xl:mr-12">
               <Link
