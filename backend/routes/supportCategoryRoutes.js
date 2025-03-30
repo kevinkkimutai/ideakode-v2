@@ -11,8 +11,8 @@ const router = express.Router();
 
 router.post('/support-category', createCategory);
 router.get('/support-categories', getAllCategories);
-router.put('/support-category/:id', updateCategory);
+router.put('/support-category', updateCategory);
 router.patch('/support-category/:id/status', updateStatus);
-router.delete('/support-category/:id', deleteCategory);
+router.delete('/support-category', deleteCategory);
 
 module.exports = router;

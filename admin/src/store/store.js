@@ -6,6 +6,9 @@ import { apiSlice } from "../services/api";
 import { 
   authReducers, 
   projectReducers, 
+  projectCategoryReducers,
+  supportcategoriesReducers,
+  supportTicketsReducer
  } from "@/redux/reducers";
 
 
@@ -20,6 +23,9 @@ const notificationsPersistConfig = {
 const rootReducer = combineReducers({
   auth: authReducers,
   projects: projectReducers,
+  projectcategories: projectCategoryReducers,
+  supportcategories: supportcategoriesReducers,
+  tickets: supportTicketsReducer,
   notifications: persistReducer(notificationsPersistConfig, projectReducers),
   [apiSlice.reducerPath]: apiSlice.reducer,
 });

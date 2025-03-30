@@ -11,7 +11,7 @@ const createCategory = async (req, res) => {
         });
         res.status(201).json({
             message: "Support Category created successfully 🎉",
-            Category: category,
+            category: category,
           });
         
         
@@ -33,8 +33,7 @@ const getAllCategories = async (req, res) => {
 
 const updateCategory = async (req, res) => {
     try {
-        const { id } = req.params;
-        const { name, description, status } = req.body;
+        const { id, name, description, status } = req.body;
         const category = await SupportCategory.findByPk(id);
         if (!category) {
             return res.status(404).json({ error: "Support Category not found 🥶" });
@@ -46,7 +45,7 @@ const updateCategory = async (req, res) => {
         });
         res.status(200).json({
             message: "Support Category updated successfully 🎉",
-            Category: updatedCategory,
+            category: updatedCategory,
           });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -76,17 +75,15 @@ const updateStatus = async (req, res) => {
 // Delete a support category
 const deleteCategory = async (req, res) => {
     try {
-        const { id } = req.params;
-
-        const category = await SupportCategory.findByPk(id);
-        if (!category) {
-            return res.status(404).json({ error: "Support Category not found 🥶" });
-        }
-        await category.destroy();
-        res.status(204).json({ message: "Support Category deleted successfully 🎉" });
+      const {id} = req.body
+      const category = await SupportCategory.findByPk(id);
+      if (!category) return res.status(404).json({ message: 'Category not found' });
+  
+      await category.destroy();
+      res.status(200).json({ message: 'Category deleted successfully' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
     }
-}
+  };
     
 module.exports = {createCategory, getAllCategories, updateCategory, updateStatus, deleteCategory}

@@ -27,7 +27,7 @@ const [getUser] = useGetCurrentUserMutation();
     <div>
       
  <ToastContainer
-  position="top-right"
+  position="bottom-right"
   autoClose={3000}
   hideProgressBar={true}
   newestOnTop={false}

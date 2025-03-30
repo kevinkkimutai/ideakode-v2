@@ -4,6 +4,9 @@ const { Category, Project } = require('../models');
 const createCategory = async (req, res) => {
   try {
     const { name, description, status } = req.body;
+    // if (!name ||!description) {
+    //   return res.status(400).json({ error: 'Name and description are required' });
+    // }
     const category = await Category.create({ name, description, status });
     res.status(201).json({ message: 'Category created successfully', category });
   } catch (error) {
@@ -42,8 +45,9 @@ const getCategoryById = async (req, res) => {
 // Update a category
 const updateCategory = async (req, res) => {
   try {
-    const { name, description, status } = req.body;
-    const category = await Category.findByPk(req.params.id);
+    
+    const { id, name, description, status } = req.body;
+    const category = await Category.findByPk(id);
     if (!category) return res.status(404).json({ message: 'Category not found' });
 
     await category.update({ name, description, status });
@@ -56,7 +60,8 @@ const updateCategory = async (req, res) => {
 // Delete a category
 const deleteCategory = async (req, res) => {
   try {
-    const category = await Category.findByPk(req.params.id);
+    const {id} = req.body
+    const category = await Category.findByPk(id);
     if (!category) return res.status(404).json({ message: 'Category not found' });
 
     await category.destroy();

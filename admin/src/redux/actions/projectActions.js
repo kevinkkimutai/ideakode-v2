@@ -4,11 +4,13 @@ export const projectApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
 
     createProject: builder.mutation({
-        query: () => ({
-          url: "/project",
-          method: "POST",
-        }),
+      query: (formData) => ({
+        url: "/project",
+        method: "POST",
+        body: formData, 
       }),
+    }),
+    
 
     getAllProjects: builder.mutation({
         query: () => ({
@@ -31,9 +33,10 @@ export const projectApiSlice = apiSlice.injectEndpoints({
     }),
   
     updateProject: builder.mutation({
-        query: (id) => ({
-          url: `/project/${id}`,
+        query: (formData) => ({
+          url: `/project`,
           method: "PUT",
+          body: formData,
         }),
       }),
 
@@ -58,9 +61,10 @@ export const projectApiSlice = apiSlice.injectEndpoints({
         }),
       }),
       deleteProject: builder.mutation({
-        query: (id) => ({
-          url: `/project/${id}`,
+        query: (data) => ({
+          url: `/project`,
           method: "DELETE",
+          body: { ...data },
         }),
       }),
 

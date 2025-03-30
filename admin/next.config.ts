@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       "localhost",
       "img.daisyui.com",
       "zos.alipayobjects.com",
+      "http:/localhost:2200"
     ], 
   },
 };

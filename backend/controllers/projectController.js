@@ -3,46 +3,49 @@ const { Project, User, Category } = require("../models");
 
 // Create a new project
 const createProject = async (req, res) => {
-try {
-    const userId = req.user.id;
-    const {title, description, categoryId,  demolink, status} = req.body;
-
-    if  (userId) {
+    try {
+      const userId = req.user.id;
+      const { title, description, categoryId, demolink, status } = req.body;
+  
+      if (userId) {
         const user = await User.findByPk(userId);
         if (!user) {
-            return res.status(404).json({ error: "User not found 🥶" });
+          return res.status(404).json({ error: "User not found 🥶" });
         }
-    }
-    if  (categoryId) {
+      }
+      if (categoryId) {
         const category = await Category.findByPk(categoryId);
         if (!category) {
-            return res.status(404).json({ error: "Category not found 🥶" });
+          return res.status(404).json({ error: "Category not found 🥶" });
         }
-    }
-        // Check if a file was uploaded
-        let imageUrl = null;
-        if (req.file) {
-          imageUrl = path.join(`${process.env.BACKEND_URL}/uploads`, req.file.filename);
-        }
-
-    const project = await Project.create({
+      }
+  
+      // Correctly format the image URL
+      let imageUrl = null;
+      if (req.file) {
+        imageUrl = `${process.env.BACKEND_URL}/uploads/${req.file.filename}`;
+      }
+  
+      const project = await Project.create({
         title,
         description,
         userId,
-        image: imageUrl || null, 
-        categoryId, 
-        demolink, 
+        image: imageUrl || null,
+        categoryId,
+        demolink,
         status,
-    });
-    res.status(201).json({
+      });
+  
+      res.status(201).json({
         message: "Project created successfully 🎉",
         Project: project,
       });
-    
-} catch (error) {
-    res.status(500).json({ error: error.message });
-}
-}
+  
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  
 
 // Get all projects
 const getAllProjects = async (req, res) => {
@@ -53,6 +56,11 @@ try {
                 model: User,
                 as: "user",
                 attributes: ["id", "name", "email"],
+              },
+              {
+                model: Category,
+                as: "category",
+                attributes: ["id", "name"],
               },
           ],
     });
@@ -92,8 +100,7 @@ try {
 // Update a project
 const updateProject = async (req, res) => {
 try {
-    const { id } = req.params;
-    const { title, description, userId, categoryId, demolink, status } = req.body;
+    const { id, title, description, userId, categoryId, demolink, status } = req.body;
     const project = await Project.findByPk(id);
     if (!project) {
         return res.status(404).json({ error: "Project not found 🥶" });
@@ -101,7 +108,7 @@ try {
      // Check if a file was uploaded
      let imageUrl = null;
      if (req.file) {
-       imageUrl = path.join(`${process.env.BACKEND_URL}/uploads`, req.file.filename);
+       imageUrl = `${process.env.BACKEND_URL}/uploads/${req.file.filename}`;
      }
     const updatedProject = await project.update({
         title: title || project.title,
@@ -144,7 +151,9 @@ const updateProjectStatus = async (req, res) => {
 // Delete a project
 const deleteProject = async (req, res) => {
 try {
-    const { id } = req.params;
+  console.log("req",req.body);
+  
+    const { id } = req.body;
     const project = await Project.findByPk(id);
     if (!project) {
         return res.status(404).json({ error: "Project not found🥶" });

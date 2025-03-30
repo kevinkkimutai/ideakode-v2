@@ -8,9 +8,8 @@ import { ChevronDownIcon } from "@/icons";
 
 export default function SelectInputs() {
   const options = [
-    { value: "marketing", label: "Marketing" },
-    { value: "template", label: "Template" },
-    { value: "development", label: "Development" },
+    { value: "1", label: "Active" },
+    { value: "0", label: "Inactive" },
   ];
 
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
@@ -28,10 +27,10 @@ export default function SelectInputs() {
   ];
 
   return (
-    <ComponentCard title="Select Inputs">
-      <div className="space-y-6">
+
+      <div >
         <div>
-          <Label>Select Input</Label>
+        
          <div className="relative">
            <Select
             options={options}
@@ -44,7 +43,7 @@ export default function SelectInputs() {
             </span>
          </div>
         </div>
-        <div className="relative">
+        {/* <div className="relative">
           <MultiSelect
             label="Multiple Select Options"
             options={multiOptions}
@@ -54,8 +53,8 @@ export default function SelectInputs() {
           <p className="sr-only">
             Selected Values: {selectedValues.join(", ")}
           </p>
-        </div>
+        </div> */}
       </div>
-    </ComponentCard>
+  
   );
 }
