@@ -17,7 +17,7 @@ export default function UserDropdown() {
   const [getUser] = useGetCurrentUserMutation();
 console.log("user header", user);
 
-function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+function toggleDropdown(e) {
   e.stopPropagation();
   setIsOpen((prev) => !prev);
 }
