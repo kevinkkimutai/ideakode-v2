@@ -7,7 +7,6 @@ const nextConfig: NextConfig = {
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
-    config.output.clean = true
     return config;
   },
   images: {
