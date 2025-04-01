@@ -20,7 +20,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: ['http://localhost:3001', 'http://localhost:2200', 'http://localhost:3000', 'https://ideakode-admin.vercel.app'],
+    origin: ['http://localhost:3001', 'http://localhost:2200', 'http://localhost:3000', 'https://ideakode-admin.vercel.app', 'https://ideakode.vercel.app'],
     credentials: true,
   },
 });
@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 // CORS Configuration
 const corsOptions = {
-  origin: ['http://localhost:3001', 'http://localhost:2200', 'http://localhost:3000', 'https://ideakode-admin.vercel.app'], 
+  origin: ['http://localhost:3001', 'http://localhost:2200', 'http://localhost:3000', 'https://ideakode-admin.vercel.app', 'https://ideakode.vercel.app'], 
   credentials: true,
 };
 app.use(cors(corsOptions));
