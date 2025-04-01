@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
 // Define the WebSocket server URL
-const SOCKET_URL = 'http://localhost:2200';
+const SOCKET_URL = 'https://ideakode-v2-1.onrender.com';
 
 // Function to initialize the socket with a user ID
 export const initializeSocket = (userId) => {
