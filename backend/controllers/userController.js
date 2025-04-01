@@ -152,12 +152,13 @@ const loginUser = async (req, res) => {
     );
 
     // Store the token in cookies
-    res.cookie('token', token, {
-      httpOnly: true,      
-      secure: process.env.NODE_ENV === 'development', 
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true, // ✅ Secure only in production
+      sameSite: "None",  // ✅ Allows cross-origin cookies (if frontend & backend have different domains)
       maxAge: 3600000,    
-      sameSite: 'Strict', 
     });
+    
 
     // Respond with the user data (optionally excluding password)
     res.status(200).json({
