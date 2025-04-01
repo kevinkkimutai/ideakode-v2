@@ -12,7 +12,6 @@
     "sequelize:undo": "sequelize-cli db:migrate:undo",
     "sequelize:undoall": "sequelize-cli db:migrate:undo:all",
     "sequelize:seed": "sequelize-cli db:seed:all",
-    "install": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
