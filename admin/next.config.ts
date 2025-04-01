@@ -15,7 +15,8 @@ const nextConfig: NextConfig = {
       "localhost",
       "img.daisyui.com",
       "zos.alipayobjects.com",
-      "http:/localhost:2200"
+      "http://localhost:2200",
+       "https://ideakode-v2-1.onrender.com"
     ], 
   },
 };
