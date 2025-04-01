@@ -44,9 +44,11 @@ export default function SignInForm() {
         // Correctly extracting the error message
         const errorMessage = response?.error?.data?.error || "Failed to login. Please try again.";
         toast.error(errorMessage);
+        router.push("/");
       }
     } catch (error) {
       toast.error("An unexpected error occurred. Please try again.");
+      router.push("/");
     }
   };
   
@@ -113,7 +115,7 @@ export default function SignInForm() {
                     </span>
                   </div>
                   <Link
-                    href="/reset-password"
+                    href="#"
                     className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
                   >
                     Forgot password?

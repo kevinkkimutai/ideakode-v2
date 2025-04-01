@@ -10,14 +10,28 @@ const nextConfig: NextConfig = {
     return config;
   },
   images: {
-    domains: [
-      'flowbite.com',
-      "localhost",
-      "img.daisyui.com",
-      "zos.alipayobjects.com",
-      "http://localhost:2200",
-      "https://ideakode-v2-1.onrender.com"
-    ], 
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "flowbite.com",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+      {
+        protocol: "https",
+        hostname: "img.daisyui.com",
+      },
+      {
+        protocol: "https",
+        hostname: "zos.alipayobjects.com",
+      },
+      {
+        protocol: "https",
+        hostname: "ideakode-v2-1.onrender.com",
+      }
+    ],
   },
 };
 

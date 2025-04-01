@@ -16,21 +16,21 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = true;
+      Cookies.set("token", action.payload.token, { expires: 1, path: '/' }); // Ensure path is '/' (or the path used in your app)
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
     logOut: (state) => {
+      console.log("Logging out", state);  
       state.token = null;
       state.auth = null;
       state.user = null;
       state.notifications = null;
       state.isAuthenticated = false;
-      Cookies.remove("token");
+      Cookies.remove("token", { path: '/' }); // Ensure path is correct
 
     },
-    
-  
   },
 });
 
