@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/Header/NavBar";
 import Footer from "@/components/Footer/Footer";
+import ReduxProvider from "@/components/servicesapi/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ReduxProvider>
         <NavBar />
         <main className="relative">
         <svg className="absolute -z-10 inset- -top-14 w-full  opacity-40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -55,6 +57,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
        <Footer />
+       </ReduxProvider>
       </body>
     </html>
   );
