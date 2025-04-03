@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 export default function Hero() {
@@ -5,8 +6,12 @@ export default function Hero() {
 <div className="relative ">
  
 
-  <div className='max-w-[1280px] w-full mx-auto pt-24 md:pt-34 max-2xl:px-4'>
-  <div className="rounded-full px-4 py-4 bg-green-200 w-auto inline-flex items-center">
+  <div className='max-w-[1280px] w-full mx-auto pt-24 md:pt-34 max-2xl:px-4 items-center'>
+
+
+<div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-center'>
+<div className='text-start flex flex-col items-start'>
+<div className="rounded-full px-4 py-4  bg-green-200 w-auto inline-flex items-center">
   <div className="flex gap-2 items-center">
     <svg
       className="w-6 h-6 text-gray-800"
@@ -26,9 +31,6 @@ export default function Hero() {
     <span className="text-black font-bold">Get Your Business a Website</span>
   </div>
 </div>
-
-<div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-<div className='text-start flex flex-col items-start'>
     <h1 className="text-3xl md:text-4xl font-bold max-md:text-center mt-8 md:mt-16">Innovative Web & Software Solutions for Your Business</h1>
     <p className="max-md:text-center text-gray-600 mt-4 lg:w-[90%]">
     We create cutting-edge websites, software, and graphics that elevate brands and drive success.
@@ -44,8 +46,13 @@ export default function Hero() {
     </div>
   
 </div>
-<div className='h-full max-lg:h-72 bg-green-300 rounded-xl'>
-    image
+<div className=' rounded-xl'>
+    <Image 
+    src="/illustration-1.webp"
+    alt="netiqa illustration"
+    width={600}
+    height={600}
+    />
 </div>
 </div>
 
