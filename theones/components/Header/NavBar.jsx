@@ -159,7 +159,7 @@ const NavBar = () => {
                 </button>
                 <nav
                   id="navbarCollapse"
-                  className={`navbar absolute lg:ms-16 right-0 z-30 w-[250px] bg-white max-md:rounded-b-xl rounded border-[.5px] border-body-color/50  py-4 px-6 duration-300  lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
+                  className={`navbar absolute lg:ms-16 right-0 !z-[9999] w-[250px] bg-white max-md:rounded-b-xl rounded border-[.5px] border-body-color/50  py-4 px-6 duration-300  lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
                       ? "visibility top-full opacity-100"
                       : "invisible top-[120%] opacity-0"

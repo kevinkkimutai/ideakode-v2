@@ -14,7 +14,7 @@ const FaqsFilter = ({ activeCategory, setActiveCategory, categories }) => {
           onClick={() => setActiveCategory(category)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className={`px-6 py-2 rounded-full z-50 font-medium transition-all ${
+          className={`px-6 py-2 rounded-full z-20 font-medium transition-all ${
             activeCategory === category
               ? "bg-green-700 text-white"
               : "bg-gray-200 text-gray-800 hover:bg-green-600 hover:text-white"

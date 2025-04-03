@@ -86,7 +86,7 @@ const CallToAction = () => (
 
 export default function AboutPage() {
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-6 py-12 lg:pt-32">
+    <div className="w-full max-w-[1280px] mx-auto px-6 py-12 pt-32">
       <HeroSection />
       <MissionVision />
       <WhyChooseUs />

@@ -70,12 +70,12 @@ export default function About() {
             </Link>
           </div>
         </div>
-        <div className='lg:hidden mt-10 rounded-2xl'>
+        <div className='lg:hidden lg:mt-10  rounded-2xl'>
           
         <Image 
     src="/Business Plan-bro1.png"
     alt="netiqa-illustration-about"
-    className='bg-red-30d0 -ms-10'
+    className='lg:-ms-10 w-full '
     width={1000}
     height={1000}
     />
