@@ -14,27 +14,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "IdeaKode - Innovative Web & Software Solutions",
+  title: "Netiqa - Innovative Web & Software Solutions",
   description: "We provide cutting-edge web design, software development, and graphic design solutions to help businesses thrive in the digital world.",
   keywords: "web design, software development, graphic design, tech solutions, digital agency",
-  author: "IdeaKode",
+  author: "Netiqa",
   openGraph: {
-    title: "IdeaKode - Innovative Web & Software Solutions",
+    title: "Netiqa - Innovative Web & Software Solutions",
     description: "Expert web and software development services tailored to your business needs.",
     url: "https://yourcompanywebsite.com",
     type: "website",
     images: [
       {
-        url: "https://ideakode.vercel.app/proj2.png",
+        url: "https://Netiqa.vercel.app/proj2.png",
         width: 1200,
         height: 630,
-        alt: "IdeaKode - Web & Software Solutions",
+        alt: "Netiqa - Web & Software Solutions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "IdeaKode - Innovative Web & Software Solutions",
+    title: "Netiqa - Innovative Web & Software Solutions",
     description: "We provide expert digital solutions to help your business grow.",
     images: ["https://yourcompanywebsite.com/proj2.png"],
   },
