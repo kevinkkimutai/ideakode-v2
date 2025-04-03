@@ -9,7 +9,7 @@ export default function About() {
         "Software Development",
         "SEO & Digital Marketing",
         "Branding & Identity",
-        "UI?UX Design"
+        "UI/UX Design"
     ]
   return (
     <div className="bg-gradient-to-br from-green-100 via-white to-green-100 py-20">

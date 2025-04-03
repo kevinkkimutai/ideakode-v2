@@ -23,7 +23,7 @@ export const metadata = {
   openGraph: {
     title: "Netiqa - Innovative Web & Software Solutions",
     description: "Expert web and software development services tailored to your business needs.",
-    url: "https://yourcompanywebsite.com",
+    url: "https://www.netiqa.co.ke",
     type: "website",
     images: [
       {
@@ -38,7 +38,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Netiqa - Innovative Web & Software Solutions",
     description: "We provide expert digital solutions to help your business grow.",
-    images: ["https://yourcompanywebsite.com/proj2.png"],
+    images: ["https://www.netiqa.co.ke/proj2.png"],
   },
 };
 
