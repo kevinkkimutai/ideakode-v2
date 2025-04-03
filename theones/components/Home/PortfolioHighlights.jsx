@@ -50,7 +50,7 @@ export default function PortfolioHighlights() {
                     <div className='relative h-[400px] rounded-2xl overflow-clip' key={index}>
                         <div className="absolute bottom-0 left-0 right-0 top-24 opacity-100 bg-gradient-to-t from-green-700 to-transparent"></div>
                         <Image
-                            src={project.image}
+                            src={project?.image}
                             alt="project"
                             width={1000}
                             height={1000}

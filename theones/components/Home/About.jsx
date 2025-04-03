@@ -17,10 +17,10 @@ export default function About() {
         <div className='max-lg:hidden rounded-2xl flex '>
         <Image 
     src="/Business Plan-bro1.png"
-    alt="netiqa illustration about"
+    alt="netiqa-illustration-about"
     className='bg-red-30d0 -ms-10'
-    width={2000}
-    height={2000}
+    width={1000}
+    height={1000}
     />
         </div>
 
@@ -70,7 +70,16 @@ export default function About() {
             </Link>
           </div>
         </div>
-        <div className='lg:hidden h-72 bg-green-300 mt-10 rounded-2xl'>image here</div>
+        <div className='lg:hidden mt-10 rounded-2xl'>
+          
+        <Image 
+    src="/Business Plan-bro1.png"
+    alt="netiqa-illustration-about"
+    className='bg-red-30d0 -ms-10'
+    width={1000}
+    height={1000}
+    />
+        </div>
       </div>
     </div>
   );
