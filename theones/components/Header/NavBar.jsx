@@ -116,21 +116,21 @@ const NavBar = () => {
                 className={`navBar-logo block w-full font-bold text-xl ${
                   sticky ? "py-5 lg:py-2" : "py-5"
                 } `}
-              > The-One
+              > 
                 {/* <Image
-                  src="/images/logo/logo-2.svg"
+                  src="/Netiqa/Asset 7.png"
                   alt="logo"
                   width={140}
                   height={30}
-                  className="w-full dark:hidden"
-                />
+                  className="w-full "
+                /> */}
                 <Image
-                  src="/images/logo/logo.svg"
+                  src="/Netiqa/logo.png"
                   alt="logo"
                   width={140}
                   height={30}
                   className="hidden w-full dark:block"
-                /> */}
+                />
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4 ">
