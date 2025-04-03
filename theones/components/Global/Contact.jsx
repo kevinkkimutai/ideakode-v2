@@ -27,7 +27,7 @@ export default function ContactUs() {
               <path d="M24 12H8a1 1 0 1 1 0-2h16a1 1 0 1 1 0 2zm-8 4H8a1 1 0 1 1 0-2h8a1 1 0 1 1 0 2z" data-original="#000000"></path>
             </svg>
             <h4 className="text-gray-800 text-sm font-bold mt-4">Chat to us</h4>
-            <a href="mailto:info@flairtips.com" className="text-xs text-gray-600 mt-1">info@theone.com</a>
+            <a href="mailto:info@flairtips.com" className="text-xs text-gray-600 mt-1">info@netiqa.com</a>
           </div>
           <div className="grid grid-cols-2  items-center justify-center rounded-lg w-full h-44 p-3 md:p-8 py-8 text-center bg-white shadow-[0_2px_10px_-3px_rgba(34,197,94,0.3)]">
          <div className='flex items-center justify-center'>

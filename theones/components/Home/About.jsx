@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link'
 import React from 'react'
 
@@ -12,8 +13,16 @@ export default function About() {
     ]
   return (
     <div className="bg-gradient-to-br from-green-100 via-white to-green-100 py-20">
-      <div className="max-w-[1280px] w-full mx-auto max-2xl:px-4 grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className='max-lg:hidden  bg-green-300 rounded-2xl'>image here</div>
+      <div className="max-w-[1280px] w-full mx-auto max-2xl:px-4 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className='max-lg:hidden rounded-2xl flex '>
+        <Image 
+    src="/Business Plan-bro1.png"
+    alt="netiqa illustration about"
+    className='bg-red-30d0 -ms-10'
+    width={2000}
+    height={2000}
+    />
+        </div>
 
         <div>
           <h2 className="text-3xl text-green-900 font-bold mb-2">Who We Are</h2>
