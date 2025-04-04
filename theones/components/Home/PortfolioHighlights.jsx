@@ -4,12 +4,21 @@ import { setProjects } from '@/redux/reducers/projectReducers';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react'
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+
+// import required modules
+import { Pagination, Navigation, Autoplay } from 'swiper/modules'
 
 export default function PortfolioHighlights() {
     const dispatch = useDispatch();
     const [getProjects] = useGetAllProjectsMutation();
     const [allProjects, setAllProjects] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [swiperRef, setSwiperRef] = useState(null)
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -37,15 +46,68 @@ export default function PortfolioHighlights() {
     }
 
     return (
-        <div className='max-w-[1280px] w-full mx-auto max-lg:px-4 flex flex-col lg:items-center justify-center'>
+        <div className='industries max-w-[1280px] w-full mx-auto max-lg:px-4 flex flex-col lg:items-center justify-center'>
             <h2 className="text-3xl text-green-900 font-bold mb-2">Our Work Speaks for Itself</h2>
             <hr className="w-10 h-[3px] bg-green-800" />
-            <p className="text-gray-800 mt-5 lg:w-[65%] flex lg:text-center lg:text-lg">
+            <p className="text-gray-800 mt-5 mb-20 lg:w-[65%] flex lg:text-center lg:text-lg">
                 Explore our portfolio of cutting-edge web, software, and design projects.
                 From sleek websites to powerful applications, our work showcases innovation,
                 creativity, and functionality. See how we bring ideas to life!
             </p>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-10 md:mt-20'>
+
+        <Swiper
+          onSwiper={setSwiperRef}
+          slidesPerView={3}
+          centeredSlides={true}
+          spaceBetween={30}
+          loop={true}
+          speed={2000}
+          autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+          }}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1440: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          }}
+        
+          navigation={false}
+          modules={[Pagination, Navigation, Autoplay]}
+          className="mySwiper h-72"
+        >
+             {allProjects.slice(0, 5).map((project, index) => (
+                    <SwiperSlide key={index}  className='relative  rounded-2xl overflow-clip' >
+                        <div className="absolute grad bottom-0 left-0 right-0 top-24 opacity-100 bg-gradient-to-t from-green-700 to-transparent"></div>
+                        <Image
+                            src="/iStock2.webp"
+                            alt="project"
+                            width={1000}
+                            height={1000}
+                            priority
+                            className="object-contain"
+                        />
+                        <div className='absolute desc bottom-0 py-2 left-0 right-0 px-4 lg:px-6'>
+                            <h2 className="text-2xl text-start font-bold ">{project?.title}</h2>
+                            <p className="text-base text-start line-clamp-2 ">{project?.description}</p>
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+            {/* <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-10 md:mt-20'>
                 {allProjects.slice(0, 3).map((project, index) => (
                     <div className='relative h-[400px] rounded-2xl overflow-clip' key={index}>
                         <div className="absolute bottom-0 left-0 right-0 top-24 opacity-100 bg-gradient-to-t from-green-700 to-transparent"></div>
@@ -63,7 +125,7 @@ export default function PortfolioHighlights() {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 }
