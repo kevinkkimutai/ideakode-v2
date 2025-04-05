@@ -129,7 +129,7 @@ const NavBar = () => {
                   alt="logo"
                   width={140}
                   height={30}
-                  className="hidden w-full dark:block"
+                  className="hidden w-36 dark:block"
                 />
               </Link>
             </div>

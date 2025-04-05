@@ -19,8 +19,8 @@ export default function Footer() {
                   src="/Netiqa/logo.png"
                   alt="logo"
                   width={140}
-                  height={30}
-                  className="hidden w-full dark:block"
+                  height={20}
+                  className="hidden w-36 dark:block"
                 /></span>
               </a>
           </div>

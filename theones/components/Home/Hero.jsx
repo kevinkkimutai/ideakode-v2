@@ -46,8 +46,9 @@ export default function Hero() {
     </div>
   
 </div>
-<div className=' rounded-xl'>
+<div className=' rounded-xl w-full mx-auto flex'>
     <Image 
+    className='mx-auto'
     src="/illustration-1.webp"
     alt="netiqa illustration"
     width={600}
