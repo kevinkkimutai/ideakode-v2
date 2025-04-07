@@ -20,11 +20,11 @@ export default function SignInForm() {
   const [formdata, setFormdata] = useState({
     email: "",
     password: ""
-  })
+  });
 
   const handleChange = (e) => {
     setFormdata({...formdata, [e.target.name]: e.target.value });
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,25 +34,25 @@ export default function SignInForm() {
         password: formdata.password,
       });
 
-  
       if (response?.data) {
         // Store user in Redux state
         dispatch({ type: "SET_USER", payload: response.data.user });
-        // Redirect to dashboard
-        router.push("/");
+        
+        // Show success message
+        toast.success("Login successful!");
+        
+        // Refresh the page to ensure all state updates are applied
+        window.location.href = "/";
       } else if (response?.error) {
-        // Correctly extracting the error message
         const errorMessage = response?.error?.data?.error || "Failed to login. Please try again.";
         toast.error(errorMessage);
-        router.push("/");
       }
     } catch (error) {
       toast.error("An unexpected error occurred. Please try again.");
-      router.push("/");
+      console.error("Login error:", error);
     }
   };
-  
-  
+
   return (
     <div className="flex flex-col flex-1 lg:w-1/2 w-full">
       <div className="w-full max-w-md sm:pt-10 mx-auto mb-5">
@@ -75,14 +75,20 @@ export default function SignInForm() {
             </p>
           </div>
           <div>
-          
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="space-y-6">
                 <div>
                   <Label>
                     Email <span className="text-error-500">*</span>{" "}
                   </Label>
-                  <Input placeholder="info@gmail.com" type="email" name="email" onChange={handleChange} />
+                  <Input 
+                    placeholder="info@gmail.com" 
+                    type="email" 
+                    name="email" 
+                    value={formdata.email}
+                    onChange={handleChange} 
+                    required
+                  />
                 </div>
                 <div>
                   <Label>
@@ -92,8 +98,10 @@ export default function SignInForm() {
                     <Input
                       type={showPassword ? "text" : "password"}
                       name="password"
+                      value={formdata.password}
                       onChange={handleChange}
                       placeholder="Enter your password"
+                      required
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
@@ -122,7 +130,7 @@ export default function SignInForm() {
                   </Link>
                 </div>
                 <div>
-                  <Button className="w-full" onClick={handleSubmit} size="sm">
+                  <Button type="submit" className="w-full" size="sm">
                     Sign in
                   </Button>
                 </div>
