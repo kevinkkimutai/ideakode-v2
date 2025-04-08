@@ -153,7 +153,7 @@ const loginUser = async (req, res) => {
 
     // Store the token in cookies
     res.cookie('token', token, {
-      httpOnly: true,
+      // httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // Ensures it's secure in production
       maxAge: 3600000,
       sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict', // Use 'None' for cross-origin requests in production
