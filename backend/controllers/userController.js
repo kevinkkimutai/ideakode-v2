@@ -151,15 +151,15 @@ const loginUser = async (req, res) => {
       { expiresIn: '1h' }
     );
 
-   // Remove domain if frontend is NOT on .netiqa.co.ke
-   res.cookie("token", token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "None",
-    domain: "netiqa.co.ke", // Try without the leading dot
-    maxAge: 3600000,
-    path: '/'
-  });
+    // Store the token in cookies
+     // Store the token in cookies
+     res.cookie('token', token, {
+      httpOnly: true,      
+      secure: process.env.NODE_ENV === 'development', 
+      maxAge: 3600000,    
+      sameSite: 'Strict', 
+    });
+    
 
     // Respond with the user data (optionally excluding password)
     res.status(200).json({
@@ -441,14 +441,11 @@ const resetPassword = async (req, res) => {
 // logout
 const logout = (req, res) => {
   try {
- 
-    res.clearCookie("token", token, {
+    res.clearCookie("token", {
       httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      maxAge: 3600000,
+      secure: process.env.NODE_ENV === "production", 
+      sameSite: "strict", 
     });
-    
     console.log("Cleared cookie");
 
     res.status(200).json({ message: "Logged out successfully." });
