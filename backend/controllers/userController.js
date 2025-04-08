@@ -155,12 +155,12 @@ const loginUser = async (req, res) => {
    res.cookie("token", token, {
     httpOnly: true,
     secure: true,
-    sameSite: "None", // Must be "None" for cross-site cookies
-    domain: ".netiqa.co.ke", // Must match frontend domain's root
+    sameSite: "None",
+    // Only include domain if frontend is on a subdomain of netiqa.co.ke
+    ...(process.env.NODE_ENV === 'production' && { domain: ".netiqa.co.ke" }),
     maxAge: 3600000,
+    path: '/', // Ensure cookie is available on all paths
   });
-  
-    
 
     // Respond with the user data (optionally excluding password)
     res.status(200).json({
