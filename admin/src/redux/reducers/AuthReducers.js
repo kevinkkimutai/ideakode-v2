@@ -5,7 +5,7 @@ const initialState = {
   user: null,
   auth: null,
   notifications: null,
-  isAuthenticated: false,
+  isAuthenticated: null,
   loading: false,
 };
 
@@ -15,7 +15,7 @@ const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
-      state.isAuthenticated = true;
+      state.isAuthenticated = action.payload;
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
@@ -27,6 +27,7 @@ const authSlice = createSlice({
       state.user = null;
       state.notifications = null;
       state.isAuthenticated = false;
+      Cookies.remove("token");
 
     },
   },

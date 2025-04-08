@@ -9,7 +9,6 @@ import { selectUser, setUser } from "@/redux/reducers/AuthReducers";
 export default function ClientProvider({ children }) {
   const dispatch = useDispatch();
   const [getUser] = useGetCurrentUserMutation();
-  const user = useSelector(selectUser);
  
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -21,8 +20,6 @@ export default function ClientProvider({ children }) {
     getCurrentUser();
   }, [dispatch, getUser]);
 
-
-  console.log("user user", user);
   
   return (
     <div>

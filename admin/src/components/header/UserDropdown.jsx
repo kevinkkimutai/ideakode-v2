@@ -7,6 +7,7 @@ import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser } from "@/redux/reducers/AuthReducers";
 import { useGetCurrentUserMutation, useLogoutMutation } from "@/redux/actions/authActions";
+import Cookies from "js-cookie";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,6 @@ export default function UserDropdown() {
   const [hydratedUser, setHydratedUser] = useState(null);
   const dispatch = useDispatch();
   const [getUser] = useGetCurrentUserMutation();
-console.log("user header", user);
 
 function toggleDropdown(e) {
   e.stopPropagation();
@@ -27,12 +27,11 @@ function toggleDropdown(e) {
   }
 
   
-  
     // Initialize WebSocket connection when user is available
     useEffect(() => {
       const getCurrentUser = async () => {
         const response = await getUser();
-        if (response) {
+        if (response.data) {
           dispatch(setUser(response?.data?.user));
         }
       }
@@ -47,6 +46,7 @@ function toggleDropdown(e) {
 const logOut = async () => {
   try {
     await logoutUser();
+    Cookies.remove("token");
     // Redirect to login page
     window.location.href = "/signin";
   } catch (error) {
@@ -70,7 +70,7 @@ const logOut = async () => {
         </span>
 
         <span className="block mr-1 font-medium text-theme-sm">
-  {user?.name?.split(" ")[0]}
+  {user?.user?.name?.split(" ")[0]}
 </span>
 
 
@@ -101,10 +101,10 @@ const logOut = async () => {
       >
         <div>
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            {user?.name}
+            {user?.user?.name}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-           {user?.email}
+           {user?.user?.email}
           </span>
         </div>
 

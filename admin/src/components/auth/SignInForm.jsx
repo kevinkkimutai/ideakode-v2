@@ -7,10 +7,10 @@ import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
 import { useLoginUserMutation } from "@/redux/actions/authActions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-
+import Cookies from "js-cookie";
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -22,33 +22,45 @@ export default function SignInForm() {
     password: ""
   })
 
-  const handleChange = (e) => {
-    setFormdata({...formdata, [e.target.name]: e.target.value });
-  }
+  const [response, setResponse] = useState(null); // To store the response data
 
+  // Handle form input change
+  const handleChange = (e) => {
+    setFormdata({ ...formdata, [e.target.name]: e.target.value });
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginUser({
+      const loginResponse = await loginUser({
         email: formdata.email,
         password: formdata.password,
       });
-  
-      if (response?.data) {
-        // dispatch(setUser(response.data.user)); // ✅ Set user in Redux
-        toast.success("Login successful!");
-        router.push("/signin").then(() => router.reload()); 
-      } else if (response?.error) {
+
+      if (loginResponse?.data) {
+        setResponse(loginResponse); // Set the response data here
+      } else if (loginResponse?.error) {
         const errorMessage =
-          response.error.data?.error || "Login failed. Please try again.";
+          loginResponse.error.data?.error || "Login failed. Please try again.";
         toast.error(errorMessage);
       }
     } catch (error) {
-      // toast.error("An unexpected error occurred. Please try again.");
-      // console.error("Login error:", error);
+      console.error("Login error:", error);
+      toast.error("An unexpected error occurred. Please try again.");
     }
   };
-  
+
+  // useEffect to handle cookies setting after response data
+  useEffect(() => {
+    if (response?.data) {
+      // dispatch(setUser(response.data.user)); // Set user in Redux state
+      // Cookies.set("token", response?.data?.token, { expires: 1/24, path: "/" });
+      toast.success("Login successful!");
+      router.push("/signin");
+    }
+  }, [response?.data]); // This effect will run whenever `response?.data` changes
+
   
   
   return (
