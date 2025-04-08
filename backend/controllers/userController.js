@@ -152,14 +152,14 @@ const loginUser = async (req, res) => {
     );
 
      // Store the token in cookies
-     res.cookie('token', token, {
-      httpOnly: true,      
-      secure: process.env.NODE_ENV === 'development', 
-      maxAge: 3600000,    
-      sameSite: "None",
-      domain: ".netiqa.co.ke", 
-    });
-    
+   // Remove domain if frontend is NOT on .netiqa.co.ke
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "None",
+  maxAge: 3600000,
+});
+
     
 
     // Respond with the user data (optionally excluding password)
