@@ -156,10 +156,9 @@ const loginUser = async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "None",
-    // Only include domain if frontend is on a subdomain of netiqa.co.ke
-    ...(process.env.NODE_ENV === 'production' && { domain: ".netiqa.co.ke" }),
+    domain: "netiqa.co.ke", // Try without the leading dot
     maxAge: 3600000,
-    path: '/', // Ensure cookie is available on all paths
+    path: '/'
   });
 
     // Respond with the user data (optionally excluding password)
