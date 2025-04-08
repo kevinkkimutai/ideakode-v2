@@ -4,12 +4,13 @@ import { useGetCurrentUserMutation } from "@/redux/actions/authActions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/reducers/AuthReducers";
+import { selectUser, setUser } from "@/redux/reducers/AuthReducers";
 
 export default function ClientProvider({ children }) {
   const dispatch = useDispatch();
   const [getUser] = useGetCurrentUserMutation();
-
+  const [user] = selectUser()
+ 
   useEffect(() => {
     const getCurrentUser = async () => {
       const response = await getUser();
@@ -20,6 +21,9 @@ export default function ClientProvider({ children }) {
     getCurrentUser();
   }, [dispatch, getUser]);
 
+
+  console.log("user user", user);
+  
   return (
     <div>
       <ToastContainer
