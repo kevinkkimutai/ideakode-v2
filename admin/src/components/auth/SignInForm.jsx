@@ -22,7 +22,6 @@ export default function SignInForm() {
     password: ""
   })
 
-  const [response, setResponse] = useState(null); // To store the response data
 
   // Handle form input change
   const handleChange = (e) => {
@@ -30,41 +29,44 @@ export default function SignInForm() {
   };
 
   // Handle form submission
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const loginResponse = await loginUser({
-  //       email: formdata.email,
-  //       password: formdata.password,
-  //     });
-
-  //     if (loginResponse?.data) {
-  //       setResponse(loginResponse); // Set the response data here
-  //     } else if (loginResponse?.error) {
-  //       const errorMessage =
-  //         loginResponse.error.data?.error || "Login failed. Please try again.";
-  //       toast.error(errorMessage);
-  //     }
-  //   } catch (error) {
-  //     console.error("Login error:", error);
-  //     toast.error("An unexpected error occurred. Please try again.");
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginUser({
+      const loginResponse = await loginUser({
         email: formdata.email,
         password: formdata.password,
       });
-      toast.success(response.message);
-      // replace the login route
-      router.push("/").then(() => router.reload()); 
-     
-    } catch (error) {
-      // toast.error("Login failed:", error);
+  
+      if (loginResponse?.data) {
+        toast.success("Login successful!");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 100);
+      } else if (loginResponse?.error) {
+        const errorMessage =
+          loginResponse.error.data?.error || "Login failed. Please try again.";
+        toast.error(errorMessage);
+      }
+    } catch (err) {
+      toast.error("An unexpected error occurred. Please try again.");
     }
   };
+  
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await loginUser({
+  //       email: formdata.email,
+  //       password: formdata.password,
+  //     });
+  //     toast.success(response.message);
+  //     // replace the login route
+  //     router.push("/login").then(() => router.reload()); 
+     
+  //   } catch (error) {
+  //     toast.error("Login failed:", error);
+  //   }
+  // };
 
   
   return (

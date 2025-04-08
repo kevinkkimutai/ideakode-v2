@@ -7,6 +7,7 @@ const initialState = {
   notifications: null,
   isAuthenticated: null,
   loading: false,
+  error: null,
 };
 
 const authSlice = createSlice({
