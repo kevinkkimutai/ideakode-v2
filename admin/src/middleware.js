@@ -11,6 +11,8 @@ export function middleware(request) {
 
   // Get the token from cookies
   const token = request.cookies.get('token')?.value;
+  console.log("token", token);
+  
 
   // If there's no token and the route is not public, redirect to signin
   if (!token && !isPublicRoute) {

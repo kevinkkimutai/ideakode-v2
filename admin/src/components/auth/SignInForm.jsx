@@ -30,38 +30,42 @@ export default function SignInForm() {
   };
 
   // Handle form submission
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const loginResponse = await loginUser({
+  //       email: formdata.email,
+  //       password: formdata.password,
+  //     });
+
+  //     if (loginResponse?.data) {
+  //       setResponse(loginResponse); // Set the response data here
+  //     } else if (loginResponse?.error) {
+  //       const errorMessage =
+  //         loginResponse.error.data?.error || "Login failed. Please try again.";
+  //       toast.error(errorMessage);
+  //     }
+  //   } catch (error) {
+  //     console.error("Login error:", error);
+  //     toast.error("An unexpected error occurred. Please try again.");
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const loginResponse = await loginUser({
+      const response = await loginUser({
         email: formdata.email,
         password: formdata.password,
       });
-
-      if (loginResponse?.data) {
-        setResponse(loginResponse); // Set the response data here
-      } else if (loginResponse?.error) {
-        const errorMessage =
-          loginResponse.error.data?.error || "Login failed. Please try again.";
-        toast.error(errorMessage);
-      }
+      toast.success(response.message);
+      // replace the login route
+      router.push("/").then(() => router.reload()); 
+     
     } catch (error) {
-      console.error("Login error:", error);
-      toast.error("An unexpected error occurred. Please try again.");
+      // toast.error("Login failed:", error);
     }
   };
 
-  // useEffect to handle cookies setting after response data
-  useEffect(() => {
-    if (response?.data) {
-      // dispatch(setUser(response.data.user)); // Set user in Redux state
-      // Cookies.set("token", response?.data?.token, { expires: 1/24, path: "/" });
-      toast.success("Login successful!");
-      // router.push("/signin");
-    }
-  }, [response?.data]); // This effect will run whenever `response?.data` changes
-
-  
   
   return (
     <div className="flex flex-col flex-1 lg:w-1/2 w-full">
