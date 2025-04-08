@@ -57,7 +57,7 @@ export default function SignInForm() {
       // dispatch(setUser(response.data.user)); // Set user in Redux state
       // Cookies.set("token", response?.data?.token, { expires: 1/24, path: "/" });
       toast.success("Login successful!");
-      router.push("/signin");
+      // router.push("/signin");
     }
   }, [response?.data]); // This effect will run whenever `response?.data` changes
 
