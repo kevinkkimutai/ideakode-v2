@@ -151,13 +151,14 @@ const loginUser = async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    // Store the token in cookies
-    res.cookie('token', token, {
-      // httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // Ensures it's secure in production
-      maxAge: 3600000,
-      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict', // Use 'None' for cross-origin requests in production
+     // Store the token in cookies
+     res.cookie('token', token, {
+      httpOnly: true,      
+      secure: process.env.NODE_ENV === 'development', 
+      maxAge: 3600000,    
+      sameSite: 'Strict', 
     });
+    
     
 
     // Respond with the user data (optionally excluding password)
