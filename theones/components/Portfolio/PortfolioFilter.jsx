@@ -8,6 +8,19 @@ const PortfolioFilter = ({ activeCategory, setActiveCategory, categories, loadin
     ...(categories || [])
   ];
 
+  if (loading) {
+    return (
+      <div className="flex flex-wrap justify-center gap-4 py-6">
+        {Array.from({ length: 6 }).map((_, idx) => (
+          <div
+            key={idx}
+            className="h-10 w-24 rounded-full bg-gray-300 animate-pulse"
+          />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}

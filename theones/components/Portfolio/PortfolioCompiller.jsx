@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaSearch } from 'react-icons/fa';
 import PortfolioFilter from '@/components/Portfolio/PortfolioFilter';
-import PortfolioHero from '@/components/Portfolio/PortfolioHero';
-import PortfolioCarousel from '@/components/Portfolio/PortfolioCarousel';
 import PortfolioModal from '@/components/Portfolio/PortfolioModal';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
@@ -53,6 +51,8 @@ export default function PortfolioCompiler() {
     fetchData();
   }, [dispatch, getProjects, getCategories]);
 
+
+  
   const filteredProjects = 
     selectedCategory === 'All' 
       ? allProjects 
@@ -60,7 +60,7 @@ export default function PortfolioCompiler() {
 
   // Skeleton array for projects
   const skeletonProjects = Array(6).fill({ id: 'skeleton' });
-
+  console.log("ptojects", filteredProjects);
   return (
     <div className="w-full max-w-[1280px] mx-auto px-6 py-12 pt-20 lg:pt-24">
       {/* Hero Section */}
@@ -127,12 +127,14 @@ export default function PortfolioCompiler() {
                 alt={project.title}
                 width={400}
                 height={300}
+                unoptimized={true} 
+                 priority={75}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <FaSearch className="text-white text-3xl" />
               </div>
-              <h3 className="absolute bottom-4 left-4 text-white font-semibold">{project.title}</h3>
+              <h3 className="absolute bottom-4 left-4 text-white font-semibold">{project.title} {project.image}</h3>
             </motion.div>
           ))
         )}
