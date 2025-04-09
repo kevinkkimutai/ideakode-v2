@@ -42,12 +42,12 @@ const menuData = [
           path: "/branding-design",
           newTab: false,
         },
-        {
-          id: 43,
-          title: "SEO",
-          path: "/seo",
-          newTab: false,
-        },
+        // {
+        //   id: 43,
+        //   title: "SEO",
+        //   path: "/seo",
+        //   newTab: false,
+        // },
       ],
     },
     {
@@ -108,7 +108,7 @@ const NavBar = () => {
             : "absolute"
         }`}
       >
-        <div className=" border-b max-w-[1280px] w-full mx-auto px-2">
+        <div className=" border- max-w-[1280px] w-full mx-auto px-2">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="w-60 max-w-full px-4 xl:mr-12">
               <Link
@@ -128,7 +128,7 @@ const NavBar = () => {
                   src="/Netiqa/logo.png"
                   alt="logo"
                   width={140}
-                  height={30}
+                  height={25}
                   className="hidden w-36 dark:block"
                 />
               </Link>

@@ -29,7 +29,7 @@ export default function PortfolioHighlights() {
                     dispatch(setProjects(response?.data));
                     setAllProjects(response?.data);
                 } else if (response?.error) {
-                    console.error(response?.error?.data?.error || "Failed to fetch projects.");
+                    // console.error(response?.error?.data?.error || "Failed to fetch projects.");
                 }
             } catch (error) {
                 console.error("Failed to fetch projects", error);
@@ -42,8 +42,40 @@ export default function PortfolioHighlights() {
     }, [dispatch, getProjects]);
 
     if (loading) {
-        return <p>Loading...</p>;
-    }
+        return (
+          <div className="max-w-[1280px] w-full mx-auto max-lg:px-4">
+            <Swiper
+              slidesPerView={3}
+              centeredSlides={true}
+              spaceBetween={30}
+              loop={true}
+              speed={2000}
+              breakpoints={{
+                320: { slidesPerView: 1, spaceBetween: 10 },
+                640: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 3, spaceBetween: 30 },
+                1440: { slidesPerView: 3, spaceBetween: 40 },
+              }}
+              navigation={false}
+              modules={[Pagination, Navigation, Autoplay]}
+              className="mySwiper h-72"
+            >
+              {Array.from({ length: 5 }).map((_, index) => (
+                <SwiperSlide
+                  key={index}
+                  className="relative animate-pulse rounded-2xl overflow-clip bg-gray-200 h-full flex flex-col justify-end p-4"
+                >
+                  <div className="absolute grad bottom-0 left-0 right-0 top-24 bg-gradient-to-t from-green-700 to-transparent" />
+                  <div className="w-full h-[160px] bg-gray-300 rounded mb-4" />
+                  <div className="h-6 bg-gray-400 rounded w-3/4 mb-2" />
+                  <div className="h-4 bg-gray-400 rounded w-full" />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        );
+      }
+      
 
     return (
         <div className='industries max-w-[1280px] w-full mx-auto max-lg:px-4 flex flex-col lg:items-center justify-center'>
@@ -101,31 +133,12 @@ export default function PortfolioHighlights() {
                             className="object-contain"
                         />
                         <div className='absolute desc bottom-0 py-2 left-0 right-0 px-4 lg:px-6'>
-                            <h2 className="text-2xl text-start font-bold ">{project?.title}</h2>
-                            <p className="text-base text-start line-clamp-2 ">{project?.description}</p>
+                            <h2 className="text-2xl text-start font-bold text-black">{project?.title}</h2>
+                            <p className="text-base text-start line-clamp-2  text-black ">{project?.description}</p>
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
-            {/* <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-10 md:mt-20'>
-                {allProjects.slice(0, 3).map((project, index) => (
-                    <div className='relative h-[400px] rounded-2xl overflow-clip' key={index}>
-                        <div className="absolute bottom-0 left-0 right-0 top-24 opacity-100 bg-gradient-to-t from-green-700 to-transparent"></div>
-                        <Image
-                            src={project?.image}
-                            alt="project"
-                            width={1000}
-                            height={1000}
-                            priority
-                            className="object-contain"
-                        />
-                        <div className='absolute bottom-4 left-0 right-0 px-4 lg:px-6'>
-                            <h2 className="text-2xl font-bold text-white">{project?.title}</h2>
-                            <p className="text-base text-white line-clamp-2">{project?.description}</p>
-                        </div>
-                    </div>
-                ))}
-            </div> */}
         </div>
     );
 }

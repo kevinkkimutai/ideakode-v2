@@ -40,7 +40,7 @@ export default function PortfolioCarousel({ projects }) {
           <SwiperSlide key={project.id} className="relative w-full h-[300px] md:h-[500px]">
             {/* <div className="absolute z-10 bottom-0 left-0 right-0 top-24 opacity-100 bg-gradient-to-t from-green-700/60 to-transparent"></div> */}
             <Image
-              src={project.img}
+              src={project.image}
               alt={project.title}
               layout="fill"
               objectFit="cover"

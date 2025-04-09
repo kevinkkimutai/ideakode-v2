@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const categories = ["All", "Branding","E-Commerce",  "UI/UX Design", "Web Development"];
+const PortfolioFilter = ({ activeCategory, setActiveCategory, categories, loading }) => {
+  // Add "All" category at the beginning
+  const allCategories = [
+    { id: 'All', name: 'All' },
+    ...(categories || [])
+  ];
 
-const PortfolioFilter = ({ activeCategory, setActiveCategory }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -11,19 +15,20 @@ const PortfolioFilter = ({ activeCategory, setActiveCategory }) => {
       transition={{ duration: 0.6 }}
       className="flex flex-wrap justify-center gap-4 py-6"
     >
-      {categories.map((category, index) => (
+      {allCategories?.map((category) => (
         <motion.button
-          key={index}
-          onClick={() => setActiveCategory(category)}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          key={category.id}
+          onClick={() => setActiveCategory(category.id === 'All' ? 'All' : category.name)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className={`px-6 py-2 rounded-full font-medium transition-all ${
-            activeCategory === category
+            (activeCategory === 'All' && category.id === 'All') || 
+            (activeCategory === category.name)
               ? "bg-green-700 text-white"
               : "bg-gray-200 text-gray-800 hover:bg-green-600 hover:text-white"
           }`}
         >
-          {category}
+          {category.name}
         </motion.button>
       ))}
     </motion.div>

@@ -63,7 +63,7 @@ export default function About() {
 
           <div className="flex justify-star gap-4 mt-12">
             <Link
-              href="/about-us"
+              href="/about"
               className="bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 px-4 rounded-full"
             >
               Learn More About Us

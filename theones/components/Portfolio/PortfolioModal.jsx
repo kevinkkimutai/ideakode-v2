@@ -15,7 +15,7 @@ export default function PortfolioModal({ children, onClose }) {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.3 }}
-        className="bg-white p-6 rounded-lg max-w-4xl  relative"
+        className="bg-white p- rounded-lg max-w-4xl relative"
       >
         <button
           onClick={onClose}
