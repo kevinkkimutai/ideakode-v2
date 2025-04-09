@@ -18,6 +18,10 @@ const nextConfig = {
             protocol: "https",
             hostname: "ideakode-v2-1.onrender.com",
           },
+          {
+            protocol: "https",
+            hostname: "api.netiqa.co.ke",
+          }
         ],
       },
 };

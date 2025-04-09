@@ -15,6 +15,9 @@ const policyRoutes = require("./routes/policyRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const supportTicketRoutes = require("./routes/supportTicketRoutes");
 const subscriberRoutes = require("./routes/subscriberRoutes");
+const contactRoutes = require("./routes/contactRoutes");
+
+
 
 const app = express();
 const server = http.createServer(app);
@@ -47,6 +50,7 @@ app.use("/api", policyRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", supportTicketRoutes);
 app.use("/api", subscriberRoutes);
+app.use("/api", contactRoutes);
 
 
 // WebSocket connection event

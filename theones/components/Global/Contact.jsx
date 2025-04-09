@@ -1,11 +1,70 @@
-import React from 'react'
+'use client';
+import { useState } from 'react';
+import { useCreateContactMutation } from '@/redux/actions/contactActions';
+import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
+import { CheckCircle } from 'lucide-react';
 
 export default function ContactUs() {
+  const [sendContact] = useCreateContactMutation();
+  const [loading, setLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    description: "",
+    email: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.phone || !formData.description) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await sendContact(formData).unwrap();
+      
+      if (response) {
+        toast.success("Contact message sent successfully!");
+        setShowSuccessModal(true);
+        // Reset form
+        setFormData({
+          name: "",
+          phone: "",
+          description: "",
+          email: "",
+        });
+      }
+    } catch (error) {
+      const errorMessage = error?.data?.error || "Failed to send message. Please try again.";
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-6 py-20 lg:py-12  lg:pt-40">
-     <div className="font-[sans-serif] max-w-6xl mx-auto relative  rounded-lg py-6 lg:py-32">
-      <div className="grid lg:grid-cols-3 items-center">
-        <div className="grid grid-cols-2 gap-4 z-20 relative lg:left-16 max-lg:px-4">
+    <div className="w-full max-w-[1280px] mx-auto px-6 py-20 lg:py-12 lg:pt-40">
+      <div className="font-[sans-serif] max-w-6xl mx-auto relative rounded-lg py-6 lg:py-32">
+        <div className="grid lg:grid-cols-3 items-center">
+          {/* Contact Info Cards (unchanged) */}
+          <div className="grid grid-cols-2 gap-4 z-20 relative lg:left-16 max-lg:px-4">
           <div className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(34,197,94,0.3)]">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-blue-600" viewBox="0 0 512 512">
               <path d="M341.476 338.285c54.483-85.493 47.634-74.827 49.204-77.056C410.516 233.251 421 200.322 421 166 421 74.98 347.139 0 256 0 165.158 0 91 74.832 91 166c0 34.3 10.704 68.091 31.19 96.446l48.332 75.84C118.847 346.227 31 369.892 31 422c0 18.995 12.398 46.065 71.462 67.159C143.704 503.888 198.231 512 256 512c108.025 0 225-30.472 225-90 0-52.117-87.744-75.757-139.524-83.715zm-194.227-92.34a15.57 15.57 0 0 0-.517-.758C129.685 221.735 121 193.941 121 166c0-75.018 60.406-136 135-136 74.439 0 135 61.009 135 136 0 27.986-8.521 54.837-24.646 77.671-1.445 1.906 6.094-9.806-110.354 172.918L147.249 245.945zM256 482c-117.994 0-195-34.683-195-60 0-17.016 39.568-44.995 127.248-55.901l55.102 86.463a14.998 14.998 0 0 0 25.298 0l55.101-86.463C411.431 377.005 451 404.984 451 422c0 25.102-76.313 60-195 60z" data-original="#000000"></path>
@@ -33,7 +92,7 @@ export default function ContactUs() {
          <div className='flex items-center justify-center'>
          <a href="tel:+254746645142" className="text-xs h-12 w-12 bg-blue-200 flex items-center justify-center rounded-full text-gray-600 mt-1">
          <svg className="w-6 h-6 text-blue-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-  <path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clip-rule="evenodd"/>
+  <path fillRule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clipRule="evenodd"/>
   <path d="M7.2 8.809H4V19.5h3.2V8.809Z"/>
 </svg>
 
@@ -43,7 +102,7 @@ export default function ContactUs() {
          <div className='flex items-center justify-center'>
          <a href="tel:+254746645142" className="text-xs h-12 w-12 bg-red-100 flex items-center justify-center rounded-full text-gray-600 mt-1">
          <svg className="w-6 h-6 text-red-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path fill="currentColor" fill-rule="evenodd" d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" clip-rule="evenodd"/>
+  <path fill="currentColor" fillRule="evenodd" d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" clipRule="evenodd"/>
 </svg>
 
          </a>
@@ -62,7 +121,7 @@ export default function ContactUs() {
          <div className='flex items-center justify-center'>
          <a href="tel:+254746645142" className="text-xs h-12 w-12 bg-blue-200 flex items-center justify-center rounded-full text-gray-600 mt-1">
          <svg className="w-6 h-6 text-blue-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-  <path fill-rule="evenodd" d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z" clip-rule="evenodd"/>
+  <path fillRule="evenodd" d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z" clipRule="evenodd"/>
 </svg>
 
          </a>
@@ -71,30 +130,96 @@ export default function ContactUs() {
         </div>
         </div>
 
-        <div className="lg:col-span-2 bg-gradient-to-r from-green-500 via-green-600 to-green-800 rounded-lg sm:p-10 p-4 z-10 max-lg:-order-1 max-lg:mb-8">
-          <h2 className="text-2xl sm:text-3xl text-white text-center font-bold mb-6">Contact us</h2>
-          <form>
-            <div className="max-w-md mx-auto space-y-2">
-              <input type='text' placeholder='Name'
-                className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none" />
-              <input type='email' placeholder='Email'
-                className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none" />
-              <input type='email' placeholder='Phone No.'
-                className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none" />
-              <textarea placeholder='Message' rows="6"
-                className="w-full bg-white rounded-md px-4 text-sm pt-3 outline-none"></textarea>
-              <button type='button'
-                className="text-white w-full relative bg-black hover:bg-[#111] rounded-md text-sm px-6 py-3 !mt-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill='currentColor' className="mr-2 inline" viewBox="0 0 548.244 548.244">
-                  <path fillRule="evenodd" d="M392.19 156.054 211.268 281.667 22.032 218.58C8.823 214.168-.076 201.775 0 187.852c.077-13.923 9.078-26.24 22.338-30.498L506.15 1.549c11.5-3.697 24.123-.663 32.666 7.88 8.542 8.543 11.577 21.165 7.879 32.666L390.89 525.906c-4.258 13.26-16.575 22.261-30.498 22.338-13.923.076-26.316-8.823-30.728-22.032l-63.393-190.153z" clipRule="evenodd" data-original="#000000" />
-                </svg>
-                Send Message
-              </button>
-            </div>
-          </form>
+          {/* Contact Form */}
+          <div className="lg:col-span-2 bg-gradient-to-r from-green-500 via-green-600 to-green-800 rounded-lg sm:p-10 p-4 z-10 max-lg:-order-1 max-lg:mb-8">
+            <h2 className="text-2xl sm:text-3xl text-white text-center font-bold mb-6">Contact us</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="max-w-md mx-auto space-y-2">
+                <input 
+                  type="text" 
+                  name="name"
+                  placeholder="Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none"
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none"
+                />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  placeholder="Phone No."
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none"
+                />
+                <textarea 
+                  name="description"
+                  placeholder="Message" 
+                  rows="6"
+                  value={formData.description}
+                  onChange={handleChange}
+                  className="w-full bg-white rounded-md px-4 text-sm pt-3 outline-none"
+                ></textarea>
+                <button 
+                  type="submit"
+                  disabled={loading}
+                  className="text-white w-full relative bg-black hover:bg-[#111] rounded-md text-sm px-6 py-3 !mt-4 flex items-center justify-center"
+                >
+                  {loading ? (
+                    <span className="flex items-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" className="mr-2 inline" viewBox="0 0 548.244 548.244">
+                        <path fillRule="evenodd" d="M392.19 156.054 211.268 281.667 22.032 218.58C8.823 214.168-.076 201.775 0 187.852c.077-13.923 9.078-26.24 22.338-30.498L506.15 1.549c11.5-3.697 24.123-.663 32.666 7.88 8.542 8.543 11.577 21.165 7.879 32.666L390.89 525.906c-4.258 13.26-16.575 22.261-30.498 22.338-13.923.076-26.316-8.823-30.728-22.032l-63.393-190.153z" clipRule="evenodd" />
+                      </svg>
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+       {/* Success Modal */}
+       {showSuccessModal && (
+        <div className="fixed inset-0 bg-black/50 bg-opacity-50 flex items-center justify-center z-[9999] p-4">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            className="bg-white rounded-xl p-8 max-w-md w-full mx-auto text-center"
+          >
+            <div className="flex justify-center mb-4">
+              <CheckCircle className="h-16 w-16 text-green-500" />
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p className="text-gray-600 mb-6">
+              Thank you for contacting us. We'll get back to you soon.
+            </p>
+            <button
+              onClick={() => setShowSuccessModal(false)}
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
+            >
+              Close
+            </button>
+          </motion.div>
+        </div>
+      )}
     </div>
- </div>
-  )
+  );
 }

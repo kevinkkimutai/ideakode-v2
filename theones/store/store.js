@@ -8,7 +8,8 @@ import {
   projectReducers, 
   projectCategoryReducers,
   supportcategoriesReducers,
-  supportTicketsReducer
+  supportTicketsReducer,
+  contactReducers
  } from "@/redux/reducers";
 
 
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   projectcategories: projectCategoryReducers,
   supportcategories: supportcategoriesReducers,
   tickets: supportTicketsReducer,
+  contact: contactReducers,
   notifications: persistReducer(notificationsPersistConfig, projectReducers),
   [apiSlice.reducerPath]: apiSlice.reducer,
 });

@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaSearch } from 'react-icons/fa';
 import PortfolioFilter from '@/components/Portfolio/PortfolioFilter';
+import PortfolioHero from '@/components/Portfolio/PortfolioHero';
+import PortfolioCarousel from '@/components/Portfolio/PortfolioCarousel';
 import PortfolioModal from '@/components/Portfolio/PortfolioModal';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
@@ -51,8 +53,6 @@ export default function PortfolioCompiler() {
     fetchData();
   }, [dispatch, getProjects, getCategories]);
 
-
-  
   const filteredProjects = 
     selectedCategory === 'All' 
       ? allProjects 
@@ -60,7 +60,7 @@ export default function PortfolioCompiler() {
 
   // Skeleton array for projects
   const skeletonProjects = Array(6).fill({ id: 'skeleton' });
-  console.log("ptojects", filteredProjects);
+
   return (
     <div className="w-full max-w-[1280px] mx-auto px-6 py-12 pt-20 lg:pt-24">
       {/* Hero Section */}
@@ -99,7 +99,7 @@ export default function PortfolioCompiler() {
 
       {/* Projects Grid with Skeleton */}
       <div className="grid md:grid-cols-3 gap-6 mt-8">
-        {loading ? (
+      {loading ? (
           skeletonProjects.map((_, index) => (
             <motion.div
               key={`skeleton-${index}`}
@@ -111,7 +111,7 @@ export default function PortfolioCompiler() {
               <div className="w-full h-full bg-gray-300 animate-pulse" />
             </motion.div>
           ))
-        ) : (
+        ) : filteredProjects.length > 0 ? (
           filteredProjects.map(project => (
             <motion.div
               key={project.id}
@@ -127,16 +127,54 @@ export default function PortfolioCompiler() {
                 alt={project.title}
                 width={400}
                 height={300}
-                unoptimized={true} 
-                 priority={75}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform"
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <FaSearch className="text-white text-3xl" />
               </div>
-              <h3 className="absolute bottom-4 left-4 text-white font-semibold">{project.title} {project.image}</h3>
+              <h3 className="absolute bottom-4 left-4 group-hover:text-white font-semibold">{project.title}</h3>
             </motion.div>
           ))
+        ) : (
+          <div className="col-span-full text-center py-12">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-16 w-16 text-gray-400 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                No projects found
+              </h3>
+              <p className="text-gray-500 max-w-md">
+                {selectedCategory === 'All'
+                  ? "We couldn't find any projects in our portfolio."
+                  : `We couldn't find any projects in the ${selectedCategory} category.`}
+              </p>
+              {selectedCategory !== 'All' && (
+                <button
+                  onClick={() => setSelectedCategory('All')}
+                  className="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                >
+                  View All Projects
+                </button>
+              )}
+            </motion.div>
+          </div>
         )}
       </div>
 
