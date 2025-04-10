@@ -4,7 +4,10 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   // Public routes that do not require authentication
-  const publicRoutes = ['/signin', '/signup','/forgot-password','/reset-password'];
+  const publicRoutes = ['/signin', '/signup', '/forgot-password', '/reset-password'];
+
+  // Allow access to image and upload paths without auth
+  const isImagePath = pathname.startsWith('/images/') || pathname.startsWith('/uploads/');
 
   // Check if the current route is public
   const isPublicRoute = publicRoutes.includes(pathname);
@@ -12,23 +15,23 @@ export function middleware(request) {
   // Get the token from cookies
   const token = request.cookies.get('token')?.value;
   console.log("token", token);
-  
 
-  // If there's no token and the route is not public, redirect to signin
-  if (!token && !isPublicRoute) {
+  // Allow unauthenticated access to images and public routes
+  if (!token && !isPublicRoute && !isImagePath) {
     return NextResponse.redirect(new URL('/signin', request.url));
   }
 
-  // If the user is authenticated and tries to access signin or home page, redirect to dashboard
+  // Redirect authenticated users away from signin or welcome page
   if (token && (pathname === '/signin' || pathname === '/fc')) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 
-  // Proceed with the request if no redirects are triggered
   return NextResponse.next();
 }
 
-// Config to apply the middleware to all routes except for API, static, and image paths
+// Match all routes except those explicitly excluded
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images/|uploads/).*)'],
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico).*)'
+  ],
 };
