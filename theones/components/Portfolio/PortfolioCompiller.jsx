@@ -123,7 +123,7 @@ export default function PortfolioCompiler() {
               onClick={() => setLightbox(project)}
             >
               <Image
-                src={`${project.image}`}
+                src={project.image}
                 alt={project.title}
                 width={400}
                 height={300}
@@ -188,7 +188,7 @@ export default function PortfolioCompiler() {
             className="p-4 rounded-lg max-w-4xl mx-auto"
           >
             <Image
-              src={`${lightbox.image}`}
+              src={lightbox.image}
               alt={lightbox.title}
               width={600}
               height={400}
