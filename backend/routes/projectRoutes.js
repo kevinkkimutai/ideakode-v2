@@ -10,19 +10,19 @@ const {
   getUserProjects,
 } = require("../controllers/projectController");
 const authenticate = require("../middlewares/auth");
-const upload = require("../middlewares/uploadImage");
+const upload = require("../middlewares/upoads");
 
 const router = express.Router();
 
 // Route to create a new project
-router.post("/project", authenticate, upload.single("image"), createProject);
+router.post("/project", authenticate, upload, createProject);
 // Route to get all projects
 router.get("/projects", getAllProjects);
 // Route to get a single project by ID
 router.get("/project/:id", getProjectById);
 router.get("/assigned/projects", authenticate, getUserProjects);
 // Route to update a project by ID
-router.put("/project", upload.single("image"), updateProject);
+router.put("/project", upload, updateProject);
 // Route to update the status of a project by ID
 router.put("/project/:id/status", updateProjectStatus);
 // Route to get projects created by a specific user

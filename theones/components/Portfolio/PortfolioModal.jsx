@@ -19,7 +19,7 @@ export default function PortfolioModal({ children, onClose }) {
       >
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-600 hover:text-gray-900"
+          className="absolute top-0 bg-red-50 rounded-md p-1 right-0 text-red-600 hover:text-red-700"
         >
           <FaTimes size={20} />
         </button>

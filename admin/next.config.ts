@@ -30,6 +30,14 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "ideakode-v2-1.onrender.com",
+      },
+      {
+        protocol: "https",
+        hostname: "api.netiqa.co.ke"
+      },
+      {
+        protocol: "https",
+        hostname: "netiqa.co.ke"
       }
     ],
   },
