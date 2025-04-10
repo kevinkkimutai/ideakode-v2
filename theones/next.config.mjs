@@ -27,7 +27,9 @@ const nextConfig = {
             hostname: "api.netiqa.co.ke",
           }
         ],
+        
       },
+      
 };
 
 export default nextConfig;

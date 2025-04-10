@@ -60,6 +60,7 @@ export default function PortfolioCompiler() {
 
   // Skeleton array for projects
   const skeletonProjects = Array(6).fill({ id: 'skeleton' });
+console.log("filteredProjects", filteredProjects);
 
   return (
     <div className="w-full max-w-[1280px] mx-auto px-6 py-12 pt-20 lg:pt-24">
