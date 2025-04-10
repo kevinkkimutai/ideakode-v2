@@ -6,7 +6,7 @@ import { FaTimes } from 'react-icons/fa';
 export default function PortfolioModal({ children, onClose }) {
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-black/70 z-50"
+      className="fixed inset-0 flex items-center justify-center bg-black/70 z-50 max-md:px-2"
       onClick={onClose}
     >
       <motion.div
@@ -15,7 +15,7 @@ export default function PortfolioModal({ children, onClose }) {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.3 }}
-        className="bg-white p- rounded-lg max-w-4xl relative"
+        className="bg-white  rounded-lg max-w-4xl relative"
       >
         <button
           onClick={onClose}
