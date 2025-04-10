@@ -99,7 +99,7 @@ console.log("filteredProjects", filteredProjects);
       />
 
       {/* Projects Grid with Skeleton */}
-      <div className="grid md:grid-cols-3 gap-6 mt-8">
+      <div className="grid md:grid-cols-2 gap-6 mt-8">
       {loading ? (
           skeletonProjects.map((_, index) => (
             <motion.div
