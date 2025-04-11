@@ -29,7 +29,7 @@ const uploadToR2 = async (file) => {
       throw new Error("Only image files are allowed");
     }
 
-    const fileName = `projects/${Date.now()}-${file.originalname.replace(/\s+/g, "-")}`;
+    const fileName = `${Date.now()}-${file.originalname.replace(/\s+/g, "-")}`;
     const uploadParams = {
       Bucket: process.env.CF_BUCKET_NAME,
       Key: fileName,
