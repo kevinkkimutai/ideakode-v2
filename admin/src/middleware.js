@@ -1,37 +1,33 @@
 import { NextResponse } from 'next/server';
 
 export function middleware(request) {
-  const { pathname } = request.nextUrl;
-
-  // Public routes that do not require authentication
+  const { pathname, origin } = request.nextUrl;
   const publicRoutes = ['/signin', '/signup', '/forgot-password', '/reset-password'];
-
-  // Allow access to image and upload paths without auth
-  const isImagePath = pathname.startsWith('/images/') || pathname.startsWith('/uploads/');
-
-  // Check if the current route is public
   const isPublicRoute = publicRoutes.includes(pathname);
 
-  // Get the token from cookies
+  // Debugging: Log all cookies
+  const allCookies = request.cookies.getAll();
+  console.log('All cookies:', allCookies);
+  
+  // Get token
   const token = request.cookies.get('token')?.value;
-  console.log("token", token);
+  console.log("Token from cookies:", token);
+  console.log("Request URL:", request.url);
 
-  // Allow unauthenticated access to images and public routes
-  if (!token && !isPublicRoute && !isImagePath) {
-    return NextResponse.redirect(new URL('/signin', request.url));
+  // Redirect logic
+  if (!token && !isPublicRoute) {
+    console.log(`Redirecting to signin from ${pathname} - no token found`);
+    return NextResponse.redirect(new URL('/signin', origin));
   }
 
-  // Redirect authenticated users away from signin or welcome page
   if (token && (pathname === '/signin' || pathname === '/fc')) {
-    return NextResponse.redirect(new URL('/', request.url));
+    console.log(`Redirecting to dashboard from ${pathname} - user already authenticated`);
+    return NextResponse.redirect(new URL('/', origin));
   }
 
   return NextResponse.next();
 }
 
-// Match all routes except those explicitly excluded
 export const config = {
-  matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico).*)'
-  ],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images/).*)'],
 };
