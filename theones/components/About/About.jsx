@@ -52,25 +52,38 @@ return (
 
     {/* Our Story */}
     <section className="py-20">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center max-w-[1280px] w-full">
+      <div className="containe mx-auto px-6 flex flex-col md:flex-row items-cente max-w-[1280px] w-full">
         <div className="md:w-1/2 mb-10 md:mb-0">
           <Image 
-            src="/about-story.jpg" 
+            src="https://assets.netiqa.co.ke/netiqa.jpg" 
             alt="Our Team" 
             width={600} 
-            height={400} 
-            className="rounded-xl shadow-xl"
+            height={300} 
+            className="rounded-xl shadow-xl max-h-[500px] object-cover"
           />
         </div>
         <div className="md:w-1/2 md:pl-12">
-          <h2 className="text-3xl font-bold text-gray-900  mb-6">Our Story</h2>
-          <p className="text-gray-600  mb-4">
-            Founded in 2025, we started as a small team in a garage with a big vision: to democratize technology. Today, we’re a global leader in AI, cloud computing, and IoT solutions.
-          </p>
-          <p className="text-gray-600 ">
-            From startups to Fortune 500 companies, we’ve helped businesses transform their operations and exceed their goals.
-          </p>
-        </div>
+  <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+  <p className="text-gray-600 mb-4">
+    Born in a Bangalore coworking space in 2023, we're a passionate team of engineers and designers solving real-world problems with lean tech. We've grown from 3 founders to 12 dedicated specialists - all united by one goal: building solutions that matter.
+  </p>
+  
+  <ul className="list-disc pl-5 space-y-2 mb-4 text-gray-600">
+    <li><span className="font-medium">15+ happy clients</span> across Kenya</li>
+    <li><span className="font-medium">Bootstrapped to profitability</span> within 18 months</li>
+    {/* <li><span className="font-medium">Featured at TechSpark'24</span> as top emerging startup</li> */}
+    <li><span className="font-medium">100% client retention</span> since our first project</li>
+  </ul>
+
+  <p className="text-gray-600">
+    We specialize in helping SMEs digitize through:
+  </p>
+  <ul className="list-disc pl-5 mt-2 text-gray-600">
+    <li>Affordable web/app solutions (50% cheaper than enterprise alternatives)</li>
+    <li>Process automation that saves 20+ hours/week</li>
+    <li>Practical AI tools tailored for non-tech users</li>
+  </ul>
+</div>
       </div>
     </section>
 
@@ -107,7 +120,7 @@ return (
       Contact Us
     </Link>
     <Link
-      href="#"
+      href="/contact"
       className="bg-white text-green-800 hover:text-green-900 border border-green-700 hover:bg-green-100 font-bold py-2.5 px-6 rounded-full transition-all"
     >
       Schedule a Consultation

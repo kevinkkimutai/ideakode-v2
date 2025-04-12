@@ -29,10 +29,10 @@ export default function PortfolioHighlights() {
                     dispatch(setProjects(response?.data));
                     setAllProjects(response?.data);
                 } else if (response?.error) {
-                    // console.error(response?.error?.data?.error || "Failed to fetch projects.");
+                    // // console.error(response?.error?.data?.error || "Failed to fetch projects.");
                 }
             } catch (error) {
-                console.error("Failed to fetch projects", error);
+                // console.error("Failed to fetch projects", error);
             } finally {
                 setLoading(false);
             }

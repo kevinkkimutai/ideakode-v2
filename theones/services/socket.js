@@ -15,17 +15,17 @@ export const initializeSocket = (userId) => {
 
   // Event listener for successful connection
   socket.on('connect', () => {
-    console.log(`Connected to WebSocket server ${userId}`);
+    // console.log(`Connected to WebSocket server ${userId}`);
   });
 
   // Event listener for disconnection
   socket.on('disconnect', () => {
-    console.log('Disconnected from WebSocket server');
+    // console.log('Disconnected from WebSocket server');
   });
 
   // Event listener for connection errors
   socket.on('connect_error', (error) => {
-    console.error('WebSocket connection error:', error);
+    // console.error('WebSocket connection error:', error);
   });
 
   return socket;

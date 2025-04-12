@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default function Hero() {
@@ -37,12 +38,12 @@ export default function Hero() {
     </p>
 
     <div className="flex justify-center gap-4 mt-12">
-      <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+      <Link href="/contact" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
       Get a Free Quote
-      </button>
-      <button className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+      </Link>
+      <Link href="/contact" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
       View Our Work
-      </button>
+      </Link>
     </div>
   
 </div>

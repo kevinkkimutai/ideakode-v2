@@ -14,13 +14,13 @@ export default function CallToActionFinal() {
   </p>
   <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 rtl:space-x-reverse">
     <Link
-      href="#"
+      href="/contact"
       className="bg-green-700 hover:bg-green-800 text-white font-bold py-2.5 px-6 rounded-full transition-all"
     >
      Get a Free Consultation
     </Link>
     <Link
-      href="#"
+      href="/contact"
       className="bg-white text-green-800 hover:text-green-900 border border-green-700 hover:bg-green-100 font-bold py-2.5 px-6 rounded-full transition-all"
     >
      Let's Work Together

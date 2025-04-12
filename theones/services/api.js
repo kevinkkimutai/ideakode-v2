@@ -9,7 +9,6 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const state = getState();
-    console.log("Current Redux State:", state); // Debugging
     const token = state.auth?.user?.token; // Ensure correct path
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
