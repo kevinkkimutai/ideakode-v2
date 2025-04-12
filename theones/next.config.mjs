@@ -25,7 +25,11 @@ const nextConfig = {
           {
             protocol: "https",
             hostname: "api.netiqa.co.ke",
-          }
+          },
+          {
+            protocol: "https",
+            hostname: "assets.netiqa.co.ke",
+          },
         ],
         
       },
