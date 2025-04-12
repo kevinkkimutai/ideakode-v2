@@ -22,6 +22,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "https://www.netiqa.co.ke/about",
     title: "About Netiqa - Who We Are",
     description: "Get to know Netiqa and how we help businesses grow with our digital expertise.",
     images: ["https://assets.netiqa.co.ke/Asset%209.png"],

@@ -22,6 +22,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "https://www.netiqa.co.ke/faqs",
     title: "FAQs - Netiqa | Your Questions Answered",
     description: "Have questions? Find all the answers about our services and processes.",
     images: ["https://assets.netiqa.co.ke/Asset%209.png"],

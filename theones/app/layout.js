@@ -36,6 +36,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "https://www.netiqa.co.ke",
     title: "Netiqa - Innovative Web & Software Solutions",
     description: "We provide expert digital solutions to help your business grow.",
     images: ["https://www.netiqa.co.ke/proj2.png"],

@@ -22,6 +22,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "https://www.netiqa.co.ke/portfolio",
     title: "Portfolio - Netiqa | Showcasing Our Work",
     description: "See how we've helped businesses with expert web, software, and design solutions.",
     images: ["https://assets.netiqa.co.ke/Asset%209.png"],

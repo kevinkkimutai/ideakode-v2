@@ -22,6 +22,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "https://www.netiqa.co.ke/contact",
     title: "Contact Us - Netiqa | Get in Touch",
     description: "Get in touch with Netiqa for personalized digital solutions. We are ready to help your business grow.",
     images: ["https://assets.netiqa.co.ke/Asset%209.png"],
