@@ -19,7 +19,7 @@ export const metadata = {
   title: "Netiqa - Innovative Web & Software Solutions",
   description: "We provide cutting-edge web design, software development, and graphic design solutions to help businesses thrive in the digital world.",
   keywords: "web design, software development, graphic design, tech solutions, digital agency",
-  author: "Netiqa",
+  author: "Kelvin Kimutai",
   openGraph: {
     title: "Netiqa - Innovative Web & Software Solutions",
     description: "Expert web and software development services tailored to your business needs.",
@@ -39,6 +39,9 @@ export const metadata = {
     title: "Netiqa - Innovative Web & Software Solutions",
     description: "We provide expert digital solutions to help your business grow.",
     images: ["https://www.netiqa.co.ke/proj2.png"],
+  },
+  alternates: {
+    canonical: "https://www.netiqa.co.ke",
   },
 };
 
