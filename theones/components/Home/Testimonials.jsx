@@ -81,35 +81,34 @@ export default function Testimonials() {
 
           <div className="-mx-6 lg:col-span-2 lg:mx-0">
             <div ref={sliderRef} className="keen-slider">
-              <div className="keen-slider__slide p-6 bg-white rounded-lg bg-gradient-to-br from-green-100 via-white to-green-100 border border-green-300">
-                <p className="text-xl font-bold text-green-600">Excellent Service!</p>
-                <p className="mt-4 text-gray-700">
-                  The team was extremely helpful and made the process smooth. Highly recommended! Hear from our satisfied clients! Discover how our expertise in web development, 
-            software solutions, and design has helped businesses thrive. 
-            See what our clients have to say about working with us!
-                </p>
-                <footer className="mt-4 text-sm font-medium text-gray-700">— John Doe</footer>
-              </div>
+            <div className="keen-slider__slide p-6 bg-white rounded-lg bg-gradient-to-br from-green-100 via-white to-green-100 border border-green-300">
+  <p className="text-xl font-bold text-green-600">Seamless E-commerce Launch!</p>
+  <p className="mt-4 text-gray-700">
+    From product pages to secure checkout, everything was handled professionally. 
+    The end result was a stunning and user-friendly e-commerce site that helped us boost sales from day one.
+    Truly impressed by the team’s dedication and support!
+  </p>
+  <footer className="mt-4 text-sm font-medium text-gray-700">— Abdisalani Mohamed, CEO of Cinab</footer>
+</div>
 
-              <div className="keen-slider__slide p-6 bg-white rounded-lg bg-gradient-to-br from-green-100 via-white to-green-100 border border-green-300">
-                <p className="text-xl font-bold text-green-600">Very Professional</p>
-                <p className="mt-4 text-gray-700">
-                  Great experience working with them. They really know what they are doing. Hear from our satisfied clients! Discover how our expertise in web development, 
-            software solutions, and design has helped businesses thrive. 
-            See what our clients have to say about working with us!
-                </p>
-                <footer className="mt-4 text-sm font-medium text-gray-700">— Jane Smith</footer>
-              </div>
 
-              <div className="keen-slider__slide p-6 bg-white rounded-lg bg-gradient-to-br from-green-100 via-white to-green-100 border border-green-300">
-                <p className="text-xl font-bold text-green-600">Highly Recommended</p>
-                <p className="mt-4 text-gray-700">
-                  This was the best decision I made. Their services exceeded my expectations! Hear from our satisfied clients! Discover how our expertise in web development, 
-            software solutions, and design has helped businesses thrive. 
-            See what our clients have to say about working with us!
-                </p>
-                <footer className="mt-4 text-sm font-medium text-gray-700">— Michael Johnson</footer>
-              </div>
+<div className="keen-slider__slide p-6 bg-white rounded-lg bg-gradient-to-br from-green-100 via-white to-green-100 border border-green-300">
+  <p className="text-xl font-bold text-green-600">Our Brand Finally Speaks!</p>
+  <p className="mt-4 text-gray-700">
+    The team completely transformed how our brand is perceived. From our logo to color palette and tone, everything now feels aligned with our vision. Clients constantly compliment our new identity.
+  </p>
+  <footer className="mt-4 text-sm font-medium text-gray-700">— Frankline, Founder of RebakFencing</footer>
+</div>
+
+
+<div className="keen-slider__slide p-6 bg-white rounded-lg bg-gradient-to-br from-green-100 via-white to-green-100 border border-green-300">
+  <p className="text-xl font-bold text-green-600">Beautiful, Functional Design!</p>
+  <p className="mt-4 text-gray-700">
+    We were blown away by the attention to detail and modern aesthetics. Our new site isn’t just pretty — it’s user-friendly, fast, and converts better. The UI/UX upgrade made a huge difference.
+  </p>
+  <footer className="mt-4 text-sm font-medium text-gray-700">— Kelvin Kimutai, Founder Netiqa</footer>
+</div>
+
             </div>
           </div>
         </div>
