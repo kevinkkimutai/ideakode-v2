@@ -158,7 +158,7 @@ const loginUser = async (req, res) => {
       secure: process.env.NODE_ENV === 'development', 
       maxAge: 3600000,    
       sameSite: 'Strict', 
-      // domain: ".netiqa.co.ke",
+      domain: ".netiqa.co.ke",
     });
     
 
