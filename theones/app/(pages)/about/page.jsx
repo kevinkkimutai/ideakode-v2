@@ -13,7 +13,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://Netiqa.vercel.app/about-banner.png",
+        url: "https://assets.netiqa.co.ke/Asset%209.png",
         width: 1200,
         height: 630,
         alt: "About Netiqa - Web & Software Solutions",
@@ -24,7 +24,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "About Netiqa - Who We Are",
     description: "Get to know Netiqa and how we help businesses grow with our digital expertise.",
-    images: ["https://www.netiqa.co.ke/about-banner.png"],
+    images: ["https://assets.netiqa.co.ke/Asset%209.png"],
   },
   alternates: {
     canonical: "https://www.netiqa.co.ke/about",

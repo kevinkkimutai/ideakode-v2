@@ -132,9 +132,9 @@ export default function PortfolioHighlights() {
                             priority
                             className="object-contain"
                         />
-                        <div className='absolute desc bottom-0 py-2 left-0 right-0 px-4 lg:px-6'>
-                            <h2 className="text-2xl text-start font-bold text-black">{project?.title}</h2>
-                            <p className="text-base text-start line-clamp-2  text-black ">{project?.description}</p>
+                        <div className='absolute desc bottom-0  left-0 right-0 '>
+                            <h2 className="text-2xl  font-bold bg-green-950 px-2 text-center w-auto text-white">{project?.title}</h2>
+                            <p className="text-base text-center line-clamp-2 bg-green-900 px-2 pb-1.5 text-white hidden ">{project?.description}</p>
                         </div>
                     </SwiperSlide>
                 ))}

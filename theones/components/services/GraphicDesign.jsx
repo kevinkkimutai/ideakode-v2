@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Palette, PenTool, MonitorSmartphone, Layers3, Rocket, BarChart } from 'lucide-react';
+import Image from 'next/image';
 
 export default function GraphicDesign() {
   const fadeIn = {
@@ -139,15 +140,20 @@ export default function GraphicDesign() {
       </section>
 
       {/* Design Process */}
-      <section className="py-20 bg-green-50">
+      <section className="py-20 bg-green-50 mb-20">
         <div className="container max-w-[1280px] w-full mx-auto max-lg:px-4">
           <h2 className="text-3xl font-bold text-center mb-16 text-gray-900 ">
             Our <span className="text-indigo-600">Design Process</span>
           </h2>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
-            <div className='bg-white'>
-
-{/* image */}
+            <div className=''>
+            <Image 
+            src="https://assets.netiqa.co.ke/ui%3Aux.jpg" 
+            alt="design brand" 
+            width={600} 
+            height={300} 
+            className="rounded-xl shadow-xl max-h-[430px] object-cover"
+          />
             </div>
             <div className="relative mx-auto">
             <div className="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-indigo-400 to-purple-500 rounded-full"></div>
@@ -176,7 +182,7 @@ export default function GraphicDesign() {
       </section>
 
       {/* Portfolio Showcase */}
-      <section className="py-20">
+      <section className="py-20 hidden">
         <div className="container max-w-[1280px] w-full mx-auto max-lg:px-4">
           <h2 className="text-3xl font-bold text-center mb-16 text-gray-900 ">
             Recent <span className="text-teal-500">Branding Projects</span>

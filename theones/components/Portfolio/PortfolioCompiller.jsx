@@ -133,7 +133,7 @@ export default function PortfolioCompiler() {
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <FaSearch className="text-white text-3xl" />
               </div>
-              <h3 className="absolute bottom-4 left-4 group-hover:text-white font-semibold">{project.title}</h3>
+              <h3 className="absolute bottom-4 left-4 bg-green-500 rounded-full py-1 px-4 group-hover:text-white font-semibold">{project.title}</h3>
             </motion.div>
           ))
         ) : (
