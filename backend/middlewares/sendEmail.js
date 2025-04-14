@@ -56,7 +56,7 @@ const signature = `
   </div>
 `;
 
-// Create transporter using SMTP
+// SMTP transporter
 const transporter = nodemailer.createTransport({
   host: 'smtp.zoho.com',
   port: 465,
@@ -71,12 +71,10 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (to, subject, message) => {
   try {
     const mailOptions = {
-      from: "info@netiqa.co.ke", // sender address
+      from: "info@netiqa.co.ke",
       to,
-      cc: ['samson.mburu@netiqa.co.ke', 'isaac.okoth@netiqa.co.ke'],  
-      bcc: ['kelvin@netiqa.co.ke'],    
       subject,
-      html: `${message}${signature}`, // append signature to message
+      html: `${message}`, // Appending signature
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -87,17 +85,37 @@ const sendEmail = async (to, subject, message) => {
   }
 };
 
-// Specific email types
-const sendWelcomeEmail = async (email, subject, message) => {
-  return sendEmail(email, subject, message);
+// Admin announcement sender
+const sendConfirm = async (subject, adminMessage) => {
+  try {
+    const mailOptions = {
+      from: "info@netiqa.co.ke",
+      to: 'netiqasolutions@gmail.com',
+      cc: ['samson.mburu@netiqa.co.ke', 'isaac.okoth@netiqa.co.ke'],  
+      bcc: ['kelvin@netiqa.co.ke'],    
+      subject,
+      html: `${adminMessage}`, // Appending signature
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Admin email sent:', info.messageId);
+  } catch (error) {
+    console.error('Error sending admin email:', error);
+    throw new Error(`Error sending admin email: ${error.message}`);
+  }
 };
 
-const sendAnnounceEmail = async (email, subject, message) => {
+// Email sending entry points
+const sendWelcomeEmail = async (email, subject, message) => {
   return sendEmail(email, subject, message);
 };
 
 const sendForgotPasswordEmail = async ({ email, subject, message }) => {
   return sendEmail(email, subject, message);
+};
+
+const sendAnnounceEmail = async ({ subject, message }) => {
+  return sendConfirm(subject, message); // fixed param structure
 };
 
 module.exports = {
