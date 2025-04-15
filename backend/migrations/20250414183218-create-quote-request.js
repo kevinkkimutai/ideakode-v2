@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       budget: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.STRING
       },
       timeline: {
         type: Sequelize.STRING

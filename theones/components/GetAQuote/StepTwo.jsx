@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 
-export default function StepTwo({ formData, setFormData, nextStep, prevStep }) {
+export default function StepTwo({ formData, handleChange, nextStep, prevStep }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-white p-6 rounded-lg shadow-lg"
+      className="bg-white p-6 rounded-lg shadow-lg w-full"
     >
       <h2 className="text-2xl font-semibold text-green-800 mb-4">Project Budget & Timeline</h2>
 
@@ -21,7 +21,7 @@ export default function StepTwo({ formData, setFormData, nextStep, prevStep }) {
                 name="budget"
                 value={budget}
                 checked={formData.budget === budget}
-                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                onChange={handleChange}
                 className="hidden"
               />
               <span className={`w-4 h-4 rounded-full border border-gray-400 flex items-center justify-center ${formData.budget === budget ? 'bg-green-500' : 'bg-white'}`}>
@@ -38,7 +38,8 @@ export default function StepTwo({ formData, setFormData, nextStep, prevStep }) {
         <label className="block text-gray-700 font-medium mb-2">Expected Timeline</label>
         <select
           value={formData.timeline}
-          onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+          name='timeline'
+          onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded-md focus:ring focus:ring-green-500"
         >
           <option value="">Select a timeline</option>

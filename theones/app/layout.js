@@ -4,6 +4,7 @@ import NavBar from "@/components/Header/NavBar";
 import Footer from "@/components/Footer/Footer";
 import ReduxProvider from "@/components/servicesapi/ReduxProvider";
 import Script from "next/script";
+import { SelectedQuoteProvider } from "@/context/SelectedQuoteContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,6 +55,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-clip`}
       >
         <ReduxProvider>
+        <SelectedQuoteProvider>
         <NavBar />
         <main className="relative max-exl:px-4">
         <svg className="absolute -z-10 inset- -top-32 w-full  opacity-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -62,6 +64,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
        <Footer />
+       </SelectedQuoteProvider>
        </ReduxProvider>
 
        <Script

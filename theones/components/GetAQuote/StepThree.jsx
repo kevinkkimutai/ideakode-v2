@@ -1,11 +1,6 @@
 import { motion } from 'framer-motion';
 
-export default function StepThree({ formData, setFormData, nextStep, prevStep }) {
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const isFormValid = formData.fullName && formData.email && formData.phone;
+export default function StepThree({ formData, handleChange, nextStep, prevStep }) {
 
   return (
     <motion.div
@@ -21,8 +16,8 @@ export default function StepThree({ formData, setFormData, nextStep, prevStep })
         <label className="block text-gray-700 font-medium mb-2">Full Name</label>
         <input
           type="text"
-          name="fullName"
-          value={formData.fullName}
+          name="fullname"
+          value={formData.fullname}
           onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded-md focus:ring focus:ring-green-500"
           placeholder="John Doe"

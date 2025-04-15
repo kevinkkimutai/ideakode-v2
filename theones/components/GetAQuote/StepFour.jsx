@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export default function StepFour({ formData, prevStep, nextStep }) {
+export default function StepFour({ formData, handleSubmit, prevStep, nextStep }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -13,7 +13,7 @@ export default function StepFour({ formData, prevStep, nextStep }) {
       {/* Project Details */}
       <div className="mb-4 p-4 border border-gray-200 rounded-md">
         <h3 className="font-semibold text-green-700">Project Type:</h3>
-        <p className="text-gray-700">{formData.projectType || 'N/A'}</p>
+        <p className="text-gray-700">{formData.service || 'N/A'}</p>
       </div>
 
       {/* Budget */}
@@ -21,12 +21,16 @@ export default function StepFour({ formData, prevStep, nextStep }) {
         <h3 className="font-semibold text-green-700">Budget:</h3>
         <p className="text-gray-700">{formData.budget || 'N/A'}</p>
       </div>
+      <div className="mb-4 p-4 border border-gray-200 rounded-md">
+        <h3 className="font-semibold text-green-700">Project Description:</h3>
+        <p className="text-gray-700">{formData.description || 'N/A'}</p>
+      </div>
 
       {/* Contact Information */}
       <div className="mb-4 p-4 border border-gray-200 rounded-md">
         <h3 className="font-semibold text-green-700">Contact Information:</h3>
         <p className="text-gray-700">
-          <strong>Name:</strong> {formData.fullName || 'N/A'}
+          <strong>Name:</strong> {formData.fullname || 'N/A'}
         </p>
         <p className="text-gray-700">
           <strong>Email:</strong> {formData.email || 'N/A'}
@@ -34,6 +38,14 @@ export default function StepFour({ formData, prevStep, nextStep }) {
         <p className="text-gray-700">
           <strong>Phone:</strong> {formData.phone || 'N/A'}
         </p>
+      </div>
+
+      <div>
+        <button 
+        onClick={handleSubmit}
+        className='px-4 py-2 rounded-lg bg-blue-600 text-white'>
+          Submit 
+        </button>
       </div>
 
     </motion.div>

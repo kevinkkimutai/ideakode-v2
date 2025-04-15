@@ -1,4 +1,5 @@
 "use client";
+import { useSelectedQuote } from "@/context/SelectedQuoteContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -70,6 +71,7 @@ const menuData = [
     },
   ];
 const NavBar = () => {
+  const { isQuoteOpen, handleOpenQuote } = useSelectedQuote();
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
@@ -104,7 +106,7 @@ const NavBar = () => {
       <nav
         className={`navBar top-0 left-0 z-40 flex w-full  items-center  ${
           sticky
-            ? "!fixed !z-[9999] bg-white  shadow-black backdrop-blur-sm !transition "
+            ? "!fixed !z-[9999] bg-white shadow-black backdrop-blur-sm !transition "
             : "absolute"
         }`}
       >
@@ -215,12 +217,13 @@ const NavBar = () => {
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
                 
-                <Link
-                  href="/get-a-quote"
+                <button
+                  // href="/get-a-quote"
+                  onClick={handleOpenQuote}
                   className="ease-in-up hidden rounded-md bg-gradient-to-br from-green-500  to-green-600 hover:bg-gradient-to-br hover:from-green-700  hover:to-green-900 py-3 px-8 text-base font-bold text-white transition duration-300  md:block md:px-9 lg:px-6 xl:px-9"
                 >
                   Get A Quote
-                </Link>
+                </button>
                 <div>
                   {/* <ThemeToggler /> */}
                 </div>

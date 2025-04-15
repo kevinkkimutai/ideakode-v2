@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export default function StepOne({ formData, setFormData, nextStep }) {
+export default function StepOne({ formData, handleChange, nextStep }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -15,9 +15,10 @@ export default function StepOne({ formData, setFormData, nextStep }) {
         <label className="block text-gray-700 font-medium">Project Name</label>
         <input
           type="text"
+          name='name'
           placeholder="e.g., E-commerce Website"
-          value={formData.projectName}
-          onChange={(e) => setFormData({ ...formData, projectName: e.target.value })}
+          value={formData.name}
+          onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded-md focus:ring focus:ring-green-500"
         />
       </div>
@@ -27,8 +28,9 @@ export default function StepOne({ formData, setFormData, nextStep }) {
         <label className="block text-gray-700 font-medium">Project Description</label>
         <textarea
           placeholder="Briefly describe your project..."
-          value={formData.projectDescription}
-          onChange={(e) => setFormData({ ...formData, projectDescription: e.target.value })}
+          name='description'
+          value={formData.description}
+          onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded-md focus:ring focus:ring-green-500"
           rows="4"
         ></textarea>
@@ -38,8 +40,9 @@ export default function StepOne({ formData, setFormData, nextStep }) {
       <div className="mb-4">
         <label className="block text-gray-700 font-medium">Service Type</label>
         <select
-          value={formData.serviceType}
-          onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
+          value={formData.service}
+          name='service'
+          onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded-md focus:ring focus:ring-green-500"
         >
           <option value="">Select a service</option>
