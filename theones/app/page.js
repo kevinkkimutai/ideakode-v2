@@ -1,4 +1,5 @@
 'use client'
+import ChatBot from '@/components/ChatBot/ChatBot'
 import QuoteModal from '@/components/GetAQuote/QuoteModal'
 import About from '@/components/Home/About'
 import CallToAction from '@/components/Home/CallToAction'
@@ -14,6 +15,7 @@ export default function page() {
 
   return (
     <div className='flex flex-col gap-10 md:gap-20'>
+      <ChatBot />
      <Hero />
      <About />
      <Services />
