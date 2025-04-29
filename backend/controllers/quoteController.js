@@ -102,13 +102,13 @@ const createQuote = async (req, res) => {
               <p style="margin:5px;">Netiqa Solutions</p>
               <p style="margin:5px;">info@netiqa.com | +254722214567</p>
               <div style="margin-top:10px;">
-                <a href="https://facebook.com/netiqa" style="margin:0 5px;">
+                <a href="https://facebook.com/netiqa" style="margin:0 10px;">
                   <img src="https://img.icons8.com/color/24/000000/facebook.png" alt="Facebook">
                 </a>
-                <a href="https://twitter.com/netiqa" style="margin:0 5px;">
+                <a href="https://twitter.com/netiqa" style="margin:0 10px;">
                   <img src="https://img.icons8.com/color/24/000000/twitter.png" alt="Twitter">
                 </a>
-                <a href="https://linkedin.com/company/netiqa" style="margin:0 5px;">
+                <a href="https://linkedin.com/company/netiqa" style="margin:0 10px;">
                   <img src="https://img.icons8.com/color/24/000000/linkedin.png" alt="LinkedIn">
                 </a>
               </div>
