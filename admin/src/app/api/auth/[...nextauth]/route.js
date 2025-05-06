@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import AzureADProvider from "next-auth/providers/azure-ad";
 
 const handler = NextAuth({
   providers: [
@@ -35,27 +35,22 @@ const handler = NextAuth({
       },
     }),
 
-    // AzureADProvider({
-    //   clientId: process.env.AZURE_AD_CLIENT_ID,
-    //   clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
-    //   tenantId: process.env.AZURE_AD_TENANT_ID,
-    //   authorization: {
-    //     params: {
-    //       scope: "openid profile email"
-    //     }
-    //   }
-    // })
-    // MicrosoftProvider({
-    //   clientId: process.env.MICROSOFT_CLIENT_ID,
-    //   clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
-    // }),
+    AzureADProvider({
+      clientId: process.env.AZURE_AD_CLIENT_ID,
+      clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
+      tenantId: process.env.AZURE_AD_TENANT_ID,
+      authorization: {
+        params: {
+          scope: "openid profile email"
+        }
+      }
+    })
   ],
   session: {
     strategy: "jwt",
     maxAge: 60 * 60,  
     updateAge: 0     
   },
-
 
   maxAge: 60 * 60,
   secret: process.env.JWT_SECRET,
@@ -72,8 +67,10 @@ const handler = NextAuth({
       return session;
     },
   },
+  
+  // UPDATED: Change this to match your actual frontend signin URL
   pages: {
-    signIn: "/login",
+    signIn: "/signin",
   },
 });
 
