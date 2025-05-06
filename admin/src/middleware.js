@@ -1,25 +1,31 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
-export function middleware(request) {
-  const { pathname, origin } = request.nextUrl;
-  const publicRoutes = ['/signin', '/signup', '/forgot-password', '/reset-password'];
-  const isPublicRoute = publicRoutes.includes(pathname);
-  
-  // Get token
-  const token = request.cookies.get('token')?.value;
+export async function middleware(req) {
+  const session = await getToken({
+    req,
+    secret: process.env.JWT_SECRET,
+    secureCookie: process.env.NODE_ENV === "production",
+  });
 
-  // Redirect logic
-  if (!token && !isPublicRoute) {
-    return NextResponse.redirect(new URL('/signin', origin));
+  const token = session?.user?.token;
+  const { pathname } = new URL(req.url);
+
+  const unprotectedRoutes = ["/signin", "/forgot-password", "/reset-password"];
+
+  const isUnprotected = unprotectedRoutes.includes(pathname);
+
+  if (token && isUnprotected) {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
-  if (token && (pathname === '/signin' || pathname === '/fc')) {
-    return NextResponse.redirect(new URL('/', origin));
+  if (!token && !isUnprotected) {
+    return NextResponse.redirect(new URL("/signin", req.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images/).*)'],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
