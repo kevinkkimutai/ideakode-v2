@@ -11,16 +11,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { signIn } from "next-auth/react";
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
   const [loginUser] = useLoginUserMutation();
-  const [formdata, setFormdata] = useState({
-    email: "",
-    password: ""
-  })
+  const [error, setError] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
 
   // Handle form input change
@@ -31,24 +31,19 @@ export default function SignInForm() {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const loginResponse = await loginUser({
-        email: formdata.email,
-        password: formdata.password,
-      });
-  
-      if (loginResponse?.data) {
-        toast.success("Login successful!");
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 100);
-      } else if (loginResponse?.error) {
-        const errorMessage =
-          loginResponse.error.data?.error || "Login failed. Please try again.";
-        toast.error(errorMessage);
-      }
-    } catch (err) {
-      toast.error("An unexpected error occurred. Please try again.");
+    setError(null);
+
+    const result = await signIn('credentials', {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (result.error) {
+      setError('Invalid email or password');
+      console.error('Login failed', result);
+    } else {
+      router.push('/'); 
     }
   };
   
@@ -98,7 +93,7 @@ export default function SignInForm() {
                   <Label>
                     Email <span className="text-error-500">*</span>{" "}
                   </Label>
-                  <Input placeholder="info@gmail.com" type="email" name="email" onChange={handleChange} />
+                  <Input placeholder="info@gmail.com" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div>
                   <Label>
@@ -108,7 +103,8 @@ export default function SignInForm() {
                     <Input
                       type={showPassword ? "text" : "password"}
                       name="password"
-                      onChange={handleChange}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
                     />
                     <span

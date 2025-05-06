@@ -5,20 +5,35 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, setUser } from "@/redux/reducers/AuthReducers";
+import { useSession } from "next-auth/react";
 
 export default function ClientProvider({ children }) {
+
   const dispatch = useDispatch();
-  const [getUser] = useGetCurrentUserMutation();
- 
+  const { data: session } = useSession();
+  const user = useSelector((state) => state.auth.user);
+
+  console.log("log", user);
+  
   useEffect(() => {
-    const getCurrentUser = async () => {
-      const response = await getUser();
-      if (response) {
-        dispatch(setUser(response?.data?.user));
-      }
-    };
-    getCurrentUser();
-  }, [dispatch, getUser]);
+    if (session?.user) {
+      dispatch(setUser(session.user));
+    }
+  }, [session, dispatch]);
+
+  useEffect(() => {
+    if (session?.expires) {
+      const expiration = new Date(session.expires).getTime();
+      const now = Date.now();
+      const timeout = expiration - now;
+
+      const timer = setTimeout(() => {
+        signOut();
+      }, timeout);
+
+      return () => clearTimeout(timer);
+    }
+  }, [session]);
 
   
   return (

@@ -1,22 +1,14 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser, setUser } from "@/redux/reducers/AuthReducers";
-import { useGetCurrentUserMutation, useLogoutMutation } from "@/redux/actions/authActions";
-import Cookies from "js-cookie";
+import { signOut } from "next-auth/react";
+import { useSelector } from "react-redux";
 
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
-  const user = useSelector(selectUser)
-  const [logoutUser] = useLogoutMutation();
-  const [hydratedUser, setHydratedUser] = useState(null);
-  const dispatch = useDispatch();
-  const [getUser] = useGetCurrentUserMutation();
-
+  const user = useSelector((state) => state.auth.user);
 function toggleDropdown(e) {
   e.stopPropagation();
   setIsOpen((prev) => !prev);
@@ -26,34 +18,14 @@ function toggleDropdown(e) {
     setIsOpen(false);
   }
 
-  
-    // Initialize WebSocket connection when user is available
-    useEffect(() => {
-      const getCurrentUser = async () => {
-        const response = await getUser();
-        if (response.data) {
-          dispatch(setUser(response?.data?.user));
-        }
-      }
-      getCurrentUser();
-   
-    }, [dispatch, getUser]);
-  useEffect(() => {
-    setHydratedUser(user);
-  }, [user]);
-  
+console.log("user", user);
 
-const logOut = async () => {
-  try {
-    await logoutUser();
-    Cookies.remove("token");
-    // Redirect to login page
-    window.location.href = "/signin";
-  } catch (error) {
-    console.error(error);
-  }
 
-}
+  const logOut = () => {
+    signOut();
+  };
+
+
   return (
     <div className="relative">
       <button
@@ -70,7 +42,7 @@ const logOut = async () => {
         </span>
 
         <span className="block mr-1 font-medium text-theme-sm">
-  {user?.user?.name?.split(" ")[0]}
+  {user?.name?.split(" ")[0]}
 </span>
 
 
@@ -99,12 +71,12 @@ const logOut = async () => {
         onClose={closeDropdown}
         className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark"
       >
-        <div>
+        <div className="w-full fle flex-col items-center justify-center hidden">
           <span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-            {user?.user?.name}
+            {user?.name}
           </span>
           <span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
-           {user?.user?.email}
+           {user?.email}
           </span>
         </div>
 
