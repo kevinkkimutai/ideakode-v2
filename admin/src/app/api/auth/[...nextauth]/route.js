@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import MicrosoftProvider from "next-auth/providers/microsoft";
-import AzureADProvider from "next-auth/providers/azure-ad";
+
 
 const handler = NextAuth({
   providers: [
@@ -36,16 +35,16 @@ const handler = NextAuth({
       },
     }),
 
-    AzureADProvider({
-      clientId: process.env.AZURE_AD_CLIENT_ID,
-      clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
-      tenantId: process.env.AZURE_AD_TENANT_ID,
-      authorization: {
-        params: {
-          scope: "openid profile email"
-        }
-      }
-    })
+    // AzureADProvider({
+    //   clientId: process.env.AZURE_AD_CLIENT_ID,
+    //   clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
+    //   tenantId: process.env.AZURE_AD_TENANT_ID,
+    //   authorization: {
+    //     params: {
+    //       scope: "openid profile email"
+    //     }
+    //   }
+    // })
     // MicrosoftProvider({
     //   clientId: process.env.MICROSOFT_CLIENT_ID,
     //   clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
