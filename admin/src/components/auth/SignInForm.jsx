@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -22,7 +22,17 @@ export default function SignInForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { data: session, status } = useSession();
 
+  // Important: Check session status and force navigation if needed
+  useEffect(() => {
+    if (status === "authenticated") {
+      console.log("Already authenticated, redirecting to home");
+      // Force a full page reload to ensure middleware gets a chance to run
+      window.location.href = "/";
+    }
+  }, [status]);
+  
   // Handle form input change
   const handleChange = (e) => {
     setFormdata({ ...formdata, [e.target.name]: e.target.value });
