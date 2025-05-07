@@ -18,6 +18,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      image: {
+        type: Sequelize.STRING
+      },
       is_active: { 
         type: Sequelize.BOOLEAN
       },
@@ -37,9 +40,8 @@ module.exports = {
       resetPasswordExpires: {
         type: Sequelize.DATE
       },
-      role: {
-        type: Sequelize.STRING,
-        defaultValue: 'user', // or 'admin' or whatever roles you support
+      roleId: {
+        type: Sequelize.INTEGER,
       },
       password: {
         type: Sequelize.STRING

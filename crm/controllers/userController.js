@@ -4,9 +4,13 @@ const { User, Role } = require('../models');
 const jwtConfig = require('../config/config');
 const { sendAccountVerificationEmail, sendForgotPasswordEmail, sendForgotPasswordSuccessEmail } = require('../middleware/sendEmail');
 const crypto = require('crypto');
+const { uploadToR2, deleteFromR2 } = require('../middleware/uploadImage');
+const logger = require('../utils/logger');
 
 const register = async (req, res) => {
     const { first_name, last_name, email, password, roleId } = req.body;
+    console.log("body", req.body);
+    
 
     try {
       const exists = await User.findOne({ where: { email } });
@@ -18,7 +22,7 @@ const register = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
   
       // Create the user first (no verificationToken yet)
-      const user = await User.create({ first_name, last_name, email, password: hashedPassword, role });
+      const user = await User.create({ first_name, last_name, email, password: hashedPassword, roleId });
   
       // Now generate a verification token using the user data
       const verificationToken = jwt.sign(
@@ -42,7 +46,7 @@ const register = async (req, res) => {
   
       res.status(201).json({
         message: 'User created. Please check your email to verify your account.',
-        user: { id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, user: user.role },
+        user: { id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, role: user.Role.role_name },
       });
   
     } catch (err) {
@@ -50,42 +54,57 @@ const register = async (req, res) => {
     }
   };
   
-
-const login = async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    console.log("user", req.body);
-    
-    const user = await User.findOne({
-      where: { email },
-      include: [
-        {
-          model: Role, 
-          as: 'role',  
-        }
-      ]
-    });
-
-    console.log("userlogin", user);
-    
-    
-    if (!user) return res.status(401).json({ message: 'Invalid email or password' });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(401).json({ message: 'Invalid email or password' });
-
-    const token = jwt.sign(
-        { id: user.id, email: user.email, role: user.role.name },
-        jwtConfig.secret,
-        { expiresIn: jwtConfig.expiresIn }
-      );
+  const login = async (req, res) => {
+    const { email, password } = req.body;
+    try {
       
-
-    res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role.name } });
-  } catch (err) {
-    res.status(500).json({ message: 'Server error', error: err.message });
-  }
-};
+      const user = await User.findOne({
+        where: { email },
+        include: [
+          {
+            model: Role, 
+            as: 'Role',  
+          }
+        ]
+      });
+  
+      
+      if (!user) return res.status(401).json({ message: 'Invalid email or password' });
+  
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) return res.status(401).json({ message: 'Invalid email or password' });
+  
+      // Update last_login timestamp and is_active status to current time
+      const currentTime = new Date();
+      await user.update({ 
+        last_login: currentTime,
+        is_active: true
+      });
+  
+      const token = jwt.sign(
+          { id: user.id, email: user.email, role: user.Role_name },
+          jwtConfig.secret,
+          { expiresIn: jwtConfig.expiresIn }
+        );
+        
+      res.json({ 
+        token, 
+        user: { 
+          id: user.id, 
+          first_name: user.first_name, 
+          last_name: user.last_name, 
+          email: user.email, 
+          image: user.image,
+          last_login: currentTime,
+          is_active: user.is_active,
+          isVerified: user.isVerified, 
+          role: user.Role.role_name 
+        } 
+      });
+    } catch (err) {
+      res.status(500).json({ message: 'Server error', error: err.message });
+    }
+  };
 
 const Verification = async (req, res) => {
     try {
@@ -193,8 +212,91 @@ const forgotPassword = async (req, res) => {
   };
 
 const profile = async (req, res) => {
-  const user = req.user;
+  const email = req.user.email;
+  const user = await User.findOne({
+    where: { email },
+    include: [
+      {
+        model: Role, 
+        as: 'Role',  
+      }
+    ]
+  });
   res.json({ user });
 };
 
-module.exports = { profile, login, register, Verification, resendVerificationToken, forgotPassword, resetPassword};
+
+const updateUser = async (req, res) => {
+  const id = req.user.id;
+  const { first_name, last_name, email, roleId } = req.body;
+
+  try {
+    const user = await User.findByPk(id);
+
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    // Handle image update
+    let imageUrl = user.image;
+    if (req.file) {
+      try {
+        // Delete old image if exists
+        if (user.image) {
+          await deleteFromR2(user.image).catch(e =>
+            logger.warn("Old image deletion warning:", e.message)
+          );
+        }
+        // Upload new image
+        imageUrl = await uploadToR2(req.file);
+      } catch (uploadError) {
+        return res.status(400).json({ error: uploadError.message });
+      }
+    }
+    
+    // If roleId is provided, validate it
+    if (roleId) {
+      const role = await Role.findByPk(roleId);
+      if (!role) return res.status(400).json({ message: 'Invalid roleId' });
+    }
+
+    // Create update data object
+    let updatedData = {
+      first_name,
+      last_name,
+      email,
+      image: imageUrl,
+      roleId
+    };
+
+    // Remove undefined values from update
+    Object.keys(updatedData).forEach(key => updatedData[key] === undefined && delete updatedData[key]);
+
+    await user.update(updatedData);
+
+    res.status(200).json({ message: 'User updated successfully', user });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+// get alluser
+const allUsers = async (req, res) => {
+  try {
+    const users = await User.findAll({
+      include: [
+        {
+          model: Role,
+          as: 'Role',
+          attributes: ['id', 'role_name'] 
+        }
+      ],
+      attributes: { exclude: ['password', 'verificationToken', 'resetPasswordToken', 'resetPasswordExpires'] }
+    });
+
+    res.status(200).json({ users });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+
+module.exports = { profile, login, register, Verification, resendVerificationToken, forgotPassword, resetPassword, updateUser, allUsers};
