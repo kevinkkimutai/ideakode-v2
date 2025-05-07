@@ -37,7 +37,7 @@ const generatePasswordResetSuccessEmail = (user) => {
         Password Reset Successful
       </div>
       <div style="padding: 20px; background-color: #ffffff; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
-        <p style="font-size: 16px; color: #333;">Hi <strong>${user.name}</strong>,</p>
+        <p style="font-size: 16px; color: #333;">Hi <strong>${user.first_name}</strong>,</p>
         <p style="font-size: 16px; color: #555;">Your password has been successfully reset. You can now log in with your new password.</p>
         <div style="text-align: center; margin: 20px 0;">
           <a href="https://www.admin.netiqa.co.ke" style="background-color: #4CAF50; color: white; text-decoration: none; padding: 12px 20px; font-size: 16px; border-radius: 5px; display: inline-block;">
@@ -72,7 +72,7 @@ const generatePasswordResetEmail = (user, resetUrl) => {
           Password Reset 
         </div>
         <div style="padding: 20px; background-color: #ffffff; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
-          <p style="font-size: 16px; color: #333;">Hi <strong>${user.name}</strong>,</p>
+          <p style="font-size: 16px; color: #333;">Hi <strong>${user.first_name}</strong>,</p>
           <p style="font-size: 16px; color: #555;">We received a request to reset your password. Click the button below to reset it:<</p>
           <div style="text-align: center; margin: 20px 0;">
             <a href="${resetUrl}" style="background-color: #4CAF50; color: white; text-decoration: none; padding: 12px 20px; font-size: 16px; border-radius: 5px; display: inline-block;">
@@ -112,7 +112,7 @@ const generateAccountVerificationEmail = (user, verificationUrl) => {
               <h2 style="margin:0;font-size:24px;">Account Verification</h2>
             </div>
             <div style="padding:30px;">
-              <p style="font-size: 16px; color: #333;">Hi <strong>${user.name}</strong>,</p>
+              <p style="font-size: 16px; color: #333;">Hi <strong>${user.first_name}</strong>,</p>
           <p style="font-size: 16px; color: #555;">Thank you for registering! To complete your registration and verify your account, please click the button below.</p>
           <div style="text-align: center; margin: 20px 0;">
             <a href="${verificationUrl}" style="background-color: #4CAF50; color: white; text-decoration: none; padding: 12px 20px; font-size: 16px; border-radius: 5px; display: inline-block;">

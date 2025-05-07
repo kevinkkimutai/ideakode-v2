@@ -1,0 +1,107 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.test
+.env.production
+
+# Build directories
+dist/
+build/
+coverage/
+out/
+.next/
+.nuxt/
+.cache/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+pnpm-debug.log*
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.directory
+
+# IDE directories
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# TypeScript compiled files
+*.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Package manager files
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Temporary files
+tmp/
+temp/
+.temp/
+
+# Uploads and media
+uploads/
+public/uploads/
+media/
+
+# Generated documentation
+docs/
+
+# Serverless directories
+.serverless/
+
+# CDK context & diagnostics
+.cdk.staging/
+cdk.out/
+
+# Local development container
+.devcontainer/
+
+# Prisma
+prisma/.env
+*.prisma.db
+
+# Storybook
+storybook-static/
