@@ -82,7 +82,7 @@ const register = async (req, res) => {
       });
   
       const token = jwt.sign(
-          { id: user.id, email: user.email, role: user.Role_name },
+          { id: user.id, email: user.email, role: user.Role.role_name }, // Ensure Role.role_name is used
           jwtConfig.secret,
           { expiresIn: jwtConfig.expiresIn }
         );
@@ -108,7 +108,8 @@ const register = async (req, res) => {
 
 const Verification = async (req, res) => {
     try {
-      const token = req.param;
+      const token = req.params.token;
+
       if (!token) return res.status(400).json({ message: 'Verification token is required' });
   
       const decoded = jwt.verify(token, jwtConfig.secret);
@@ -219,8 +220,10 @@ const profile = async (req, res) => {
       {
         model: Role, 
         as: 'Role',  
+        attributes: ['id', 'role_name'] 
       }
-    ]
+    ],
+    attributes: { exclude: ['password', 'verificationToken', 'resetPasswordToken', 'resetPasswordExpires'] }
   });
   res.json({ user });
 };
@@ -228,51 +231,57 @@ const profile = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const id = req.user.id;
-  const { first_name, last_name, email, roleId } = req.body;
-
   try {
     const user = await User.findByPk(id);
 
     if (!user) return res.status(404).json({ message: 'User not found' });
 
-    // Handle image update
-    let imageUrl = user.image;
+    // Initialize updatedData with empty object
+    let updatedData = {};
+    
+    // Only extract from req.body if it exists
+    if (req.body) {
+      const { first_name, last_name, email, roleId } = req.body;
+      
+      // Add properties to updatedData only if they exist in req.body
+      if (first_name !== undefined) updatedData.first_name = first_name;
+      if (last_name !== undefined) updatedData.last_name = last_name;
+      if (email !== undefined) updatedData.email = email;
+      if (roleId !== undefined) {
+        // If roleId is provided, validate it
+        const role = await Role.findByPk(roleId);
+        if (!role) return res.status(400).json({ message: 'Invalid roleId' });
+        updatedData.roleId = roleId;
+      }
+    }
+
+    // Handle image update independent of other data
     if (req.file) {
       try {
         // Delete old image if exists
         if (user.image) {
-          await deleteFromR2(user.image).catch(e =>
+          await deleteFromR2(user.image).catch(e => 
             logger.warn("Old image deletion warning:", e.message)
           );
         }
-        // Upload new image
-        imageUrl = await uploadToR2(req.file);
+        // Upload new image and add to updatedData
+        updatedData.image = await uploadToR2(req.file);
       } catch (uploadError) {
         return res.status(400).json({ error: uploadError.message });
       }
     }
-    
-    // If roleId is provided, validate it
-    if (roleId) {
-      const role = await Role.findByPk(roleId);
-      if (!role) return res.status(400).json({ message: 'Invalid roleId' });
+
+    // Only perform update if there's something to update
+    if (Object.keys(updatedData).length > 0) {
+      await user.update(updatedData);
+      return res.status(200).json({ 
+        message: 'User updated successfully', 
+        user: await User.findByPk(id) // Get fresh user data
+      });
+    } else {
+      return res.status(400).json({ message: 'No update data provided' });
     }
-
-    // Create update data object
-    let updatedData = {
-      first_name,
-      last_name,
-      email,
-      image: imageUrl,
-      roleId
-    };
-
-    // Remove undefined values from update
-    Object.keys(updatedData).forEach(key => updatedData[key] === undefined && delete updatedData[key]);
-
-    await user.update(updatedData);
-
-    res.status(200).json({ message: 'User updated successfully', user });
+    
   } catch (err) {
     res.status(500).json({ message: 'Server error', error: err.message });
   }

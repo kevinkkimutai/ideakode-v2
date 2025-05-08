@@ -4,21 +4,37 @@ const { Customer, Contact, Address, Project, Ticket, Invoice, User } = require('
 const createCustomer = async (req, res) => {
   try {
     const creatorId = req.user.id;
-    const user = await User.findByPk(creatorId)
-    if (!user) return res.status(409).json({ message: 'User not found 🥶!' });
-    
-    const customer = await Customer.create(req.body);
-    res.status(201).send(customer);
+
+    // Validate user
+    const user = await User.findByPk(creatorId);
+    if (!user) return res.status(404).json({ message: 'User not found 🥶!' });
+
+    // Inject created_by into the request body
+    const customerData = {
+      ...req.body,
+      created_by: creatorId,
+    };
+
+    const customer = await Customer.create(customerData);
+
+    res.status(201).json({
+      message: 'Customer created successfully',
+      customer,
+    });
   } catch (error) {
-    res.status(400).send({
-      error: 'Error creating customer'
+    console.error("Customer creation error:", error);
+    res.status(500).json({
+      message: 'Error creating customer',
+      error: error.message,
     });
   }
 };
 
+
+
 const getAll = async (req, res) => {
   try {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 20 } = req.query;
     const offset = (page - 1) * limit;
 
     const customers = await Customer.findAndCountAll({
@@ -26,7 +42,8 @@ const getAll = async (req, res) => {
       offset,
       include: [
         { model: Contact, where: { is_primary: true }, required: false },
-        { model: Address, where: { is_primary: true }, required: false }
+        { model: Address, where: { is_primary: true }, required: false },
+        { model: Project, required: false }
       ]
     });
 

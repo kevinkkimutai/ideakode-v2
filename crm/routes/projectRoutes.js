@@ -4,18 +4,18 @@ const router = express.Router();
 
 
 // Create Project
-router.post('/projects', createProject);
+router.post('/project', createProject);
 
 // Get All Projects
 router.get('/projects', getAllProjects);
 
 // Get Project by ID
-router.get('/projects/:id', getProjectById);
+router.get('/project/:id', getProjectById);
 
 // Update Project
-router.put('/projects/:id', updateProject);
+router.put('/project/:id', updateProject);
 
 // Delete Project
-router.delete('/projects/:id', deleteProject);
+router.delete('/project/:id', deleteProject);
 
 module.exports = router;

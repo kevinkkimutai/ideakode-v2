@@ -7,6 +7,8 @@ const http = require('http');
 const socketIo = require('socket.io');
 // const cookieParser = require('cookie-parser');
 require('dotenv').config();
+require('./jobs/notifyOverdueTasks');
+
 const { sequelize } = require('./config/config');
 const userRoutes = require('./routes/userRoutes');
 const customerRoutes = require("./routes/customerRoutes");
@@ -36,6 +38,9 @@ const ticketRoutes = require("./routes/ticketRoutes");
 const ticketAttachmentRoutes = require("./routes/ticketAttachmentRoutes");
 const ticketCategoryRoutes = require("./routes/ticketCategoryRoutes");
 const ticketCommentRoutes = require("./routes/ticketCommentRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
+const productSubCategoryRoutes = require("./routes/productSubCategoryRoutes");
+const productRoutes =   require("./routes/productRoutes");
 
 
 const app = express();
@@ -79,6 +84,8 @@ app.use("/api", opportunityRoutes);
 app.use("/api", paymentMethodRoutes);
 app.use("/api", pipelineRoutes);
 app.use("/api", productCategoryRoutes);
+app.use("/api", productSubCategoryRoutes);
+app.use("/api", productRoutes);
 app.use("/api", projectRoutes);
 app.use("/api", projectTaskRoutes);
 app.use("/api", QuoteRoutes);
@@ -90,6 +97,7 @@ app.use("/api", ticketRoutes);
 app.use("/api", ticketAttachmentRoutes);
 app.use("/api", ticketCategoryRoutes);
 app.use("/api", ticketCommentRoutes);
+app.use("/api", notificationRoutes);
 
 
 // WebSocket connection event

@@ -18,6 +18,24 @@ module.exports = {
       categoryId: {
         type: Sequelize.INTEGER
       },
+      subCategoryId: {
+        type: Sequelize.INTEGER
+       },
+      image: {
+          type: Sequelize.STRING
+        },
+      stagging_link: {
+          type: Sequelize.STRING
+        },
+      live_link: {
+          type: Sequelize.STRING
+        },
+      repo_link: {
+          type: Sequelize.STRING
+        },
+      status: {
+          type: Sequelize.STRING
+        },
       price: {
         type: Sequelize.DECIMAL
       },

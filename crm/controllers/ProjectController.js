@@ -1,9 +1,23 @@
-const { Project } = require('../models'); // Import Project model
+const { Project, Customer, User, ProjectTask, Contact, Address } = require('../models'); 
 
 // Create a new project
 const createProject = async (req, res) => {
   try {
     const { customerId, name, description, status, start_date, end_date, budget, managerId } = req.body;
+
+    if (managerId) {
+      const manager = await User.findByPk(managerId);
+      if (!manager) {
+        return res.status(404).json({ message: 'Manager not found 🥶.' });
+      }
+    }
+    
+    if (customerId) {
+      const customer = await Customer.findByPk(customerId);
+      if (!customer) {
+        return res.status(404).json({ message: 'Customer not found 🥶.' });
+      }
+    }
 
     // Create a new project
     const project = await Project.create({
@@ -29,9 +43,20 @@ const getAllProjects = async (req, res) => {
   try {
     const projects = await Project.findAll({
       include: [
-        { model: Customer, attributes: ['name'] }, // Including customer details
-        { model: User, attributes: ['name'] }, // Including manager details
-        { model: ProjectTask, attributes: ['task_name'] } // Including related tasks
+        { model: Customer, attributes: ['company_name', 'industry', 'website'],
+          include: [
+          { model: Contact, where: { is_primary: true }, required: false },
+          { model: Address, where: { is_primary: true }, required: false },
+          // { model: User, attributes: ['first_name', 'last_name', 'email'], required: false },
+        ] }, 
+        { model: User, attributes: ['first_name', 'last_name', 'email'] },
+        { model: ProjectTask, include: [
+          { model: User, as: 'Assignee', attributes: ['first_name','last_name', 'email'] },
+          { model: User, as: 'Assigner', attributes: ['first_name','last_name', 'email'] }
+        ]}
+        
+
+         // Including related tasks
       ]
     });
 
@@ -49,9 +74,17 @@ const getProjectById = async (req, res) => {
 
     const project = await Project.findByPk(id, {
       include: [
-        { model: Customer, attributes: ['name'] }, // Including customer details
-        { model: User, attributes: ['name'] }, // Including manager details
-        { model: ProjectTask, attributes: ['task_name'] } // Including related tasks
+        { model: Customer, attributes: ['company_name', 'industry', 'website'],
+          include: [
+          { model: Contact, where: { is_primary: true }, required: false },
+          { model: Address, where: { is_primary: true }, required: false },
+          // { model: User, attributes: ['first_name', 'last_name', 'email'], required: false },
+        ] }, // Including customer details
+        { model: User, attributes: ['first_name', 'last_name', 'email'] }, // Including manager details
+        { model: ProjectTask, include: [
+          { model: User, as: 'Assignee', attributes: ['first_name','last_name', 'email'] },
+          { model: User, as: 'Assigner', attributes: ['first_name','last_name', 'email'] }
+        ]} // Including related tasks
       ]
     });
 
@@ -75,6 +108,20 @@ const updateProject = async (req, res) => {
     const project = await Project.findByPk(id);
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
+    }
+    
+    if (managerId) {
+      const manager = await User.findByPk(managerId);
+      if (!manager) {
+        return res.status(404).json({ message: 'Manager not found 🥶.' });
+      }
+    }
+    
+    if (customerId) {
+      const customer = await Customer.findByPk(customerId);
+      if (!customer) {
+        return res.status(404).json({ message: 'Customer not found 🥶.' });
+      }
     }
 
     // Update the project details

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const { User, Role } = require('../models'); // Added Role import
 const jwtConfig = require('../config/config');
 
 const auth = async (req, res, next) => {
@@ -10,7 +10,8 @@ const auth = async (req, res, next) => {
   const token = authHeader.split(' ')[1];
 
   try {
-    const decoded = jwt.verify(token, jwtConfig.secret);
+    // Use the same secret key as in the login function
+    const decoded = jwt.verify(token, jwtConfig.secret); 
     
     const user = await User.findByPk(decoded.id, {
       attributes: [
@@ -24,7 +25,7 @@ const auth = async (req, res, next) => {
       include: [
         {
           model: Role, 
-          as: 'role',  
+          as: 'Role',  // Changed from 'role' to 'Role' to match login function
         }
       ]
     });
@@ -34,6 +35,7 @@ const auth = async (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
+    console.error('Token verification error:', err.message);
     res.status(401).json({ message: 'Invalid token' });
   }
 };
@@ -41,7 +43,7 @@ const auth = async (req, res, next) => {
 
 const authorizeRole = (...roles) => {
     return (req, res, next) => {
-      if (!req.user || !roles.includes(req.user.role)) {
+      if (!req.user || !req.user.Role || !roles.includes(req.user.Role.role_name)) { // Updated to use Role.role_name
         return res.status(403).json({ message: 'Access denied: Insufficient role' });
       }
       next();

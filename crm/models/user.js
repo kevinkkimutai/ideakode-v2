@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Ticket, { foreignKey: 'assigned_to' });
       User.hasMany(models.Project, { foreignKey: 'managerId' });
       User.hasMany(models.Customer, { foreignKey: 'created_by' });
-      User.hasMany(models.ProjectTask, { foreignKey: 'assigned_to' });
+      User.belongsToMany(models.ProjectTask, {
+        through: 'ProjectTaskAssignee',
+        as: 'AssignedTasks',
+        foreignKey: 'userId'
+      });      
       User.hasMany(models.Email, { foreignKey: 'userId' });
       User.hasMany(models.Call, { foreignKey: 'made_by' });
       User.hasMany(models.Meeting, { foreignKey: 'organizerId' });

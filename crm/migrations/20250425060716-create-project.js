@@ -22,10 +22,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       start_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       end_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       budget: {
         type: Sequelize.DECIMAL

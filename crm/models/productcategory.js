@@ -7,20 +7,15 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       ProductCategory.hasMany(models.Product, { foreignKey: 'categoryId' });
-      ProductCategory.belongsTo(models.ProductCategory, { 
-        as: 'ParentCategory', 
-        foreignKey: 'parent_categoryId' 
-      });
-      ProductCategory.hasMany(models.ProductCategory, { 
-        as: 'SubCategories', 
-        foreignKey: 'parent_categoryId' 
-      });
+      ProductCategory.hasMany(models.ProductSubCategory, {
+          foreignKey: 'categoryId',
+          as: 'SubCategories'
+        });
     }
   }
   ProductCategory.init({
     name: DataTypes.STRING,
     description: DataTypes.TEXT,
-    parent_categoryId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'ProductCategory',

@@ -24,14 +24,14 @@ module.exports = {
       priority: {
         type: Sequelize.STRING
       },
-      assigned_to: {
+      assigned_by: {
         type: Sequelize.INTEGER
       },
       due_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       completed_at: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       estimated_hours: {
         type: Sequelize.DECIMAL

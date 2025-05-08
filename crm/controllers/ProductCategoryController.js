@@ -1,18 +1,17 @@
-const { ProductCategory } = require('../models'); // Import ProductCategory model
+const { ProductCategory, ProductSubCategory } = require('../models'); // Import ProductCategory model
 
 // Create a new product category
 const createProductCategory = async (req, res) => {
   try {
-    const { name, description, parent_categoryId } = req.body;
+    const { name, description } = req.body;
 
     // Create a new product category
     const category = await ProductCategory.create({
       name,
       description,
-      parent_categoryId
     });
 
-    return res.status(201).json({ message: 'Product category created successfully', category });
+    return res.status(201).json({ message: 'Product category created successfully 🎉', category });
   } catch (error) {
     console.error('Error creating product category:', error);
     return res.status(500).json({ message: 'Error creating product category', error: error.message });
@@ -24,8 +23,7 @@ const getAllProductCategories = async (req, res) => {
   try {
     const categories = await ProductCategory.findAll({
       include: [
-        { model: ProductCategory, as: 'ParentCategory' }, // Include parent category
-        { model: ProductCategory, as: 'SubCategories' } // Include subcategories
+        { model: ProductSubCategory, as: 'SubCategories' }
       ]
     });
 
@@ -43,13 +41,12 @@ const getProductCategoryById = async (req, res) => {
 
     const category = await ProductCategory.findByPk(id, {
       include: [
-        { model: ProductCategory, as: 'ParentCategory' }, // Include parent category
-        { model: ProductCategory, as: 'SubCategories' } // Include subcategories
+        { model: ProductSubCategory, as: 'SubCategories' } 
       ]
     });
 
     if (!category) {
-      return res.status(404).json({ message: 'Product category not found' });
+      return res.status(404).json({ message: 'Product category not found 🥶' });
     }
 
     return res.status(200).json(category);
@@ -63,21 +60,20 @@ const getProductCategoryById = async (req, res) => {
 const updateProductCategory = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, parent_categoryId } = req.body;
+    const { name, description} = req.body;
 
     const category = await ProductCategory.findByPk(id);
     if (!category) {
-      return res.status(404).json({ message: 'Product category not found' });
+      return res.status(404).json({ message: 'Product category not found 🥶' });
     }
 
     // Update the category details
     category.name = name;
     category.description = description;
-    category.parent_categoryId = parent_categoryId;
 
     await category.save();
 
-    return res.status(200).json({ message: 'Product category updated successfully', category });
+    return res.status(200).json({ message: 'Product category updated successfully 🎉', category });
   } catch (error) {
     console.error('Error updating product category:', error);
     return res.status(500).json({ message: 'Error updating product category', error: error.message });
