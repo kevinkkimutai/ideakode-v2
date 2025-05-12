@@ -1,13 +1,21 @@
-const { QuoteItem, Quote, Product } = require('../models'); // Import the QuoteItem model
+const { QuoteItem, Quote, Product, User } = require('../models'); // Import the QuoteItem model
+const logAudit = require('../utils/auditLogger');
 
 // Create a new quote item
 const createQuoteItem = async (req, res) => {
   try {
     const { quoteId, productId, quantity, unit_price, discount, total_price } = req.body;
 
+    const userId = req.user.id;
+
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status("User not Found 🥶.")
+    }
     // Create a new quote item
     const quoteItem = await QuoteItem.create({
       quoteId,
+      created_by: userId,
       productId,
       quantity,
       unit_price,
@@ -27,8 +35,11 @@ const getAllQuoteItems = async (req, res) => {
   try {
     const quoteItems = await QuoteItem.findAll({
       include: [
-        { model: Quote, attributes: ['status', 'valid_until'] }, // Including quote details
-        { model: Product, attributes: ['name', 'description', 'price'] } // Including product details
+        {
+          model: Quote,
+          as: 'quote', attributes: ['status', 'valid_until'] 
+        },
+        { model: Product,  as: 'product', attributes: ['name', 'description', 'price'] } 
       ]
     });
 
@@ -46,8 +57,11 @@ const getQuoteItemById = async (req, res) => {
 
     const quoteItem = await QuoteItem.findByPk(id, {
       include: [
-        { model: Quote, attributes: ['status', 'valid_until'] }, // Including quote details
-        { model: Product, attributes: ['name', 'description', 'price'] } // Including product details
+        {
+          model: Quote,
+          as: 'quote', attributes: ['status', 'valid_until'] 
+        },
+        { model: Product,  as: 'product', attributes: ['name', 'description', 'price'] } 
       ]
     });
 
@@ -73,6 +87,8 @@ const updateQuoteItem = async (req, res) => {
       return res.status(404).json({ message: 'Quote item not found' });
     }
 
+    const oldValues = { ...quoteItem.get() };
+
     // Update the quote item details
     quoteItem.quoteId = quoteId;
     quoteItem.productId = productId;
@@ -82,6 +98,17 @@ const updateQuoteItem = async (req, res) => {
     quoteItem.total_price = total_price;
 
     await quoteItem.save();
+
+      // Audit log
+      await logAudit({
+        userId: req.user?.id || null,
+        action: 'UPDATE',
+        entity_type: 'QuoteItem',
+        entity_id: quoteItem.id,
+        old_values: JSON.stringify(oldValues),
+        new_values: JSON.stringify(quoteItem.get()),
+        ip_address: req.ip
+      });
 
     return res.status(200).json({ message: 'Quote item updated successfully', quoteItem });
   } catch (error) {

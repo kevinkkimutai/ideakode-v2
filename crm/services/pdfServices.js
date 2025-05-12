@@ -1,126 +1,147 @@
 // services/pdfService.js
-const PDFDocument = require('pdfkit');
+const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const Handlebars = require('handlebars');
 
-class PdfService {
-  async generateInvoicePdf(invoiceData) {
-    return new Promise((resolve, reject) => {
-      try {
-        const doc = new PDFDocument({ size: 'A4', margin: 50 });
-        const buffers = [];
-        
-        doc.on('data', buffers.push.bind(buffers));
-        doc.on('end', () => resolve(Buffer.concat(buffers)));
-        doc.on('error', reject);
+// Create a PDF service object to contain all methods
+const pdfService = {
+  generateInvoicePdf: async function(invoiceData) {
+    try {
+      // Format data for the template
+      const templateData = this._prepareTemplateData(invoiceData);
+      
+      // Compile HTML template
+      const html = await this._compileTemplate(templateData);
+      
+      // Generate PDF from HTML
+      const pdfBuffer = await this._generatePdf(html);
+      
+      return pdfBuffer;
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      throw error;
+    }
+  },
 
-        // Add header
-        this._addHeader(doc, invoiceData);
-        
-        // Add customer info
-        this._addCustomerInfo(doc, invoiceData);
-        
-        // Add invoice details
-        this._addInvoiceDetails(doc, invoiceData);
-        
-        // Add items table
-        this._addItemsTable(doc, invoiceData);
-        
-        // Add totals
-        this._addTotals(doc, invoiceData);
-        
-        // Add footer
-        this._addFooter(doc, invoiceData);
-
-        doc.end();
-      } catch (error) {
-        reject(error);
-      }
-    });
-  }
-
-  _addHeader(doc, invoice) {
-    doc
-      .image(path.join(__dirname, '../assets/logo.png'), 50, 45, { width: 50 })
-      .fillColor('#444444')
-      .fontSize(20)
-      .text('INVOICE', 200, 50, { align: 'right' })
-      .fontSize(10)
-      .text(`Invoice #: ${invoice.invoice_number}`, 200, 70, { align: 'right' })
-      .text(`Issued: ${new Date(invoice.issue_date).toLocaleDateString()}`, 200, 85, { align: 'right' })
-      .text(`Due: ${new Date(invoice.due_date).toLocaleDateString()}`, 200, 100, { align: 'right' })
-      .moveDown();
-  }
-
-  _addCustomerInfo(doc, invoice) {
-    const customer = invoice.Customer;
-    const billingAddress = invoice.Address || {};
-
-    doc
-      .fillColor('#444444')
-      .fontSize(20)
-      .text(customer.company_name, 50, 130)
-      .fontSize(10)
-      .text(billingAddress.street, 50, 160)
-      .text(`${billingAddress.city}, ${billingAddress.state} ${billingAddress.postal_code}`, 50, 175)
-      .text(billingAddress.country, 50, 190)
-      .moveDown();
-  }
-
-  _addInvoiceDetails(doc, invoice) {
-    doc
-      .fontSize(10)
-      .text(`Payment Terms: ${invoice.payment_terms || 'Net 30'}`, 50, 220)
-      .text(`Status: ${invoice.status.toUpperCase()}`, 50, 235)
-      .moveDown();
-  }
-
-  _addItemsTable(doc, invoice) {
-    const table = {
-      headers: ['Description', 'Qty', 'Unit Price', 'Discount', 'Tax', 'Total'],
-      rows: invoice.InvoiceItems.map(item => [
-        item.description || item.Product.name,
-        item.quantity,
-        `$${item.unit_price.toFixed(2)}`,
-        item.discount ? `$${item.discount.toFixed(2)}` : '-',
-        item.tax_rate ? `${item.tax_rate}%` : '-',
-        `$${item.total_price.toFixed(2)}`
-      ])
+  _prepareTemplateData: function(invoice) {
+    // Format customer information
+    const customerContact = invoice.Customer?.Contacts?.find(contact => contact.is_primary) || invoice.Customer?.Contacts?.[0];
+    const customerName = customerContact ? `${customerContact.first_name} ${customerContact.last_name}` : (invoice.Customer?.company_name);
+    
+    // Find primary or first billing address from the Addresses array
+    const customerAddressObj = invoice.Customer?.Addresses?.find(addr => addr.is_primary) || invoice.Customer?.Addresses?.[0];
+    
+    // Extract address fields from the found address object
+    const customerAddress = customerAddressObj?.street || '123 Anywhere St.';
+    const customerCity = customerAddressObj?.city || 'Any City';
+    const customerState = customerAddressObj?.state || 'ST';
+    const customerZip = customerAddressObj?.postal_code || '12345';
+    const customerCountry = customerAddressObj?.country || '';
+    
+    // Format invoice items
+    const items = invoice.InvoiceItems?.map((item, index) => ({
+      id: index + 1,
+      description: item.Product?.name || 'Service',
+      rate: this._formatCurrency(parseFloat(item.unit_price) || 0),
+      amount: this._formatCurrency((parseFloat(item.unit_price) || 0) * (parseFloat(item.quantity) || 1))
+    })) || [{ id: 1, description: 'Preliminary Design Services', rate: this._formatCurrency(5000), amount: this._formatCurrency(5000) }];
+    
+    // Calculate totals
+    const subtotal = parseFloat(invoice.subtotal) || this._calculateSubtotal(invoice.InvoiceItems || []);
+    const tax = parseFloat(invoice.tax) || this._calculateTax(subtotal, parseFloat(invoice.tax_rate) || 0.06);
+    const total = parseFloat(invoice.total) || (subtotal + tax);
+    
+    // Check if logo exists
+    const logoPath = path.join(__dirname, '../assets/logo.png');
+    const logoExists = fs.existsSync(logoPath);
+    
+    // Return formatted data
+    return {
+      invoice_number: invoice.invoice_number || 'INV-01234',
+      issue_date: this._formatDate(invoice.issue_date || new Date()),
+      due_date: this._formatDate(invoice.due_date || new Date()),
+      customer_name: customerName,
+      customer_address: customerAddress,
+      customer_city: customerCity,
+      customer_state: customerState,
+      customer_zip: customerZip,
+      customer_country: customerCountry,
+      items: items,
+      subtotal: this._formatCurrency(subtotal),
+      tax: this._formatCurrency(tax),
+      discount: this._formatCurrency(parseFloat(invoice.discount) || 0),
+      total: this._formatCurrency(total),
+      notes: invoice.notes || '',
+      terms: invoice.terms || '',
+      logoExists: logoExists,
+      logoPath: logoExists ? logoPath : null,
+      issuer_name: invoice.Issuer ? `${invoice.Issuer.first_name} ${invoice.Issuer.last_name}` : ''
     };
+  },
 
-    doc.moveDown().table(table, {
-      prepareHeader: () => doc.font('Helvetica-Bold'),
-      prepareRow: (row, i) => doc.font('Helvetica').fontSize(10),
-      padding: 5,
-      columnSpacing: 5,
-      divider: {
-        header: { disabled: false, width: 1, color: '#ccc' },
-        horizontal: { disabled: false, width: 1, color: '#eee' }
-      },
-      columnsSize: [200, 50, 80, 80, 50, 80]
+  _formatCurrency: function(amount) {
+    return amount.toLocaleString();
+  },
+
+  _formatDate: function(date) {
+    const d = new Date(date);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return d.toLocaleDateString('en-US', options);
+  },
+
+  _calculateSubtotal: function(items) {
+    return items.reduce((sum, item) => sum + ((item.unit_price || 0) * (item.quantity || 1)), 0);
+  },
+
+  _calculateTax: function(subtotal, taxRate) {
+    return subtotal * taxRate;
+  },
+
+  _compileTemplate: async function(data) {
+    // Read template file
+    const templatePath = path.join(__dirname, '../templates/invoice.html');
+    const templateSource = fs.readFileSync(templatePath, 'utf8');
+    
+    // Compile template with Handlebars
+    const template = Handlebars.compile(templateSource);
+    
+    // Render template with data
+    return template(data);
+  },
+
+  _generatePdf: async function(html) {
+    // Launch browser
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
-  }
-
-  _addTotals(doc, invoice) {
-    doc
-      .moveDown()
-      .fontSize(10)
-      .text(`Subtotal: $${invoice.subtotal.toFixed(2)}`, 400, doc.y, { align: 'right' })
-      .text(`Discount: $${invoice.discount.toFixed(2)}`, 400, doc.y + 15, { align: 'right' })
-      .text(`Tax: $${invoice.tax.toFixed(2)}`, 400, doc.y + 30, { align: 'right' })
-      .font('Helvetica-Bold')
-      .text(`Total: $${invoice.total.toFixed(2)}`, 400, doc.y + 50, { align: 'right' })
-      .font('Helvetica');
-  }
-
-  _addFooter(doc, invoice) {
-    doc
-      .fontSize(8)
-      .text(invoice.notes || 'Thank you for your business!', 50, 700, {
-        align: 'center',
-        width: 500
+    
+    try {
+      const page = await browser.newPage();
+      
+      // Set content to the HTML
+      await page.setContent(html, { waitUntil: 'networkidle0' });
+      
+      // Generate PDF
+      const pdfBuffer = await page.pdf({
+        format: 'A5',
+        printBackground: true,
+        margin: {
+          top: '0',
+          right: '0',
+          bottom: '0',
+          left: '0'
+        }
       });
+      
+      return pdfBuffer;
+    } finally {
+      await browser.close();
+    }
   }
-}
+};
 
-module.exports = new PdfService();
+module.exports = {
+  generateInvoicePdf: pdfService.generateInvoicePdf.bind(pdfService)
+};

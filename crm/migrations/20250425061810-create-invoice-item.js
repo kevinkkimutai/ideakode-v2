@@ -15,9 +15,6 @@ module.exports = {
       productId: {
         type: Sequelize.INTEGER
       },
-      description: {
-        type: Sequelize.TEXT
-      },
       quantity: {
         type: Sequelize.DECIMAL
       },

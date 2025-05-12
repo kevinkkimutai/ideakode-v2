@@ -1,14 +1,20 @@
-const { Quote, Opportunity, User, QuoteItem } = require('../models'); // Import the Quote model
+const { Quote, Opportunity, User, QuoteItem, Stage } = require('../models'); // Import the Quote model
+const logAudit = require('../utils/auditLogger');
 
 // Create a new quote
 const createQuote = async (req, res) => {
   try {
-    const { opportunityId, created_by, status, valid_until, subtotal, tax, discount, total, notes } = req.body;
+    const { opportunityId, status, valid_until, subtotal, tax, discount, total, notes } = req.body;
+    const userId = req.user.id;
 
+const user = await User.findByPk(userId);
+if (!user) {
+  return res.status("User not Found 🥶.")
+}
     // Create a new quote
     const quote = await Quote.create({
       opportunityId,
-      created_by,
+      created_by: userId,
       status,
       valid_until,
       subtotal,
@@ -30,9 +36,25 @@ const getAllQuotes = async (req, res) => {
   try {
     const quotes = await Quote.findAll({
       include: [
-        { model: Opportunity, attributes: ['name'] }, // Including opportunity details
-        { model: User, attributes: ['name'] }, // Including user (created by) details
-        { model: QuoteItem, attributes: ['description', 'quantity', 'unit_price', 'total_price'] } // Including quote items
+        {
+          model: Opportunity,
+          attributes: ['id', 'name', 'description'],
+          include: [
+            {
+              model: Stage,
+              attributes: ['id', 'name', 'probability']
+            }
+          ]
+        },
+        {
+          model: User,
+          as: 'creator',
+          attributes: ['id', 'first_name', 'last_name']
+        },
+        {
+          model: QuoteItem,
+          attributes: ['discount', 'unit_price', 'total_price']
+        }
       ]
     });
 
@@ -43,6 +65,7 @@ const getAllQuotes = async (req, res) => {
   }
 };
 
+
 // Get a single quote by ID
 const getQuoteById = async (req, res) => {
   try {
@@ -50,9 +73,25 @@ const getQuoteById = async (req, res) => {
 
     const quote = await Quote.findByPk(id, {
       include: [
-        { model: Opportunity, attributes: ['name'] }, // Including opportunity details
-        { model: User, attributes: ['name'] }, // Including user (created by) details
-        { model: QuoteItem, attributes: ['description', 'quantity', 'unit_price', 'total_price'] } // Including quote items
+        {
+          model: Opportunity,
+          attributes: ['id', 'name', 'description'],
+          include: [
+            {
+              model: Stage,
+              attributes: ['id', 'name', 'probability']
+            }
+          ]
+        },
+        {
+          model: User,
+          as: 'creator',
+          attributes: ['id', 'first_name', 'last_name']
+        },
+        {
+          model: QuoteItem,
+          attributes: ['discount', 'unit_price', 'total_price']
+        }
       ]
     });
 
@@ -71,16 +110,15 @@ const getQuoteById = async (req, res) => {
 const updateQuote = async (req, res) => {
   try {
     const { id } = req.params;
-    const { opportunityId, created_by, status, valid_until, subtotal, tax, discount, total, notes } = req.body;
+    const { opportunityId, status, valid_until, subtotal, tax, discount, total, notes } = req.body;
 
     const quote = await Quote.findByPk(id);
     if (!quote) {
       return res.status(404).json({ message: 'Quote not found' });
     }
-
+    const oldValues = { ...quote.get() };
     // Update the quote details
     quote.opportunityId = opportunityId;
-    quote.created_by = created_by;
     quote.status = status;
     quote.valid_until = valid_until;
     quote.subtotal = subtotal;
@@ -90,6 +128,17 @@ const updateQuote = async (req, res) => {
     quote.notes = notes;
 
     await quote.save();
+
+     // Audit log
+     await logAudit({
+      userId: req.user?.id || null,
+      action: 'UPDATE',
+      entity_type: 'Quote',
+      entity_id: quote.id,
+      old_values: JSON.stringify(oldValues),
+      new_values: JSON.stringify(quote.get()),
+      ip_address: req.ip
+    });
 
     return res.status(200).json({ message: 'Quote updated successfully', quote });
   } catch (error) {
@@ -107,8 +156,20 @@ const deleteQuote = async (req, res) => {
     if (!quote) {
       return res.status(404).json({ message: 'Quote not found' });
     }
-
+    const oldValues = { ...quote.get() };
+    
     await quote.destroy();
+
+        // Audit log
+        await logAudit({
+          userId: req.user?.id || null,
+          action: 'DELETE',
+          entity_type: 'Quote',
+          entity_id: quote.id,
+          old_values: JSON.stringify(oldValues),
+          new_values: null,
+          ip_address: req.ip
+        });
 
     return res.status(200).json({ message: 'Quote deleted successfully' });
   } catch (error) {

@@ -1,9 +1,10 @@
 
+const { Op } = require('sequelize');
 const { Invoice } = require('../models');
 const moment = require('moment');
 
 async function generateInvoiceNumber() {
-  const prefix = 'INV-' + moment().format('YYYYMMDD') + '-';
+  const prefix = 'NTQ-' + moment().format('YYYYMMDD') + '-';
   const lastInvoice = await Invoice.findOne({
     where: {
       invoice_number: {

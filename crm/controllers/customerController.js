@@ -1,5 +1,6 @@
 // controllers/customerController.js
 const { Customer, Contact, Address, Project, Ticket, Invoice, User } = require('../models');
+const logAudit = require('../utils/auditLogger');
 
 const createCustomer = async (req, res) => {
   try {
@@ -85,16 +86,30 @@ const getById = async (req, res) => {
   }
 };
 
+
 const update = async (req, res) => {
   try {
-    await Customer.update(req.body, {
-      where: { id: req.params.id }
+    const id = req.params.id;
+    const oldCustomer = await Customer.findByPk(id);
+    if (!oldCustomer) return res.status(404).json({ error: 'Customer not found' });
+
+    await oldCustomer.update(req.body);
+
+    // Call audit logger
+    await logAudit({
+      userId: req.user.id,
+      action: 'UPDATE',
+      entity_type: 'Customer',
+      entity_id: id,
+      old_values: oldCustomer.toJSON(),
+      new_values: req.body,
+      ip_address: req.ip,
     });
-    res.send({ message: 'Customer updated successfully 🎉' });
+
+    res.status(200).json(oldCustomer);
   } catch (error) {
-    res.status(500).send({
-      error: 'Error updating customer'
-    });
+    console.error(error);
+    res.status(500).json({ error: 'Failed to update customer' });
   }
 };
 

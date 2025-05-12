@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       Email.belongsTo(models.User, { foreignKey: 'userId' });
+      
     }
   }
   Email.init({
@@ -20,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     sent_at: DataTypes.DATE,
     status: DataTypes.STRING,
     related_to: DataTypes.STRING,
-    related_id: DataTypes.INTEGER
+    related_id: DataTypes.INTEGER,
+    userId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Email',

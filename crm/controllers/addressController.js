@@ -1,14 +1,43 @@
 const { Address, Customer } = require('../models');
 
 const createAddress = async (req, res) => {
+  const {
+    customerId,
+    address_type,
+    street,
+    city,
+    state,
+    postal_code,
+    country,
+    is_primary = false
+  } = req.body;
+
+
+
   try {
-    const address = await Address.create(req.body);
+    const customer = await Customer.findByPk(customerId);
+    if (!customer) {
+      return res.status(404).json({ error: 'Customer not found' });
+    }
+
+    const address = await Address.create({
+      customerId,
+      address_type,
+      street,
+      city,
+      state,
+      postal_code,
+      country,
+      is_primary
+    });
+
     res.status(201).json(address);
   } catch (error) {
-    console.error(error);
+    console.error('Address creation error:', error);
     res.status(500).json({ error: 'Error creating address' });
   }
 };
+
 
 const getAll = async (req, res) => {
   try {

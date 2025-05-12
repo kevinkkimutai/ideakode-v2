@@ -25,6 +25,9 @@ module.exports = {
         type: Sequelize.DATE
       },
       due_date: {
+        type: Sequelize.DATEONLY
+      },
+      sent_at: {
         type: Sequelize.DATE
       },
       status: {

@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Role, { foreignKey: 'roleId' });
       User.hasMany(models.Lead, { foreignKey: 'assigned_to' });
       User.hasMany(models.Opportunity, { foreignKey: 'assigned_to' });
+      User.hasMany(models.QuoteItem, { foreignKey: 'created_by', as: 'createdQuoteItems' });
       User.hasMany(models.Ticket, { foreignKey: 'assigned_to' });
       User.hasMany(models.Project, { foreignKey: 'managerId' });
       User.hasMany(models.Customer, { foreignKey: 'created_by' });

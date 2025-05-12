@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       Quote.belongsTo(models.Opportunity, { foreignKey: 'opportunityId' });
-      Quote.belongsTo(models.User, { foreignKey: 'created_by' });
+      Quote.belongsTo(models.Opportunity, { foreignKey: 'opportunityId', as: 'oppotunity' })
+      Quote.belongsTo(models.User, { foreignKey: 'created_by', as: 'creator' })
       Quote.hasMany(models.QuoteItem, { foreignKey: 'quoteId' });
     }
   }

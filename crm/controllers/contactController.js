@@ -1,5 +1,6 @@
 'use strict';
-const { Contact, Customer, Opportunity, Ticket, Meeting } = require('../models');
+const { Contact, Customer, Opportunity, Ticket, Meeting,  } = require('../models');
+const logAudit = require('../utils/auditLogger');
 
 const createContact = async (req, res) => {
   try {
@@ -25,14 +26,18 @@ const createContact = async (req, res) => {
   }
 };
 
+
 const getAllContacts = async (req, res) => {
   try {
     const contacts = await Contact.findAll({
       include: [
-        { model: Customer, attributes: ['id', 'name'] },
-        { model: Opportunity, attributes: ['id', 'title'] },
-        { model: Ticket, attributes: ['id', 'subject'] },
-        { model: Meeting, attributes: ['id', 'date'] }
+        { model: Customer },
+        // { model: Opportunity },
+        { model: Ticket },
+        {
+          model: Meeting,
+          through: { attributes: [] } // exclude join table fields
+        }
       ]
     });
 
@@ -49,10 +54,13 @@ const getContactById = async (req, res) => {
 
     const contact = await Contact.findByPk(id, {
       include: [
-        { model: Customer, attributes: ['id', 'name'] },
-        { model: Opportunity, attributes: ['id', 'title'] },
-        { model: Ticket, attributes: ['id', 'subject'] },
-        { model: Meeting, attributes: ['id', 'date'] }
+        { model: Customer },
+        // { model: Opportunity },
+        { model: Ticket },
+        {
+          model: Meeting,
+          through: { attributes: [] } // exclude join table fields
+        }
       ]
     });
 
@@ -67,10 +75,21 @@ const getContactById = async (req, res) => {
   }
 };
 
+
 const updateContact = async (req, res) => {
   try {
     const { id } = req.params;
-    const { customerId, first_name, last_name, email, phone, mobile, job_title, is_primary, notes } = req.body;
+    const {
+      customerId,
+      first_name,
+      last_name,
+      email,
+      phone,
+      mobile,
+      job_title,
+      is_primary,
+      notes
+    } = req.body;
 
     const contact = await Contact.findByPk(id);
 
@@ -78,7 +97,9 @@ const updateContact = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Contact not found' });
     }
 
-    // Update the contact record
+    const oldValues = { ...contact.get() };
+
+    // Update the contact
     contact.customerId = customerId;
     contact.first_name = first_name;
     contact.last_name = last_name;
@@ -90,6 +111,17 @@ const updateContact = async (req, res) => {
     contact.notes = notes;
 
     await contact.save();
+
+    // Audit log
+    await logAudit({
+      userId: req.user?.id || null,
+      action: 'UPDATE',
+      entity_type: 'Contact',
+      entity_id: contact.id,
+      old_values: JSON.stringify(oldValues),
+      new_values: JSON.stringify(req.body),
+      ip_address: req.ip
+    });
 
     return res.status(200).json({ success: true, contact });
   } catch (error) {

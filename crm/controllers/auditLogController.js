@@ -16,7 +16,9 @@ const createAuditLog = async (req, res) => {
 const getAll = async (req, res) => {
   try {
     const auditLogs = await AuditLog.findAll({
-      include: [{ model: User }]
+      include: [{ model: User,
+        attributes: ['id', 'first_name', 'last_name', 'email', 'image'] 
+       }]
     });
     res.json(auditLogs);
   } catch (error) {
@@ -28,7 +30,9 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   try {
     const auditLog = await AuditLog.findByPk(req.params.id, {
-      include: [{ model: User }]
+      include: [{ model: User,
+        attributes: ['id', 'first_name', 'last_name', 'email', 'image'] 
+       }]
     });
     if (!auditLog) return res.status(404).json({ error: 'Audit log not found' });
     res.json(auditLog);
@@ -42,7 +46,9 @@ const getByUserId = async (req, res) => {
   try {
     const auditLogs = await AuditLog.findAll({
       where: { userId: req.params.userId },
-      include: [{ model: User }]
+      include: [{ model: User,
+        attributes: ['id', 'first_name', 'last_name', 'email', 'image'] 
+      }]
     });
     if (auditLogs.length === 0) {
       return res.status(404).json({ error: 'No audit logs found for this user' });

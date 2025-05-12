@@ -7,67 +7,109 @@ const {
     Quote, 
     Product, 
     InvoicePayment, 
-    QuoteItem 
+    QuoteItem ,
+    Contact,
+    Address
   } = require('../models');
   const { generateInvoiceNumber } = require('../helpers/invoiceHelper');
-  
-  const createInvoice = async (req, res) => {
-    try {
-      const invoiceData = {
-        ...req.body,
-        invoice_number: await generateInvoiceNumber(),
-        issued_by: req.user.id,
-        status: 'draft'
-      };
-  
-      if (req.body.quote_id) {
-        const quote = await Quote.findByPk(req.body.quote_id, {
-          include: [{ model: QuoteItem }]
-        });
-  
-        if (!quote) return res.status(404).send({ error: 'Quote not found 🥶' });
-  
-        invoiceData.customer_id = quote.customer_id;
+const { sendInvoiceEmail } = require('../middleware/sendInvoiceEmail');
+const pdfServices = require('../services/pdfServices');
+
+const createInvoice = async (req, res) => {
+  try {
+    // First check if we have a customerId either directly or from a quote
+    let customerId = req.body.customerId;
+    let issue_date = new Date();
+    let quote = null;
+    
+    // If we have a quoteId, fetch the quote and use its customerId
+    if (req.body.quoteId) {
+      quote = await Quote.findByPk(req.body.quoteId, {
+        include: [{ model: QuoteItem }]
+      });
+      
+      if (!quote) return res.status(404).send({ error: 'Quote not found 🥶' });
+      
+      // Use quote's customerId if we don't have one provided directly
+      if (!customerId) {
+        customerId = quote.customerId;
       }
+    }
+    
+    // Ensure we have a customerId at this point
+    if (!customerId) {
+      return res.status(400).send({ error: 'Customer ID is required 🥶' });
+    }
+    
+    // Validate that the customer exists
+    const customer = await Customer.findByPk(customerId);
+    if (!customer) {
+      return res.status(404).send({ error: 'Customer not found 🥶' });
+    }
+    
+    // Now create the invoice with validated data
+    const invoiceData = {
+      ...req.body,
+      customerId: customerId,
+      issue_date: issue_date,
+      quoteId: quote ? quote.id : req.body.quoteId,
+      invoice_number: await generateInvoiceNumber(),
+      issued_by: req.user.id,
+      status: 'draft'
+    };
+
+    const invoice = await Invoice.create(invoiceData);
   
-      const invoice = await Invoice.create(invoiceData);
+    // Handle copying items from quote if needed
+    if (req.body.quoteId && req.body.copy_items && quote) {
+      const quoteItems = await QuoteItem.findAll({
+        where: { quoteId: req.body.quoteId }
+      });
   
-      if (req.body.quote_id && req.body.copy_items) {
-        const quoteItems = await QuoteItem.findAll({ where: { quote_id: req.body.quote_id } });
-        const invoiceItems = quoteItems.map(item => ({
-          invoice_id: invoice.id,
-          product_id: item.product_id,
-          description: item.description,
-          quantity: item.quantity,
-          unit_price: item.unit_price,
-          discount: item.discount,
-          tax_rate: item.tax_rate || 0,
-          total_price: item.total_price
-        }));
-        await InvoiceItem.bulkCreate(invoiceItems);
-        await invoice.update({
+      const invoiceItems = quoteItems.map(item => ({
+        invoiceId: invoice.id,
+        productId: item.productId,
+        quantity: item.quantity,
+        unit_price: item.unit_price,
+        discount: item.discount,
+        tax_rate: item.tax_rate || 0,
+        total_price: item.total_price
+      }));
+  
+      await InvoiceItem.bulkCreate(invoiceItems);
+  
+      // Update the invoice with quote totals
+      await Invoice.update(
+        {
           subtotal: quote.subtotal,
           tax: quote.tax,
           discount: quote.discount,
           total: quote.total
-        });
-      }
-  
-      const fullInvoice = await Invoice.findByPk(invoice.id, {
-        include: [
-          { model: Customer },
-          { model: User, as: 'Issuer' },
-          { model: InvoiceItem },
-          { model: Quote }
-        ]
-      });
-  
-      res.status(201).send(fullInvoice);
-    } catch (error) {
-      console.error(error);
-      res.status(400).send({ error: 'Error creating invoice' });
+        },
+        {
+          where: { id: invoice.id }
+        }
+      );
     }
-  };
+  
+    const fullInvoice = await Invoice.findByPk(invoice.id, {
+      include: [
+        { model: Customer, include: [{ model: Contact }] },
+        { model: User, attributes: ['id', 'first_name', 'last_name', 'email'], as: 'Issuer' },
+        { model: InvoiceItem, include: [{ model: Product }] },
+        { model: Quote }
+      ]
+    });
+  
+    res.status(201).json({
+      success: true,
+      invoice: fullInvoice
+    });
+  } catch (error) {
+    console.error('Error creating invoice:', error);
+    res.status(400).json({ error: 'Error creating invoice', message: error.message });
+  }
+};
   
   const getAll = async (req, res) => {
     try {
@@ -82,14 +124,17 @@ const {
         limit: parseInt(limit),
         offset,
         include: [
-          { model: Customer },
-          { model: User, as: 'Issuer' }
+          { model: Customer, include: [{ model: Contact }] },
+          { model: User, attributes: ['id', 'first_name', 'last_name', 'email'], as: 'Issuer' },
+          { model: InvoiceItem, include: [{ model: Product }] },
+          { model: Quote },
+          { model: Transaction }
         ],
         order: [['issue_date', 'DESC']]
       });
   
       res.send({
-        data: invoices.rows,
+        invoices: invoices.rows,
         total: invoices.count,
         totalPages: Math.ceil(invoices.count / limit),
         currentPage: parseInt(page)
@@ -103,8 +148,8 @@ const {
     try {
       const invoice = await Invoice.findByPk(req.params.id, {
         include: [
-          { model: Customer },
-          { model: User, as: 'Issuer' },
+          { model: Customer, include: [{ model: Contact }] },
+          { model: User, attributes: ['id', 'first_name', 'last_name', 'email'], as: 'Issuer' },
           { model: InvoiceItem, include: [{ model: Product }] },
           { model: Quote },
           { model: Transaction }
@@ -191,7 +236,7 @@ const {
         where: { invoice_id: req.params.id },
         include: [
           { model: Transaction },
-          { model: User, attributes: ['id', 'first_name', 'last_name'] }
+          { model: User, attributes: ['id', 'first_name', 'last_name', 'email'], }
         ]
       });
   
@@ -205,10 +250,20 @@ const {
     try {
       const invoice = await Invoice.findByPk(req.params.id, {
         include: [
-          { model: Customer },
-          { model: Address, where: { address_type: 'billing' }, required: false },
+          { model: Customer, include: [
+            {
+              model: Contact,
+              where: { is_primary: true },
+              required: false
+            },
+            {
+              model: Address,
+              where: { address_type: 'billing' },
+              required: false
+            }
+          ] },
           { model: InvoiceItem, include: [{ model: Product }] },
-          { model: User, as: 'Issuer' }
+          { model: User, attributes: ['id', 'first_name', 'last_name', 'email'], as: 'Issuer' }
         ]
       });
 
@@ -216,7 +271,7 @@ const {
         return res.status(404).send({ error: 'Invoice not found' });
       }
 
-      const pdfBuffer = await PdfService.generateInvoicePdf(invoice);
+      const pdfBuffer = await pdfServices.generateInvoicePdf(invoice);
 
       res.set({
         'Content-Type': 'application/pdf',
@@ -231,50 +286,67 @@ const {
     }
   }
 
- const sendInvoiceWithPdf = async (req, res) => {
+  const sendInvoiceWithPdf = async (req, res) => {
     try {
       const invoice = await Invoice.findByPk(req.params.id, {
         include: [
-          { model: Customer, include: [{ model: Contact, where: { is_primary: true }, required: false }] },
-          { model: Address, where: { address_type: 'billing' }, required: false },
+          { model: Customer, include: [
+            { model: Contact }, 
+            {model: Address, where: { is_primary: true }},] },
+          { model: User, attributes: ['id', 'first_name', 'last_name', 'email'], as: 'Issuer' },
           { model: InvoiceItem, include: [{ model: Product }] },
-          { model: User, as: 'Issuer' }
-        ]
+          { model: Quote },
+          { model: Transaction }
+        ],
       });
 
+      console.log("invoice", invoice);
+      
+      
       if (!invoice) {
         return res.status(404).send({ error: 'Invoice not found' });
       }
-
-      // Generate PDF
-      const pdfBuffer = await PdfService.generateInvoicePdf(invoice);
       
-      // TODO: Implement email sending with attachment
-      // await emailService.sendInvoiceEmail({
-      //   to: invoice.Customer.Contact.email,
-      //   subject: `Invoice #${invoice.invoice_number}`,
-      //   text: `Please find attached invoice #${invoice.invoice_number}`,
-      //   attachments: [{
-      //     filename: `invoice_${invoice.invoice_number}.pdf`,
-      //     content: pdfBuffer
-      //   }]
-      // });
-
-      await invoice.update({ 
-        status: 'sent',
-        sent_at: new Date() 
+      const primaryContact = invoice.Customer?.Contacts?.find(c => c.is_primary);
+      const to_addresses = primaryContact?.email;
+      
+      if (!to_addresses) {
+        return res.status(400).send({ error: 'No primary contact email found for this customer.' });
+      }
+      
+      const subject = `Invoice ${invoice.invoice_number} from Netiqa`;
+      const body = `Please find attached invoice ${invoice.invoice_number}. Thank you for your business.`;
+      
+      // Generate PDF using HTML template
+      const pdfBuffer = await pdfServices.generateInvoicePdf(invoice);
+      
+      await sendInvoiceEmail({
+        to: to_addresses,
+        subject,
+        body,
+        pdfBuffer,
+        invoiceNumber: invoice.invoice_number
       });
-
-      res.send({ 
+      
+      await invoice.update({
+        status: 'sent',
+        sent_at: new Date()
+      });
+      
+      res.send({
         message: 'Invoice sent with PDF attachment',
-        pdf: pdfBuffer.toString('base64') // For testing, remove in production
+        pdf: pdfBuffer.toString('base64'),
+        invoice: invoice
       });
     } catch (error) {
+      console.error('Error sending invoice:', error);
       res.status(500).send({
         error: 'Error sending invoice with PDF'
       });
     }
-  }
+  };
+  
+ 
   
   module.exports = {
     createInvoice,

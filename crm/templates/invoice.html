@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Invoice {{invoice_number}}</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .header {
+      position: relative;
+    }
+  
+    .header svg {
+      display: block;
+    }
+  
+    .logo-container {
+      position: absolute;
+      top: 80px;
+      right: 40px;
+      color: #fff;
+    }
+  
+    .logo {
+      width: 140px;
+    }
+  
+    .drawn-logo .logo-text {
+      font-weight: bold;
+      font-size: 10px;
+      line-height: 1.2;
+    }
+  
+    .content {
+      flex: 1;
+      padding: 30px;
+    }
+  
+    .invoice-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #15803d;
+    }
+  
+    .invoice-info {
+      font-size: 10px;
+      margin-top: 10px;
+      margin-bottom: 25px;
+    }
+  
+    .main-sections {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      font-size: 9px;
+      margin-bottom: 25px;
+    }
+  
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: #15803d;
+    }
+  
+    .bill-to, .payment-info {
+      width: 48%;
+      line-height: 1.5;
+    }
+  
+    .payment-info .label {
+      font-weight: bold;
+      display: inline-block;
+      width: 70px;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+    }
+  
+    thead {
+      background-color: #15803d;
+      color: white;
+    }
+  
+    th {
+      padding: 8px;
+      text-align: left;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+    }
+  
+    td {
+      padding: 8px;
+      font-size: 9px;
+      border-bottom: 1px solid #ccc;
+    }
+  
+    .totals {
+      width: 200px;
+      margin-left: auto;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+  
+    .totals div {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 12px;
+      font-size: 9px;
+    }
+  
+    .subtotal, .tax, .discount {
+      border-bottom: 1px solid #ccc;
+    }
+  
+    .total {
+      background-color: #15803d;
+      color: white;
+      font-weight: bold;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+  
+    .terms {
+      margin-top: 20px;
+      font-size: 9px;
+      text-align: center;
+    }
+  
+    .terms .section-title {
+      margin-bottom: 5px;
+    }
+
+    .notes {
+      margin-top: 20px;
+      font-size: 9px;
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-left: 3px solid #15803d;
+    }
+
+    .terms-thanks {
+      text-align: center;
+      font-size: 9px;
+      padding-top: 30px;
+    }
+  
+    .footer {
+      margin-top: auto;
+    }
+  
+    .footer svg {
+      display: block;
+    }
+
+    .issuer-info {
+      margin-top: 15px;
+      font-size: 9px;
+      text-align: right;
+    }
+
+    .due-date {
+      color: #d00;
+      font-weight: bold;
+    }
+  </style>
+  
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo-container">
+      <svg id="Layer_2" data-name="Layer 2" class="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 289.21 72.45">
+        <defs>
+          <style>
+            .cls-1 {
+              fill: url(#linear-gradient-2);
+            }
+      
+            .cls-2 {
+              fill: #2cce20;
+            }
+      
+            .cls-3 {
+              fill: url(#linear-gradient);
+            }
+          </style>
+          <linearGradient id="linear-gradient" x1="68.32" y1="37.03" x2="100.29" y2="18.58" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset="1" stop-color="#2cce20"/>
+          </linearGradient>
+          <linearGradient id="linear-gradient-2" x1="104.11" y1="37.03" x2="136.08" xlink:href="#linear-gradient"/>
+        </defs>
+        <g id="Layer_1-2" data-name="Layer 1">
+          <g>
+            <g>
+              <g>
+                <g>
+                  <path class="cls-2" d="M46.8,6.35l-4.57,19.78,9.52-2.41,4.02-17.37h-8.97Zm-5.7,40.26l-3.37-4.37-3.84,3.12,2.55,5.81h8.97l5.67-24.53-9.98,19.96Zm-5.27-18.87l-7.74,1.95,.9,1.17-1.08,.88,1.69,3.84,1.86-1.51,.9,1.17,3.61-7.21h0s-.13-.29-.13-.29Zm-18.37,17.7l1.48-6.42-8.12,6.6c-.02-.87-.15-2.76-1.31-4.6l-.52,2.24-.55,2.36-1.28,5.55h8.97l.2-.89c-1.2-.91-2.41-1.29-3.04-1.45h0s4.17-3.39,4.17-3.39ZM30.5,15.52l-4-9.17h-8.97l-5.86,25.34,11.04-8.96h0s-3.36-4.38-3.36-4.38l11.15-2.82Z"/>
+                  <path class="cls-2" d="M28.09,29.7l.9,1.17-1.08,.88-8.97,7.28-8.12,6.6c-.02-.87-.15-2.76-1.31-4.6-.12-.2-.26-.41-.42-.6-1.54-2.03-3.63-2.71-4.55-2.95,0,0,0,0,0,0l7.13-5.79,11.04-8.96h0s0-.01,0-.01l-3.36-4.37,11.15-2.82,6.3-1.59L30.96,.53H13.06L0,57H20.61l.24-1.05-1.28,1.04c-.02-.97-.18-3.19-1.72-5.19-.47-.62-.99-1.11-1.51-1.5-1.2-.91-2.41-1.29-3.04-1.45h0s4.17-3.39,4.17-3.39l12.13-9.85,1.86-1.51,.9,1.17,3.61-7.21h0s.19-.37,.19-.37l-.31,.08-7.74,1.95ZM2.65,45.63l.67-2.9c.32,.09,1.07,.33,1.62,1.05,.55,.71,.61,1.5,.61,1.85H2.65Zm8.75,11.37l.67-2.9c.32,.09,1.07,.33,1.62,1.05,.55,.71,.6,1.5,.61,1.85h-2.9ZM42.32,.53l-2.95,12.74,4.53-1.14-7.76,15.54,6.09-1.54,9.52-2.41,.9-.23-1.57,3.15h0s-9.98,19.97-9.98,19.97l-3.37-4.37-3.84,3.12-5.17,4.2,3.27,7.44h17.9L62.94,.53h-20.61Z"/>
+                </g>
+                <g>
+                  <g>
+                    <path class="cls-2" d="M10.82,45.63l-1.82-2.36-4.45-5.79c.92,.23,3,.92,4.55,2.95,.15,.2,.29,.4,.42,.6,1.16,1.84,1.29,3.74,1.31,4.6Z"/>
+                    <path class="cls-2" d="M19.57,56.99h-.01s-4.47-5.81-4.47-5.81l-1.8-2.34c.64,.16,1.84,.55,3.04,1.45,.52,.39,1.04,.88,1.51,1.5,1.54,2.01,1.71,4.23,1.72,5.19Z"/>
+                  </g>
+                  <g>
+                    <path class="cls-2" d="M10.82,45.63H5.55c0-.34-.06-1.13-.61-1.85-.55-.72-1.3-.96-1.62-1.05l1.22-5.26h.01s0,0,0,0c.92,.23,3,.92,4.55,2.95,.15,.2,.29,.4,.42,.6,1.16,1.84,1.29,3.74,1.31,4.6Z"/>
+                    <rect class="cls-2" x="2.65" y="45.63" width="2.9" height="0"/>
+                  </g>
+                  <g>
+                    <path class="cls-2" d="M19.57,56.99h0s-5.27,.01-5.27,.01c0-.34-.06-1.13-.61-1.85-.55-.72-1.3-.96-1.62-1.05l.67-2.92,.54-2.34h0c.64,.16,1.84,.55,3.04,1.45,.52,.39,1.04,.88,1.51,1.5,1.54,2.01,1.71,4.23,1.72,5.19Z"/>
+                    <rect class="cls-2" x="11.41" y="57" width="2.9" height="0"/>
+                  </g>
+                </g>
+              </g>
+              <line class="cls-2" x1="20.78" y1="56.1" x2="28.86" y2="49.55"/>
+            </g>
+            <g>
+              <path class="cls-2" d="M78.82,55.22V.39h10.97l24.83,37.21V.39h10.97V55.22h-10.97l-24.83-37.05V55.22h-10.97Z"/>
+              <path class="cls-2" d="M147.43,56.16c-4.02,0-7.57-.85-10.65-2.55-3.08-1.7-5.48-4.05-7.21-7.05-1.72-3-2.58-6.46-2.58-10.38s.85-7.6,2.55-10.73c1.7-3.13,4.09-5.59,7.17-7.36,3.08-1.77,6.66-2.66,10.73-2.66,3.86,0,7.28,.84,10.26,2.51,2.98,1.67,5.3,3.96,6.97,6.85,1.67,2.9,2.51,6.2,2.51,9.91v1.76c0,.65-.05,1.32-.16,2h-32.19v-6.58h21.23c-.16-2.3-1.03-4.14-2.62-5.52-1.59-1.38-3.56-2.08-5.91-2.08-1.78,0-3.41,.39-4.9,1.17-1.49,.78-2.66,1.97-3.52,3.56-.86,1.59-1.29,3.62-1.29,6.07v2.27c0,1.99,.4,3.72,1.21,5.21,.81,1.49,1.93,2.64,3.37,3.45,1.44,.81,3.09,1.21,4.97,1.21s3.37-.4,4.62-1.21c1.25-.81,2.22-1.87,2.9-3.17h11.2c-.73,2.51-1.97,4.77-3.72,6.78-1.75,2.01-3.89,3.6-6.42,4.78-2.53,1.18-5.37,1.76-8.5,1.76Z"/>
+              <path class="cls-2" d="M184.33,55.22c-2.72,0-5-.31-6.85-.94-1.85-.63-3.25-1.84-4.19-3.64-.94-1.8-1.41-4.4-1.41-7.79V25.53h-6.66v-9.16h6.66V5.72h10.97v10.65h9.56v9.16h-9.56v15.98c0,1.2,.13,2.11,.39,2.74,.26,.63,.74,1.06,1.45,1.29,.71,.23,1.66,.35,2.86,.35h4.62v9.32h-7.83Z"/>
+              <path class="cls-2" d="M193.1,55.22V16.37h10.97V55.22h-10.97Zm.47-45.04V0h10.18V10.18h-10.18Z"/>
+              <path class="cls-2" d="M236.33,72.45v-22.56c-1.2,1.67-2.81,3.13-4.82,4.39-2.01,1.25-4.61,1.88-7.79,1.88-3.6,0-6.85-.89-9.75-2.66-2.9-1.77-5.18-4.22-6.85-7.32-1.67-3.11-2.51-6.59-2.51-10.46s.83-7.4,2.51-10.46c1.67-3.05,3.96-5.46,6.85-7.21,2.9-1.75,6.15-2.62,9.75-2.62,2.87,0,5.37,.52,7.48,1.57,2.11,1.05,3.82,2.51,5.13,4.39v-5.01h10.97v56.08h-10.97Zm-10.1-25.85c2.04,0,3.84-.47,5.4-1.41,1.57-.94,2.79-2.23,3.68-3.88,.89-1.64,1.33-3.49,1.33-5.52s-.44-3.94-1.33-5.56c-.89-1.62-2.11-2.9-3.68-3.84-1.57-.94-3.37-1.41-5.4-1.41s-3.77,.47-5.37,1.41c-1.59,.94-2.83,2.21-3.72,3.8-.89,1.59-1.33,3.43-1.33,5.52s.44,3.96,1.33,5.6c.89,1.64,2.13,2.94,3.72,3.88,1.59,.94,3.38,1.41,5.37,1.41Z"/>
+              <path class="cls-2" d="M262.5,56.16c-2.87,0-5.42-.52-7.64-1.57-2.22-1.04-3.96-2.45-5.21-4.23-1.25-1.77-1.88-3.73-1.88-5.87,0-4.02,1.5-7.14,4.5-9.36,3-2.22,7.17-3.33,12.49-3.33,2.35,0,4.35,.16,5.99,.47,1.64,.31,2.96,.67,3.96,1.06,.99,.39,1.67,.67,2.04,.82l-.08,7.05c-.47-.21-1.27-.5-2.39-.86-1.12-.36-2.42-.7-3.88-1.02-1.46-.31-2.95-.47-4.46-.47-2.25,0-3.99,.39-5.25,1.18-1.25,.78-1.88,1.88-1.88,3.29s.6,2.46,1.8,3.29c1.2,.84,2.66,1.25,4.39,1.25,2.24,0,4.06-.6,5.44-1.8,1.38-1.2,2.39-2.81,3.02-4.82,.63-2.01,.94-4.16,.94-6.46l4.31,8.46c-.47,2.19-1.4,4.27-2.78,6.23-1.38,1.96-3.2,3.56-5.44,4.82-2.25,1.25-4.91,1.88-7.99,1.88Zm11.91-7.83V31.33c0-2.56-.74-4.41-2.23-5.56-1.49-1.15-3.38-1.72-5.68-1.72-1.78,0-3.32,.31-4.62,.94-1.31,.63-2.14,1.78-2.51,3.45h-10.26c.31-2.77,1.24-5.12,2.78-7.05,1.54-1.93,3.58-3.41,6.11-4.43,2.53-1.02,5.37-1.53,8.5-1.53,5.85,0,10.46,1.37,13.82,4.11,3.37,2.74,5.05,6.67,5.05,11.79v17.15l-10.97-.16Zm12.38,6.89c-2.66,0-4.92-.33-6.78-.98-1.85-.65-3.25-1.85-4.19-3.6-.94-1.75-1.41-4.27-1.41-7.56l10.97-3.68c0,1.98,.12,3.46,.35,4.43,.24,.97,.61,1.58,1.14,1.84,.52,.26,1.2,.39,2.04,.39h.31v9.16h-2.43Z"/>
+              <rect class="cls-3" x="78.82" y=".39" width="10.97" height="54.83"/>
+              <rect class="cls-1" x="114.61" y=".39" width="10.97" height="54.83"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <!-- SVG Wave Header -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#15803d" fill-opacity="1" d="M0,224L48,224C96,224,192,224,288,202.7C384,181,480,139,576,133.3C672,128,768,160,864,149.3C960,139,1056,85,1152,96C1248,107,1344,181,1392,218.7L1440,256L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+  </div>
+
+  <div class="content">
+    <div class="invoice-title">INVOICE</div>
+    <div class="invoice-info">
+      <div>Invoice Number: {{invoice_number}}</div>
+      <div>Issue Date: {{issue_date}}</div>
+      <div>Due Date: <span class="due-date">{{due_date}}</span></div>
+    </div>
+
+    <div class="main-sections">
+      <div class="bill-to">
+        <div class="section-title">BILL TO:</div>
+        <div><strong>{{customer_name}}</strong></div>
+        {{#if customer_company}}
+        <div>{{customer_company}}</div>
+        {{/if}}
+        <div>{{customer_address}}</div>
+        <div>{{customer_city}}, {{customer_state}} {{customer_zip}}</div>
+        <div>{{customer_country}}</div>
+      </div>
+
+      <div class="payment-info">
+        <div class="section-title">PAYMENT INFORMATION:</div>
+        <div><span class="label">Tax ID:</span> {{tax_id}}</div>
+        <div><span class="label">Terms:</span> {{terms}}</div>
+        <div><span class="label">Issued By:</span> {{issuer_name}}</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ITEM</th>
+          <th>DESCRIPTION</th>
+          <th>QTY</th>
+          <th>RATE</th>
+          <th>AMOUNT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each items}}
+        <tr>
+          <td>{{this.id}}.</td>
+          <td>{{this.description}}</td>
+          <td>{{this.quantity}}</td>
+          <td>KSh {{this.rate}}</td>
+          <td>KSh {{this.amount}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="subtotal">
+        <span>Subtotal:</span><span>KSh {{subtotal}}</span>
+      </div>
+      {{#if discount}}
+      <div class="discount">
+        <span>Discount:</span><span>KSh {{discount}}</span>
+      </div>
+      {{/if}}
+      <div class="tax">
+        <span>Tax:</span><span>KSh {{tax}}</span>
+      </div>
+      <div class="total">
+        <span>TOTAL:</span><span>KSh {{total}}</span>
+      </div>
+    </div>
+
+    <!-- {{#if notes}}
+    <div class="notes">
+      <div class="section-title">NOTES:</div>
+      <div>{{notes}}</div>
+    </div>
+    {{/if}} -->
+
+
+    <div class="terms-thanks">
+      <div class="thanks-content">Thank you for your business! If you have any questions about this invoice, please contact us.</div>
+    </div>
+
+    <div class="terms">
+      <div class="section-title">Contact</div>
+      <p>Email: support@netiqa.co.ke | Phone: +254 722 214 567 | Website: <a href="https://netiqa.co.ke">www.netiqa.co.ke</a></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <!-- SVG Wave Footer -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#15803d" fill-opacity="1" d="M0,256L48,256C96,256,192,256,288,266.7C384,277,480,299,576,282.7C672,267,768,213,864,208C960,203,1056,245,1152,240C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+  </div>
+
+</body>
+</html>

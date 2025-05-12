@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   InvoiceItem.init({
     invoiceId: DataTypes.INTEGER,
     productId: DataTypes.INTEGER,
-    description: DataTypes.TEXT,
     quantity: DataTypes.DECIMAL,
     unit_price: DataTypes.DECIMAL,
     discount: DataTypes.DECIMAL,

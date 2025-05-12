@@ -4,18 +4,18 @@ const router = express.Router();
 
 
 // Create a new Stage
-router.post('/stages', createStage);
+router.post('/stage', createStage);
 
 // Get all stages
 router.get('/stages', getAllStages);
 
 // Get a single stage by ID
-router.get('/stages/:id', getStageById);
+router.get('/stage/:id', getStageById);
 
 // Update a stage by ID
-router.put('/stages/:id', updateStage);
+router.put('/stage/:id', updateStage);
 
 // Delete a stage by ID
-router.delete('/stages/:id', deleteStage);
+router.delete('/stage/:id', deleteStage);
 
 module.exports = router;

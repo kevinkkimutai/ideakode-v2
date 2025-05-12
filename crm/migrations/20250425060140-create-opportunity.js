@@ -36,6 +36,15 @@ module.exports = {
       lost_reason: {
         type: Sequelize.STRING
       },
+      stageId: {
+        type: Sequelize.INTEGER
+      },
+      closed: {
+        type: Sequelize.BOOLEAN
+      },
+      created_by: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

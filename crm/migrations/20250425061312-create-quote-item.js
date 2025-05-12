@@ -15,6 +15,9 @@ module.exports = {
       productId: {
         type: Sequelize.INTEGER
       },
+      created_by: {
+        type: Sequelize.INTEGER
+      },
       quantity: {
         type: Sequelize.DECIMAL
       },
