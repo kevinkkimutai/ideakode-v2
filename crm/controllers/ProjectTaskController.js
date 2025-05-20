@@ -1,11 +1,11 @@
-const { ProjectTask, User, Project } = require('../models');
+const { Task, User, Project } = require('../models');
 
 // Create a new project task
 const createProjectTask = async (req, res) => {
   const userId = req.user.id;
   try {
     const {
-      projectId,
+      taskableId,
       name,
       description,
       status,
@@ -17,8 +17,9 @@ const createProjectTask = async (req, res) => {
       actual_hours
     } = req.body;
 
-    const projectTask = await ProjectTask.create({
-      projectId,
+    const task = await Task.create({
+      taskableId,
+      taskableType: "Project",
       name,
       description,
       status,
@@ -38,14 +39,14 @@ const createProjectTask = async (req, res) => {
         return res.status(400).json({ message: 'One or more assignee IDs are invalid' });
       }
 
-      await projectTask.setAssignees(assigned_to); // Sequelize magic method
+      await task.setAssignees(assigned_to); // Sequelize magic method
     }
 
-    const fullTask = await ProjectTask.findByPk(projectTask.id, {
+    const fullTask = await Task.findByPk(task.id, {
       include: [{ model: User, as: 'Assignees', attributes: ['id', 'first_name', 'last_name'] }]
     });
 
-    return res.status(201).json({ message: 'Project task created successfully', projectTask: fullTask });
+    return res.status(201).json({ message: 'Project task created successfully', task: fullTask });
   } catch (error) {
     console.error('Error creating project task:', error);
     return res.status(500).json({ message: 'Error creating project task', error: error.message });
@@ -56,7 +57,7 @@ const createProjectTask = async (req, res) => {
 // Get all project tasks
 const getAllProjectTasks = async (req, res) => {
   try {
-    const projectTasks = await ProjectTask.findAll({
+    const tasks = await ProjectTask.findAll({
       include: [
         { model: Project, attributes: ['name'] },
         { model: User, as: 'Assignees', attributes: ['first_name','last_name', 'email'] },
@@ -64,7 +65,7 @@ const getAllProjectTasks = async (req, res) => {
       ]
     });
 
-    return res.status(200).json(projectTasks);
+    return res.status(200).json(tasks);
   } catch (error) {
     console.error('Error fetching project tasks:', error);
     return res.status(500).json({ message: 'Error fetching project tasks', error: error.message });
@@ -76,7 +77,7 @@ const getProjectTaskById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const projectTask = await ProjectTask.findByPk(id, {
+    const task = await Task.findByPk(id, {
       include: [
         { model: Project, attributes: ['name'] },
         { model: User, as: 'Assignees', attributes: ['first_name','last_name', 'email'] },
@@ -84,11 +85,11 @@ const getProjectTaskById = async (req, res) => {
       ]
     });
 
-    if (!projectTask) {
+    if (!task) {
       return res.status(404).json({ message: 'Project task not found' });
     }
 
-    return res.status(200).json(projectTask);
+    return res.status(200).json(task);
   } catch (error) {
     console.error('Error fetching project task:', error);
     return res.status(500).json({ message: 'Error fetching project task', error: error.message });
@@ -100,8 +101,8 @@ const assignUsersToTask = async (req, res) => {
     const {taskId}  = req.params;
     const { userIds } = req.body; 
 
-    const projectTask = await ProjectTask.findByPk(taskId);
-    if (!projectTask) {
+    const task = await Task.findByPk(taskId);
+    if (!task) {
       return res.status(404).json({ message: 'Task not found' });
     }
 
@@ -110,7 +111,7 @@ const assignUsersToTask = async (req, res) => {
       return res.status(400).json({ message: 'Some users not found' });
     }
 
-    await projectTask.setAssignees(userIds);
+    await task.setAssignees(userIds);
 
     return res.status(200).json({ message: 'Users assigned successfully to the task' });
   } catch (error) {
@@ -123,7 +124,7 @@ const getMyProjectTasks = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    const tasks = await ProjectTask.findAll({
+    const tasks = await Task.findAll({
       include: [
         {
           model: User,
@@ -151,7 +152,7 @@ const updateProjectTask = async (req, res) => {
     const { id } = req.params;
 
     const {
-      projectId,
+      taskableId,
       name,
       description,
       status,
@@ -162,20 +163,20 @@ const updateProjectTask = async (req, res) => {
       actual_hours
     } = req.body;
 
-    const projectTask = await ProjectTask.findByPk(id);
-    if (!projectTask) {
+    const task = await Task.findByPk(id);
+    if (!task) {
       return res.status(404).json({ message: 'Project task not found' });
     }
 
     // Only the user who created the task (assigned_by) can update it
     const userId = req.user.id;
-    if (userId !== projectTask.assigned_by) {
+    if (userId !== Task.assigned_by) {
       return res.status(403).json({ message: 'You are not authorized to update this task' });
     }
 
     // Update allowed fields
-    Object.assign(projectTask, {
-      projectId,
+    Object.assign(task, {
+      taskableId,
       name,
       description,
       status,
@@ -186,9 +187,9 @@ const updateProjectTask = async (req, res) => {
       actual_hours
     });
 
-    await projectTask.save();
+    await task.save();
 
-    return res.status(200).json({ message: 'Project task updated successfully', projectTask });
+    return res.status(200).json({ message: 'Project task updated successfully', task });
   } catch (error) {
     console.error('Error updating project task:', error);
     return res.status(500).json({ message: 'Error updating project task', error: error.message });
@@ -202,12 +203,12 @@ const deleteProjectTask = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const projectTask = await ProjectTask.findByPk(id);
-    if (!projectTask) {
+    const task = await Task.findByPk(id);
+    if (!task) {
       return res.status(404).json({ message: 'Project task not found' });
     }
 
-    await projectTask.destroy();
+    await task.destroy();
 
     return res.status(200).json({ message: 'Project task deleted successfully' });
   } catch (error) {

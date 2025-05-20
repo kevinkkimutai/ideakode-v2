@@ -1,4 +1,4 @@
-const { Ticket } = require('../models'); // Import the Ticket model
+const { Ticket, User, Customer, Contact, TicketCategory, TicketComment, TicketAttachment } = require('../models'); // Import the Ticket model
 
 // Create a new ticket
 const createTicket = async (req, res) => {
@@ -28,7 +28,49 @@ const createTicket = async (req, res) => {
 // Get all tickets
 const getAllTickets = async (req, res) => {
   try {
-    const tickets = await Ticket.findAll();
+    const tickets = await Ticket.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'first_name', 'last_name', 'email'],
+          as: 'assigned_to_user'
+        },
+        {
+          model: Customer,
+          attributes: [
+            'id', 'company_name', 'created_by', 'industry', 'website',
+            'tax_id', 'notes'
+          ],
+          include: [
+            {
+              model: Contact,
+              as: 'Contacts',
+              attributes: [
+                'id', 'first_name', 'last_name', 'email',
+                'phone', 'mobile', 'job_title', 'is_primary',
+                'notes'
+              ]
+            }
+          ]
+        },
+        {
+          model: Contact,
+          attributes: ['id', 'first_name', 'last_name', 'email', 'phone']
+        },
+        {
+          model: TicketCategory,
+          attributes: ['id', 'name']
+        },
+        {
+          model: TicketComment,
+          attributes: ['id', 'content', 'createdAt', 'updatedAt']
+        },
+        {
+          model: TicketAttachment,
+          attributes: ['id', 'file_path', 'file_name']
+        }
+      ]
+    });
 
     return res.status(200).json(tickets);
   } catch (error) {
@@ -42,7 +84,49 @@ const getTicketById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const ticket = await Ticket.findByPk(id);
+    const ticket = await Ticket.findByPk(id, {
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'first_name', 'last_name', 'email'],
+          as: 'assigned_to_user'
+        },
+        {
+          model: Customer,
+          attributes: [
+            'id', 'company_name', 'created_by', 'industry', 'website',
+            'tax_id', 'notes'
+          ],
+          include: [
+            {
+              model: Contact,
+              as: 'Contacts',
+              attributes: [
+                'id', 'first_name', 'last_name', 'email',
+                'phone', 'mobile', 'job_title', 'is_primary',
+                'notes'
+              ]
+            }
+          ]
+        },
+        {
+          model: Contact,
+          attributes: ['id', 'first_name', 'last_name', 'email', 'phone']
+        },
+        {
+          model: TicketCategory,
+          attributes: ['id', 'name']
+        },
+        {
+          model: TicketComment,
+          attributes: ['id', 'content', 'createdAt', 'updatedAt']
+        },
+        {
+          model: TicketAttachment,
+          attributes: ['id', 'file_path', 'file_name']
+        }
+      ]
+    });
 
     if (!ticket) {
       return res.status(404).json({ message: 'Ticket not found' });
@@ -52,6 +136,131 @@ const getTicketById = async (req, res) => {
   } catch (error) {
     console.error('Error fetching ticket:', error);
     return res.status(500).json({ message: 'Error fetching ticket', error: error.message });
+  }
+};
+
+// Get a single ticket by ID
+const getAssignedTickets = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found 🥶.' });
+    }
+
+    const tickets = await Ticket.findAll({
+      where: { assigned_to: userId },
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'first_name', 'last_name', 'email'],
+          as: 'assigned_to_user'
+        },
+        {
+          model: Customer,
+          attributes: [
+            'id', 'company_name', 'created_by', 'industry', 'website',
+            'tax_id', 'notes'
+          ],
+          include: [
+            {
+              model: Contact,
+              as: 'Contacts',
+              attributes: [
+                'id', 'first_name', 'last_name', 'email',
+                'phone', 'mobile', 'job_title', 'is_primary',
+                'notes'
+              ]
+            }
+          ]
+        },
+        {
+          model: Contact,
+          attributes: ['id', 'first_name', 'last_name', 'email', 'phone']
+        },
+        {
+          model: TicketCategory,
+          attributes: ['id', 'name']
+        },
+        {
+          model: TicketComment,
+          attributes: ['id', 'content', 'createdAt', 'updatedAt']
+        },
+        {
+          model: TicketAttachment,
+          attributes: ['id', 'file_path', 'file_name']
+        }
+      ]
+    });
+
+    return res.status(200).json(tickets);
+  } catch (error) {
+    console.error('Error fetching tickets:', error);
+    return res.status(500).json({ message: 'Error fetching tickets', error: error.message });
+  }
+};
+
+
+
+const getCustomerTickets = async (req, res) => {
+  try {
+    const customerId = req.params.id;
+
+    const customer = await Customer.findByPk(customerId);
+    if (!customer) {
+      return res.status(404).json({ message: 'Customer not found 🥶.' });
+    }
+
+    const tickets = await Ticket.findAll({
+      where: { customerId: customerId },
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'first_name', 'last_name', 'email'],
+          as: 'assigned_to_user'
+        },
+        {
+          model: Customer,
+          attributes: [
+            'id', 'company_name', 'created_by', 'industry', 'website',
+            'tax_id', 'notes'
+          ],
+          include: [
+            {
+              model: Contact,
+              as: 'Contacts',
+              attributes: [
+                'id', 'first_name', 'last_name', 'email',
+                'phone', 'mobile', 'job_title', 'is_primary',
+                'notes'
+              ]
+            }
+          ]
+        },
+        {
+          model: Contact,
+          attributes: ['id', 'first_name', 'last_name', 'email', 'phone']
+        },
+        {
+          model: TicketCategory,
+          attributes: ['id', 'name']
+        },
+        {
+          model: TicketComment,
+          attributes: ['id', 'content', 'createdAt', 'updatedAt']
+        },
+        {
+          model: TicketAttachment,
+          attributes: ['id', 'file_path', 'file_name']
+        }
+      ]
+    });
+
+    return res.status(200).json(tickets);
+  } catch (error) {
+    console.error('Error fetching tickets:', error);
+    return res.status(500).json({ message: 'Error fetching tickets', error: error.message });
   }
 };
 
@@ -109,6 +318,8 @@ module.exports = {
   createTicket,
   getAllTickets,
   getTicketById,
+  getAssignedTickets,
+  getCustomerTickets,
   updateTicket,
   deleteTicket,
 };

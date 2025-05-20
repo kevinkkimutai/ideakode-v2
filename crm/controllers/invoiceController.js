@@ -197,6 +197,7 @@ const createInvoice = async (req, res) => {
   const addPayment = async (req, res) => {
     try {
       const { amount, payment_method, transaction_date, reference, notes } = req.body;
+      const invoiceId = req.params.id;
       const invoice = await Invoice.findByPk(req.params.id);
       if (!invoice) return res.status(404).send({ error: 'Invoice not found' });
   
@@ -208,11 +209,13 @@ const createInvoice = async (req, res) => {
         notes,
         status: 'completed',
         recorded_by: req.user.id,
-        invoice_id: invoice.id
+        invoiceId: invoiceId
       });
   
+      console.log("transaction", transaction);
+      
       await InvoicePayment.create({
-        invoice_id: invoice.id,
+        invoice_id: invoiceId,
         transaction_id: transaction.id,
         amount,
         payment_date: transaction_date || new Date(),
@@ -221,7 +224,7 @@ const createInvoice = async (req, res) => {
         recorded_by: req.user.id
       });
   
-      const payments = await InvoicePayment.sum('amount', { where: { invoice_id: invoice.id } });
+      const payments = await InvoicePayment.sum('amount', { where: { invoice_id: invoiceId } });
       if (payments >= invoice.total) await invoice.update({ status: 'paid' });
   
       res.status(201).send(transaction);
@@ -232,19 +235,33 @@ const createInvoice = async (req, res) => {
   
   const getInvoicePayments = async (req, res) => {
     try {
+      const { id: invoiceId } = req.params;
+  
       const payments = await InvoicePayment.findAll({
         where: { invoice_id: req.params.id },
         include: [
-          { model: Transaction },
-          { model: User, attributes: ['id', 'first_name', 'last_name', 'email'], }
-        ]
+          {
+            model: Transaction,
+            as: 'transaction', // REQUIRED: matches alias from model
+            attributes: ['id', 'amount', 'payment_method', 'transaction_date', 'reference', 'status'],
+          },
+          {
+            model: User,
+            as: 'recordedBy', // REQUIRED: matches alias from model
+            attributes: ['id', 'first_name', 'last_name', 'email'],
+          },
+        ],
+        order: [['payment_date', 'DESC']],
       });
+      
   
       res.send(payments);
     } catch (error) {
+      console.error("Error fetching invoice payments:", error);
       res.status(500).send({ error: 'Error fetching invoice payments' });
     }
   };
+  
 
  const generatePdf = async (req, res) => {
     try {

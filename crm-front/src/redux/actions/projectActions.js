@@ -34,7 +34,7 @@ export const projectApiSlice = apiSlice.injectEndpoints({
   
     updateProject: builder.mutation({
         query: (formData) => ({
-          url: `/project`,
+          url: `/project/${formData.id}`,
           method: "PUT",
           body: formData,
         }),
@@ -61,10 +61,9 @@ export const projectApiSlice = apiSlice.injectEndpoints({
         }),
       }),
       deleteProject: builder.mutation({
-        query: (data) => ({
-          url: `/project`,
+        query: ({id}) => ({
+          url: `/project/${id}`,
           method: "DELETE",
-          body: { ...data },
         }),
       }),
 

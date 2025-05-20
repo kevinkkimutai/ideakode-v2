@@ -1,4 +1,4 @@
-const { Meeting, User, Contact } = require('../models'); // Import necessary models
+const { Meeting, User, Contact, MeetingParticipant } = require('../models'); 
 
 // Create a new meeting
 const createMeeting = async (req, res) => {
@@ -45,9 +45,9 @@ const getMeetings = async (req, res) => {
   try {
     const meetings = await Meeting.findAll({
       include: [
-        { model: User, as: 'organizer', attributes: ['id', 'first_name', 'last_name'] },
-        { model: User, as: 'Participants', attributes: ['id', 'first_name', 'last_name'] },
-        { model: Contact, as: 'GuestContacts', attributes: ['id', 'name', 'email'] },
+        { model: User, as: 'organizer', attributes: ['id', 'first_name', 'last_name', 'email'] },
+        { model: User, as: 'Participants', attributes: ['id', 'first_name', 'last_name', 'email'] },
+        { model: Contact, as: 'GuestContacts',attributes: ['id', 'first_name', 'last_name', 'email']},
       ],
     });
     return res.status(200).json(meetings);
@@ -63,9 +63,9 @@ const getMeetingById = async (req, res) => {
     const { id } = req.params;
     const meeting = await Meeting.findByPk(id, {
       include: [
-        { model: User, as: 'organizer', attributes: ['id', 'first_name', 'last_name'] },
-        { model: User, as: 'Participants', attributes: ['id', 'first_name', 'last_name'] },
-        { model: Contact, as: 'GuestContacts', attributes: ['id', 'name', 'email'] },
+        { model: User, as: 'organizer', attributes: ['id', 'first_name', 'last_name', 'email'] },
+        { model: User, as: 'Participants', attributes: ['id', 'first_name', 'last_name', 'email'] },
+        { model: Contact, as: 'GuestContacts', attributes: ['id', 'first_name', 'last_name', 'email'] },
       ],
     });
 
@@ -164,7 +164,7 @@ const addParticipantsToMeeting = async (req, res) => {
       return res.status(404).json({ message: 'One or more participants not found' });
     }
 
-    await meeting.addParticipants(participants); // This will associate the meeting with the participants
+    await meeting.addParticipants(participants); 
 
     return res.status(200).json({ message: 'Participants added successfully' });
   } catch (error) {
@@ -173,7 +173,8 @@ const addParticipantsToMeeting = async (req, res) => {
   }
 };
 
-// Add guest contacts to a meeting
+
+// add guest participantas
 const addGuestContactsToMeeting = async (req, res) => {
   try {
     const { meetingId, contactIds } = req.body;
@@ -191,7 +192,16 @@ const addGuestContactsToMeeting = async (req, res) => {
       return res.status(404).json({ message: 'One or more contacts not found' });
     }
 
-    await meeting.addGuestContacts(contacts); // This will associate the meeting with the guest contacts
+    // Manually create entries in MeetingParticipant
+    await Promise.all(
+      contactIds.map((contactId) => {
+        return MeetingParticipant.create({
+          meetingId,
+          contactId,
+          userId: null,
+        });
+      })
+    );
 
     return res.status(200).json({ message: 'Guest contacts added successfully' });
   } catch (error) {
@@ -199,6 +209,7 @@ const addGuestContactsToMeeting = async (req, res) => {
     return res.status(500).json({ message: 'Error adding guest contacts', error: error.message });
   }
 };
+
 
 module.exports = {
   createMeeting,

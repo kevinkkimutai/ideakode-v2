@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "netiqa.co.ke"
+        hostname: "assets.netiqa.co.ke"
       }
     ],
   },

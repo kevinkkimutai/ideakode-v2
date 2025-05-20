@@ -9,7 +9,13 @@ module.exports = (sequelize, DataTypes) => {
       Contact.belongsTo(models.Customer, { foreignKey: 'customerId' });
       Contact.hasMany(models.Opportunity, { foreignKey: 'contactId' });
       Contact.hasMany(models.Ticket, { foreignKey: 'contactId' });
-      Contact.belongsToMany(models.Meeting, { through: 'MeetingParticipants', foreignKey: 'contactId' });
+      Contact.belongsToMany(models.Meeting, {
+        through: 'MeetingParticipants',
+        foreignKey: 'contactId',
+        otherKey: 'meetingId',
+        as: 'GuestContacts'
+      });
+      
     }
   }
   Contact.init({

@@ -4,18 +4,18 @@ const router = express.Router();
 
 
 // Create a new Ticket Attachment
-router.post('/ticket-attachments', createTicketAttachment);
+router.post('/ticket-attachment', createTicketAttachment);
 
 // Get all ticket attachments
 router.get('/ticket-attachments', getAllTicketAttachments);
 
 // Get a single ticket attachment by ID
-router.get('/ticket-attachments/:id', getTicketAttachmentById);
+router.get('/ticket-attachment/:id', getTicketAttachmentById);
 
 // Update a ticket attachment by ID
-router.put('/ticket-attachments/:id', updateTicketAttachment);
+router.put('/ticket-attachment/:id', updateTicketAttachment);
 
 // Delete a ticket attachment by ID
-router.delete('/ticket-attachments/:id', deleteTicketAttachment);
+router.delete('/ticket-attachment/:id', deleteTicketAttachment);
 
 module.exports = router;

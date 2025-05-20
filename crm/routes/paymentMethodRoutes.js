@@ -10,12 +10,12 @@ router.post('/payment-method', createPaymentMethod);
 router.get('/payment-methods', getAllPaymentMethods);
 
 // Get Payment Method by ID
-router.get('/payment-methods/:id', getPaymentMethodById);
+router.get('/payment-method/:id', getPaymentMethodById);
 
 // Update Payment Method
-router.put('/payment-methods/:id', updatePaymentMethod);
+router.put('/payment-method/:id', updatePaymentMethod);
 
 // Delete Payment Method
-router.delete('/payment-methods/:id', deletePaymentMethod);
+router.delete('/payment-method/:id', deletePaymentMethod);
 
 module.exports = router;

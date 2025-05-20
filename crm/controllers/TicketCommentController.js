@@ -1,14 +1,19 @@
-const { TicketComment } = require('../models'); // Import the TicketComment model
+const { TicketComment, User } = require('../models'); // Import the TicketComment model
 
 // Create a new ticket comment
 const createTicketComment = async (req, res) => {
   try {
-    const { ticketId, userId, content, is_internal_note } = req.body;
+    const { ticketId, content, is_internal_note } = req.body;
+    const userId = req.user.id;
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found 🥶.' });
+    }
 
     // Create a new ticket comment
     const comment = await TicketComment.create({
       ticketId,
-      userId,
+      userId: userId,
       content,
       is_internal_note
     });
@@ -27,7 +32,12 @@ const getTicketCommentsByTicketId = async (req, res) => {
 
     const comments = await TicketComment.findAll({
       where: { ticketId },
-      include: ['Ticket', 'User'] // Include associated models (Ticket, User) if necessary
+      include: ['Ticket',
+        {
+          model: User,
+          attributes: ['id', 'first_name', 'last_name', 'email'],
+        },
+      ] // Include associated models (Ticket, User) if necessary
     });
 
     return res.status(200).json(comments);
@@ -43,7 +53,12 @@ const getTicketCommentById = async (req, res) => {
     const { id } = req.params;
 
     const comment = await TicketComment.findByPk(id, {
-      include: ['Ticket', 'User'] // Include associated models (Ticket, User) if necessary
+      include: ['Ticket',
+        {
+          model: User,
+          attributes: ['id', 'first_name', 'last_name', 'email'],
+        },
+      ] // Include associated models (Ticket, User) if necessary
     });
 
     if (!comment) {

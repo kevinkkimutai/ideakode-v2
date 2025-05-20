@@ -1,7 +1,9 @@
 const express = require('express');
+const { createProductTask, getAllProductTasks, getProductTaskById, updateProductTask, deleteProductTask, getMyProductTasks, assignUsersToProductTask } = require('../controllers/ProductTaskController');
+const {auth, authorizeRole} = require('../middleware/auth');
 const { createProjectTask, getAllProjectTasks, getProjectTaskById, updateProjectTask, deleteProjectTask, getMyProjectTasks, assignUsersToTask } = require('../controllers/ProjectTaskController');
 const router = express.Router();
-const {auth, authorizeRole} = require('../middleware/auth');
+
 
 // Create Project Task
 router.post('/project-task', auth, createProjectTask);
@@ -20,5 +22,26 @@ router.put('/project-task/:id', auth, updateProjectTask);
 
 // Delete Project Task
 router.delete('/project-task/:id', auth, deleteProjectTask);
+
+
+// Create Product Task
+router.post('/product-task', auth, createProductTask);
+
+// Get All Product Tasks
+router.get('/product-tasks', getAllProductTasks);
+router.put('/assign-task/:taskId', auth, assignUsersToProductTask);
+
+// Get Product Task by ID
+router.get('/product-task/:id', getProductTaskById);
+router.get('/my-tasks', auth, getMyProductTasks);
+
+
+// Update Product Task
+router.put('/product-task/:id', auth, updateProductTask);
+
+// Delete Product Task
+router.delete('/product-task/:id', auth, deleteProductTask);
+
+
 
 module.exports = router;

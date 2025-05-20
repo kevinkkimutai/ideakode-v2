@@ -46,7 +46,7 @@ const register = async (req, res) => {
   
       res.status(201).json({
         message: 'User created. Please check your email to verify your account.',
-        user: { id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, role: user.Role.role_name },
+        user: { id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, role: role.role_name },
       });
   
     } catch (err) {

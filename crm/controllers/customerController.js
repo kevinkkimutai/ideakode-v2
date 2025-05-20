@@ -44,21 +44,23 @@ const getAll = async (req, res) => {
       include: [
         { model: Contact, where: { is_primary: true }, required: false },
         { model: Address, where: { is_primary: true }, required: false },
-        { model: Project, required: false }
+        { model: Project, as: 'Projects', required: false }
       ]
     });
 
     res.send({
-      data: customers.rows,
+      customers: customers.rows,
       total: customers.count,
       totalPages: Math.ceil(customers.count / limit),
       currentPage: parseInt(page)
     });
   } catch (error) {
+    console.error('Customer fetch error:', error); // Add this line
     res.status(500).send({
       error: 'Error fetching customers'
     });
   }
+  
 };
 
 const getById = async (req, res) => {
@@ -67,7 +69,7 @@ const getById = async (req, res) => {
       include: [
         { model: Contact },
         { model: Address },
-        { model: Project },
+        { model: Project, as: 'Projects', required: false },
         { model: Ticket }
       ]
     });

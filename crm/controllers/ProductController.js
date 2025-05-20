@@ -1,17 +1,32 @@
 const { uploadToR2, deleteFromR2 } = require('../middleware/uploadImage');
-const { Product, ProductCategory, ProductSubCategory } = require('../models');
+const { Product, ProductCategory, ProductSubCategory, Customer, Task, User } = require('../models');
 const logger = require('../utils/logger');
 
 // Create a new product
 const createProduct = async (req, res) => {
   try {
-    const { name, description, price, stagging_link, live_link, repo_link, is_active, status, categoryId, subCategoryId } = req.body;
+    const { name, description, start_date, end_date, managerId, price, stagging_link, live_link, repo_link, is_active, status, categoryId, subCategoryId } = req.body
 
     // Validate required fields
-    if (!name || !price || !categoryId) {
+    if (!name || !categoryId) {
       return res.status(400).json({ message: 'Name, price, and categoryId are required 🥶.' });
     }
     
+    const manager = await User.findByPk(managerId);
+    if (!manager) {
+      return res.status(404).json({ message: 'Manager not found 🥶' });
+    }
+
+       // Handle image update
+       let imageUrl = null;
+       if (req.file) {
+         try {
+           imageUrl = await uploadToR2(req.file);
+         } catch (uploadError) {
+           return res.status(400).json({ message: 'Image upload failed ❌', error: uploadError.message });
+         }
+       }
+      
 
     // Check if category exists
     const category = await ProductCategory.findByPk(categoryId);
@@ -33,14 +48,18 @@ const createProduct = async (req, res) => {
       name,
       description,
       price,
+      managerId,
       stagging_link, 
       repo_link,
       live_link,
       repo_link,
       is_active,
+      start_date,
+      end_date,
       status,
       categoryId,
       subCategoryId,
+      image: imageUrl
     });
 
     return res.status(201).json({ message: 'Product created successfully 🎉', product });
@@ -57,7 +76,30 @@ const getAllProducts = async (req, res) => {
       include: [
         { model: ProductCategory, as: 'category' },
         { model: ProductSubCategory, as: 'subCategory' },
-      ],
+        // Manager Association
+        { 
+          model: User, 
+          as: 'Manager',
+          attributes: ['first_name', 'last_name', 'email'] 
+        },
+        // Tasks Association
+        { 
+          model: Task, 
+          as: 'Tasks',
+          include: [
+            { 
+              model: User, 
+              as: 'Assignees', 
+              attributes: ['first_name','last_name', 'email'] 
+            },
+            { 
+              model: User, 
+              as: 'Assigner', 
+              attributes: ['first_name','last_name', 'email'] 
+            }
+          ]
+        }
+      ]
     });
 
     return res.status(200).json(products);
@@ -75,7 +117,30 @@ const getProductById = async (req, res) => {
     const product = await Product.findByPk(id, {
       include: [
         { model: ProductCategory, as: 'category' },
-        { model: ProductSubCategory, as: 'subCategory' }
+        { model: ProductSubCategory, as: 'subCategory' },
+            // Manager Association
+            { 
+              model: User, 
+              as: 'Manager',
+              attributes: ['first_name', 'last_name', 'email'] 
+            },
+            // Tasks Association
+            { 
+              model: Task, 
+              as: 'Tasks',
+              include: [
+                { 
+                  model: User, 
+                  as: 'Assignees', 
+                  attributes: ['first_name','last_name', 'email'] 
+                },
+                { 
+                  model: User, 
+                  as: 'Assigner', 
+                  attributes: ['first_name','last_name', 'email'] 
+                }
+              ]
+            }
       ],
     });
 
@@ -94,7 +159,7 @@ const getProductById = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, price, is_active, categoryId, status, repo_link, subCategoryId, stagging_link, live_link } = req.body;
+    const { name, description,start_date, end_date, price, managerId, is_active, categoryId, status, repo_link, subCategoryId, stagging_link, live_link } = req.body;
 
     const product = await Product.findByPk(id);
     if (!product) {
@@ -108,7 +173,10 @@ const updateProduct = async (req, res) => {
         return res.status(400).json({ message: 'Invalid categoryId ❌' });
       }
     }
-
+    const manager = await User.findByPk(managerId);
+    if (!manager) {
+      return res.status(404).json({ message: 'Manager not found 🥶' });
+    }
     // Validate subCategory if provided
     if (subCategoryId) {
       const subCategory = await ProductSubCategory.findByPk(subCategoryId);
@@ -133,6 +201,9 @@ const updateProduct = async (req, res) => {
 
     // Update fields (use nullish coalescing for accurate fallback)
     product.name = name ?? product.name;
+    product.start_date = start_date ?? product.start_date;
+    product.end_date = end_date ?? product.end_date;
+    product.managerId = managerId ?? product.managerId;
     product.description = description ?? product.description;
     product.price = price ?? product.price;
     product.stagging_link = stagging_link ?? product.stagging_link;

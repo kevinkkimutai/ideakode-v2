@@ -8,14 +8,22 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       User.belongsTo(models.Role, { foreignKey: 'roleId' });
-      User.hasMany(models.Lead, { foreignKey: 'assigned_to' });
+      User.hasMany(models.Lead, { foreignKey: 'assigned_to', as: 'assignedUser' });
+      User.hasMany(models.Lead, { foreignKey: 'created_by', as: 'createdByUser' });
       User.hasMany(models.Opportunity, { foreignKey: 'assigned_to' });
       User.hasMany(models.QuoteItem, { foreignKey: 'created_by', as: 'createdQuoteItems' });
-      User.hasMany(models.Ticket, { foreignKey: 'assigned_to' });
-      User.hasMany(models.Project, { foreignKey: 'managerId' });
+      User.hasMany(models.Ticket, { foreignKey: 'assigned_to', as: 'assigned_to_user' });
+      User.hasMany(models.Project, { 
+        foreignKey: 'managerId', 
+        as: 'ManagedProjects' 
+      });
+      User.hasMany(models.Product, { 
+        foreignKey: 'managerId', 
+        as: 'ManagedProducts' 
+      });
       User.hasMany(models.Customer, { foreignKey: 'created_by' });
-      User.belongsToMany(models.ProjectTask, {
-        through: 'ProjectTaskAssignee',
+      User.belongsToMany(models.Task, {
+        through: 'TaskAssignee',
         as: 'AssignedTasks',
         foreignKey: 'userId'
       });      

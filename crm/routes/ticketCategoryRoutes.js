@@ -4,18 +4,18 @@ const router = express.Router();
 
 
 // Create a new Ticket Category
-router.post('/ticket-categories', createTicketCategory);
+router.post('/ticket-category', createTicketCategory);
 
 // Get all ticket categories
 router.get('/ticket-categories', getAllTicketCategories);
 
 // Get a single ticket category by ID
-router.get('/ticket-categories/:id', getTicketCategoryById);
+router.get('/ticket-category/:id', getTicketCategoryById);
 
 // Update a ticket category by ID
-router.put('/ticket-categories/:id', updateTicketCategory);
+router.put('/ticket-category/:id', updateTicketCategory);
 
 // Delete a ticket category by ID
-router.delete('/ticket-categories/:id', deleteTicketCategory);
+router.delete('/ticket-category/:id', deleteTicketCategory);
 
 module.exports = router;

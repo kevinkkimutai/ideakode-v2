@@ -4,8 +4,6 @@ layer(base);
 @import 'tailwindcss';
 
 
-
-
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -195,7 +193,7 @@ layer(base);
     cursor: pointer;
   }
   body {
-    @apply relative font-normal font-outfit z-1 bg-gray-50;
+    @apply relative font-normal font-outfit z-1 ;
   }
 }
 
@@ -204,7 +202,7 @@ layer(base);
 }
 
 @utility menu-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-brand-50 text-green-500 dark:bg-green-500/[0.12] dark:text-green-400;
 }
 
 @utility menu-item-inactive {
@@ -216,7 +214,7 @@ layer(base);
 }
 
 @utility menu-item-icon-active {
-  @apply text-brand-500 dark:text-brand-400;
+  @apply text-green-500 dark:text-green-400;
 }
 
 @utility menu-item-icon-inactive {
@@ -228,7 +226,7 @@ layer(base);
 }
 
 @utility menu-item-arrow-active {
-  @apply rotate-180 text-brand-500 dark:text-brand-400;
+  @apply rotate-180 text-green-500 dark:text-green-400;
 }
 
 @utility menu-item-arrow-inactive {
@@ -240,7 +238,7 @@ layer(base);
 }
 
 @utility menu-dropdown-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-green-50 text-green-500 dark:bg-green-500/[0.12] dark:text-green-400;
 }
 
 @utility menu-dropdown-item-inactive {
@@ -248,7 +246,7 @@ layer(base);
 }
 
 @utility menu-dropdown-badge {
-  @apply block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase text-brand-500 dark:text-brand-400;
+  @apply block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase text-green-500 dark:text-green-400;
 }
 
 @utility menu-dropdown-badge-active {
@@ -256,7 +254,7 @@ layer(base);
 }
 
 @utility menu-dropdown-badge-inactive {
-  @apply bg-brand-50 group-hover:bg-brand-100 dark:bg-brand-500/15 dark:group-hover:bg-brand-500/20;
+  @apply bg-green-50 group-hover:bg-green-100 dark:bg-green-500/15 dark:group-hover:bg-green-500/20;
 }
 
 @utility no-scrollbar {
@@ -379,7 +377,7 @@ layer(base);
   @apply hidden;
 }
 .fc-addEventButton-button {
-  @apply rounded-lg! border-0! bg-brand-500! px-4! py-2.5! text-sm! font-medium! hover:bg-brand-600! focus:shadow-none!;
+  @apply rounded-lg! border-0! bg-green-500! px-4! py-2.5! text-sm! font-medium! hover:bg-green-600! focus:shadow-none!;
 }
 .fc-toolbar-title {
   @apply text-lg! font-medium! text-gray-800 dark:text-white/90;
@@ -460,7 +458,7 @@ layer(base);
   @apply bg-error-500;
 }
 .event-fc-color.fc-bg-primary .fc-daygrid-event-dot {
-  @apply bg-brand-500;
+  @apply bg-green-500;
 }
 .event-fc-color.fc-bg-warning .fc-daygrid-event-dot {
   @apply bg-orange-500;
@@ -559,13 +557,13 @@ layer(base);
   @apply bg-gray-50! dark:bg-gray-900!;
 }
 .jvectormap-region.jvectormap-element {
-  @apply fill-gray-300! hover:fill-brand-500! dark:fill-gray-700! dark:hover:fill-brand-500!;
+  @apply fill-gray-300! hover:fill-green-500! dark:fill-gray-700! dark:hover:fill-green-500!;
 }
 .jvectormap-marker.jvectormap-element {
   @apply stroke-gray-200! dark:stroke-gray-800!;
 }
 .jvectormap-tip {
-  @apply bg-brand-500! border-none! px-2! py-1!;
+  @apply bg-green-500! border-none! px-2! py-1!;
 }
 .jvectormap-zoomin,
 .jvectormap-zoomout {
@@ -573,17 +571,17 @@ layer(base);
 }
 
 .form-check-input:checked ~ span {
-  @apply border-[6px] border-brand-500 bg-brand-500 dark:border-brand-500;
+  @apply border-[6px] border-green-500 bg-green-500 dark:border-green-500;
 }
 
 .taskCheckbox:checked ~ .box span {
-  @apply opacity-100 bg-brand-500;
+  @apply opacity-100 bg-green-500;
 }
 .taskCheckbox:checked ~ p {
   @apply text-gray-400 line-through;
 }
 .taskCheckbox:checked ~ .box {
-  @apply border-brand-500 bg-brand-500 dark:border-brand-500;
+  @apply border-green-500 bg-green-500 dark:border-green-500;
 }
 
 .task {

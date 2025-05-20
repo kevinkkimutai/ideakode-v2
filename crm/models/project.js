@@ -4,22 +4,52 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Project extends Model {
-
     static associate(models) {
-      Project.belongsTo(models.Customer, { foreignKey: 'customerId' });
-      Project.belongsTo(models.User, { foreignKey: 'managerId' });
-      Project.hasMany(models.ProjectTask, { foreignKey: 'projectId' });
+      // Customer Association
+      Project.belongsTo(models.Customer, { 
+        foreignKey: 'customerId',
+        as: 'Customer' 
+      });
+
+      // Manager (User) Association
+      Project.belongsTo(models.User, { 
+        foreignKey: 'managerId',
+        as: 'Manager'  
+      });
+
+      // Project Tasks Association
+      Project.hasMany(models.Task, {
+        foreignKey: 'taskableId',
+        constraints: false,
+        scope: {
+          taskableType: 'Project'
+        },
+        as: 'Tasks'
+      });
+      
     }
   }
   Project.init({
-    customerId: DataTypes.INTEGER,
-    name: DataTypes.STRING,
+    customerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false 
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false 
+    },
     description: DataTypes.TEXT,
     status: DataTypes.STRING,
     start_date: DataTypes.DATEONLY,
     end_date: DataTypes.DATEONLY,
     budget: DataTypes.DECIMAL,
-    managerId: DataTypes.INTEGER
+    repo_link: DataTypes.STRING,
+    stagging_link: DataTypes.STRING,
+    live_link: DataTypes.STRING,
+    managerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false 
+    }
   }, {
     sequelize,
     modelName: 'Project',

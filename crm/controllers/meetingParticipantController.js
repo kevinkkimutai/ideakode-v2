@@ -45,7 +45,7 @@ const getMeetingParticipants = async (req, res) => {
       where: { meetingId },
       include: [
         { model: User, as: 'user', attributes: ['id', 'first_name', 'last_name'] },
-        { model: Contact, as: 'contact', attributes: ['id', 'name', 'email'] },
+        { model: Contact, as: 'contact', attributes: ['id', 'first_name', 'email'] },
       ],
     });
 

@@ -8,7 +8,10 @@ import {
   projectReducers, 
   projectCategoryReducers,
   supportcategoriesReducers,
-  supportTicketsReducer
+  supportTicketsReducer,
+  productReducers,
+  productCategoryReducers,
+  customerReducers
  } from "@/redux/reducers";
 
 
@@ -23,9 +26,12 @@ const notificationsPersistConfig = {
 const rootReducer = combineReducers({
   auth: authReducers,
   projects: projectReducers,
+  products: productReducers,
   projectcategories: projectCategoryReducers,
+  productcategories: productCategoryReducers,
   supportcategories: supportcategoriesReducers,
   tickets: supportTicketsReducer,
+  customers: customerReducers,
   notifications: persistReducer(notificationsPersistConfig, projectReducers),
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
@@ -36,7 +42,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false, // Disable serializableCheck
     }).concat(apiSlice.middleware),
-  devTools: process.env.NODE_ENV !== 'production', // Enable Redux DevTools in development
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export const persistor = persistStore(store);

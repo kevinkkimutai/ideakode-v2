@@ -9,6 +9,19 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsTo(models.ProductCategory, { foreignKey: 'categoryId', as: 'category' });
       Product.belongsTo(models.ProductSubCategory, { foreignKey: 'subCategoryId', as: 'subCategory' });      
       Product.hasMany(models.QuoteItem, { foreignKey: 'productId' });
+      Product.hasMany(models.Task, {
+        foreignKey: 'taskableId',
+        constraints: false,
+        scope: {
+          taskableType: 'Product'
+        },
+        as: 'Tasks'
+      });
+      Product.belongsTo(models.User, { 
+        foreignKey: 'managerId',
+        as: 'Manager'  
+      });
+      
     }
   }
   Product.init({
@@ -17,6 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     categoryId: DataTypes.INTEGER,
     subCategoryId: DataTypes.INTEGER,
     image: DataTypes.STRING,
+    start_date: DataTypes.DATEONLY,
+    end_date: DataTypes.DATEONLY,
     stagging_link: DataTypes.STRING,
     live_link: DataTypes.STRING,
     price: DataTypes.DECIMAL,
@@ -26,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: false,
+    },
+    managerId: {
+      type: DataTypes.INTEGER,
+      allowNull: true 
     }
     
   }, {

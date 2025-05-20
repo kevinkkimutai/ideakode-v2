@@ -9,9 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     Customer.hasMany(models.Contact, { foreignKey: 'customerId' });
     Customer.hasMany(models.Address, { foreignKey: 'customerId' });
     Customer.hasMany(models.Opportunity, { foreignKey: 'customerId' });
-    Customer.hasMany(models.Project, { foreignKey: 'customerId' });
     Customer.hasMany(models.Ticket, { foreignKey: 'customerId' });
     Customer.belongsTo(models.User, { foreignKey: 'created_by' });
+    Customer.hasMany(models.Project, { 
+      foreignKey: 'customerId', 
+      as: 'Projects' 
+    });
     }
   }
   Customer.init({

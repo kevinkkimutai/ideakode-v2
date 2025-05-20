@@ -9,8 +9,8 @@ router.get('/invoices', auth, getAll);
 router.get('/invoice/:id', getById);
 router.patch('/invoice/:id/status', auth, updateStatus);
 router.post('/invoice/:id/send', auth, sendInvoice);
-router.post('/invoice/:id/payments', auth, addPayment);
+router.post('/invoice/payments/:id', auth, addPayment);
 router.post('/invoice/send/:id', auth, sendInvoiceWithPdf);
-router.get('/invoice/:id/payments', auth, getInvoicePayments);
+router.get('/invoice/payments/:id', auth, getInvoicePayments);
 
 module.exports = router;

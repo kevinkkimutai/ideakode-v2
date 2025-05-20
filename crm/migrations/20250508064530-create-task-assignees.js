@@ -2,17 +2,17 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ProjectTaskAssignees', {
+    await queryInterface.createTable('TaskAssignees', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
       },
-      projectTaskId: {
+      taskId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'ProjectTasks',
+          model: 'Tasks',
           key: 'id'
         },
         onDelete: 'CASCADE'
@@ -32,6 +32,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ProjectTaskAssignees');
+    await queryInterface.dropTable('TaskAssignees');
   }
 };

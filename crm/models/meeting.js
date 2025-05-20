@@ -6,17 +6,33 @@ module.exports = (sequelize, DataTypes) => {
   class Meeting extends Model {
 
     static associate(models) {
-    Meeting.belongsTo(models.User, { foreignKey: 'organizerId' });
-    Meeting.belongsToMany(models.User, { 
-      through: 'MeetingParticipants', 
-      foreignKey: 'meetingId',
-      as: 'Participants'
-    });
-    Meeting.belongsToMany(models.Contact, { 
-      through: 'MeetingParticipants', 
-      foreignKey: 'meetingId',
-      as: 'GuestContacts'
-    });
+      Meeting.belongsTo(models.User, { foreignKey: 'organizerId', as: 'organizer' });
+
+      Meeting.belongsToMany(models.User, {
+        through: {
+          model: models.MeetingParticipant,
+          unique: false,
+          scope: {
+            contactId: null // Ensures we're only looking at Users
+          }
+        },
+        foreignKey: 'meetingId',
+        otherKey: 'userId',
+        as: 'Participants'
+      });
+      
+      Meeting.belongsToMany(models.Contact, {
+        through: {
+          model: models.MeetingParticipant,
+          unique: false,
+          scope: {
+            userId: null // Ensures we're only looking at Contacts
+          }
+        },
+        foreignKey: 'meetingId',
+        otherKey: 'contactId',
+        as: 'GuestContacts'
+      });
     }
   }
   Meeting.init({

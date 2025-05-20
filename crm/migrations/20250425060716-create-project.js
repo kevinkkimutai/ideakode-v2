@@ -27,6 +27,15 @@ module.exports = {
       end_date: {
         type: Sequelize.DATEONLY
       },
+      stagging_link: {
+        type: Sequelize.STRING
+      },
+    live_link: {
+        type: Sequelize.STRING
+      },
+    repo_link: {
+        type: Sequelize.STRING
+      },
       budget: {
         type: Sequelize.DECIMAL
       },

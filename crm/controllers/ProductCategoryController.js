@@ -59,8 +59,7 @@ const getProductCategoryById = async (req, res) => {
 // Update a product category
 const updateProductCategory = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { name, description} = req.body;
+    const {id, name, description} = req.body;
 
     const category = await ProductCategory.findByPk(id);
     if (!category) {

@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Ticket.belongsTo(models.Customer, { foreignKey: 'customerId' });
       Ticket.belongsTo(models.Contact, { foreignKey: 'contactId' });
-      Ticket.belongsTo(models.User, { foreignKey: 'assigned_to' });
+      Ticket.belongsTo(models.User, { foreignKey: 'assigned_to', as: 'assigned_to_user' });
       Ticket.belongsTo(models.TicketCategory, { foreignKey: 'categoryId' });
       Ticket.hasMany(models.TicketComment, { foreignKey: 'ticketId' });
       Ticket.hasMany(models.TicketAttachment, { foreignKey: 'ticketId' });

@@ -15,6 +15,12 @@ module.exports = {
       assigned_to: {
         type: Sequelize.INTEGER
       },
+      created_by: {
+        type: Sequelize.INTEGER
+      },
+      date_created: {
+        type: Sequelize.DATE
+      },
       first_name: {
         type: Sequelize.STRING
       },

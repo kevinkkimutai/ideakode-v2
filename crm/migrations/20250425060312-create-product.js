@@ -15,6 +15,9 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
+      managerId: {
+        type: Sequelize.INTEGER
+      },
       categoryId: {
         type: Sequelize.INTEGER
       },
@@ -23,6 +26,12 @@ module.exports = {
        },
       image: {
           type: Sequelize.STRING
+        },
+        start_date:{
+          type: Sequelize.DATEONLY
+        },
+        end_date:{
+          type: Sequelize.DATEONLY
         },
       stagging_link: {
           type: Sequelize.STRING

@@ -4,18 +4,18 @@ const router = express.Router();
 
 
 // Create a new TaxRate
-router.post('/taxRates', createTaxRate);
+router.post('/taxRate', createTaxRate);
 
 // Get all tax rates
 router.get('/taxRates', getAllTaxRates);
 
 // Get a single tax rate by ID
-router.get('/taxRates/:id', getTaxRateById);
+router.get('/taxRate/:id', getTaxRateById);
 
 // Update a tax rate by ID
-router.put('/taxRates/:id', updateTaxRate);
+router.put('/taxRate/:id', updateTaxRate);
 
 // Delete a tax rate by ID
-router.delete('/taxRates/:id', deleteTaxRate);
+router.delete('/taxRate/:id', deleteTaxRate);
 
 module.exports = router;

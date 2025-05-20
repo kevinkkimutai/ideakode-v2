@@ -1,4 +1,4 @@
-const { Project, Customer, User, ProjectTask, Contact, Address } = require('../models'); 
+const { Project, Customer, User, Task, Contact, Address } = require('../models'); 
 
 // Create a new project
 const createProject = async (req, res) => {
@@ -43,20 +43,47 @@ const getAllProjects = async (req, res) => {
   try {
     const projects = await Project.findAll({
       include: [
-        { model: Customer, attributes: ['company_name', 'industry', 'website'],
+        // Customer Association
+        { 
+          model: Customer, 
+          as: 'Customer',
+          attributes: ['company_name', 'industry', 'website'],
           include: [
-          { model: Contact, where: { is_primary: true }, required: false },
-          { model: Address, where: { is_primary: true }, required: false },
-          // { model: User, attributes: ['first_name', 'last_name', 'email'], required: false },
-        ] }, 
-        { model: User, attributes: ['first_name', 'last_name', 'email'] },
-        { model: ProjectTask, include: [
-          { model: User, as: 'Assignee', attributes: ['first_name','last_name', 'email'] },
-          { model: User, as: 'Assigner', attributes: ['first_name','last_name', 'email'] }
-        ]}
-        
-
-         // Including related tasks
+            { 
+              model: Contact, 
+              where: { is_primary: true }, 
+              required: false 
+            },
+            { 
+              model: Address, 
+              where: { is_primary: true }, 
+              required: false 
+            }
+          ]
+        }, 
+        // Manager Association
+        { 
+          model: User, 
+          as: 'Manager',
+          attributes: ['first_name', 'last_name', 'email'] 
+        },
+        // Tasks Association
+        { 
+          model: Task, 
+          as: 'Tasks',
+          include: [
+            { 
+              model: User, 
+              as: 'Assignees', 
+              attributes: ['first_name','last_name', 'email'] 
+            },
+            { 
+              model: User, 
+              as: 'Assigner', 
+              attributes: ['first_name','last_name', 'email'] 
+            }
+          ]
+        }
       ]
     });
 
@@ -74,17 +101,47 @@ const getProjectById = async (req, res) => {
 
     const project = await Project.findByPk(id, {
       include: [
-        { model: Customer, attributes: ['company_name', 'industry', 'website'],
+        // Customer Association
+        { 
+          model: Customer, 
+          as: 'Customer',
+          attributes: ['company_name', 'industry', 'website'],
           include: [
-          { model: Contact, where: { is_primary: true }, required: false },
-          { model: Address, where: { is_primary: true }, required: false },
-          // { model: User, attributes: ['first_name', 'last_name', 'email'], required: false },
-        ] }, // Including customer details
-        { model: User, attributes: ['first_name', 'last_name', 'email'] }, // Including manager details
-        { model: ProjectTask, include: [
-          { model: User, as: 'Assignee', attributes: ['first_name','last_name', 'email'] },
-          { model: User, as: 'Assigner', attributes: ['first_name','last_name', 'email'] }
-        ]} // Including related tasks
+            { 
+              model: Contact, 
+              where: { is_primary: true }, 
+              required: false 
+            },
+            { 
+              model: Address, 
+              where: { is_primary: true }, 
+              required: false 
+            }
+          ]
+        }, 
+        // Manager Association
+        { 
+          model: User, 
+          as: 'Manager',
+          attributes: ['first_name', 'last_name', 'email'] 
+        },
+        // Tasks Association
+        { 
+          model: Task, 
+          as: 'Tasks',
+          include: [
+            { 
+              model: User, 
+              as: 'Assignees', 
+              attributes: ['first_name','last_name', 'email'] 
+            },
+            { 
+              model: User, 
+              as: 'Assigner', 
+              attributes: ['first_name','last_name', 'email'] 
+            }
+          ]
+        }
       ]
     });
 
@@ -99,50 +156,97 @@ const getProjectById = async (req, res) => {
   }
 };
 
-// Update a project
+// Update a project with partial updates
 const updateProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const { customerId, name, description, status, start_date, end_date, budget, managerId } = req.body;
+    const updates = req.body; // Contains only the fields that need to be updated
 
     const project = await Project.findByPk(id);
     if (!project) {
       return res.status(404).json({ message: 'Project not found' });
     }
     
-    if (managerId) {
-      const manager = await User.findByPk(managerId);
+    // Validate related entities if they're being updated
+    if (updates.managerId) {
+      const manager = await User.findByPk(updates.managerId);
       if (!manager) {
         return res.status(404).json({ message: 'Manager not found 🥶.' });
       }
     }
     
-    if (customerId) {
-      const customer = await Customer.findByPk(customerId);
+    if (updates.customerId) {
+      const customer = await Customer.findByPk(updates.customerId);
       if (!customer) {
         return res.status(404).json({ message: 'Customer not found 🥶.' });
       }
     }
 
-    // Update the project details
-    project.customerId = customerId;
-    project.name = name;
-    project.description = description;
-    project.status = status;
-    project.start_date = start_date;
-    project.end_date = end_date;
-    project.budget = budget;
-    project.managerId = managerId;
+    // Update only the provided fields
+    Object.keys(updates).forEach((key) => {
+      if (key in project) {
+        project[key] = updates[key];
+      }
+    });
 
     await project.save();
 
-    return res.status(200).json({ message: 'Project updated successfully', project });
+    // Fetch the updated project with all associations
+    const updatedProject = await Project.findByPk(id, {
+      include: [
+        // Customer Association
+        { 
+          model: Customer, 
+          as: 'Customer',
+          attributes: ['company_name', 'industry', 'website'],
+          include: [
+            { 
+              model: Contact, 
+              where: { is_primary: true }, 
+              required: false 
+            },
+            { 
+              model: Address, 
+              where: { is_primary: true }, 
+              required: false 
+            }
+          ]
+        }, 
+        // Manager Association
+        { 
+          model: User, 
+          as: 'Manager',
+          attributes: ['first_name', 'last_name', 'email'] 
+        },
+        // Tasks Association
+        { 
+          model: Task, 
+          as: 'Tasks',
+          include: [
+            { 
+              model: User, 
+              as: 'Assignees', 
+              attributes: ['first_name','last_name', 'email'] 
+            },
+            { 
+              model: User, 
+              as: 'Assigner', 
+              attributes: ['first_name','last_name', 'email'] 
+            }
+          ]
+        }
+      ]
+    });
+
+    return res.status(200).json({ 
+      message: 'Project updated successfully', 
+      project: updatedProject 
+    });
   } catch (error) {
     console.error('Error updating project:', error);
     return res.status(500).json({ message: 'Error updating project', error: error.message });
   }
 };
-
 // Delete a project
 const deleteProject = async (req, res) => {
   try {

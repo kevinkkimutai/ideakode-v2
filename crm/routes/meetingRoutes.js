@@ -5,10 +5,10 @@ const router = express.Router();
 
 router.post('/meeting', createMeeting); 
 router.get('/meetings', getMeetings); 
-router.get('/meetings/:id', getMeetingById); 
-router.put('/meetings/:id', updateMeeting); 
-router.delete('/meetings/:id', deleteMeeting); 
-router.post('/meetings/participants', addParticipantsToMeeting); 
-router.post('/meetings/guest-contacts', addGuestContactsToMeeting);
+router.get('/meeting/:id', getMeetingById); 
+router.put('/meeting/:id', updateMeeting); 
+router.delete('/meeting/:id', deleteMeeting); 
+router.post('/meeting/participants', addParticipantsToMeeting); 
+router.post('/meeting/guest-contacts', addGuestContactsToMeeting);
 
 module.exports = router;

@@ -42,25 +42,52 @@ const navItems: NavItem[] = [
     path: "/calendar",
   },
   {
-    name: "Project Category",
-    icon: <ListIcon />,
-    path: "/project-categories",
+    name: "Products",
+    icon:<ListIcon />,
+    subItems: [
+      {
+        name: "Category",
+        path: "/product-categories",
+        pro: false
+      },
+      {
+        name: "Sub-Category",
+        path: "/product-subcategories",
+        pro: false
+      },
+      { 
+        name: "Products",
+         path: "/products", 
+         pro: false 
+        },
+    ],
   },
   {
     name: "Projects",
     icon: <PageIcon />,
     subItems: [
-      { 
-      name: "All Projects",
-       path: "/projects", 
-       pro: false 
+      {
+        name: "Category",
+        path: "/project-categories",
+        pro: false
+      },
+      {
+        name: "Sub-Category",
+        path: "/project-subcategories",
+        pro: false
       },
       { 
-        name: "Add Project",
-         path: "/add-project", 
+        name: "Projects",
+         path: "/projects", 
          pro: false 
-        }
+        },
+        
     ],
+  },
+  {
+    icon:  <PageIcon />,
+    name: "Customers",
+    path: "/customers",
   },
  
   {
@@ -171,7 +198,7 @@ const AppSidebar: React.FC = () => {
                   className={`ml-auto w-5 h-5 transition-transform duration-200  ${
                     openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
-                      ? "rotate-180 text-brand-500"
+                      ? "rotate-180 text-green-500"
                       : ""
                   }`}
                 />
@@ -340,7 +367,7 @@ const AppSidebar: React.FC = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`py-8 flex  ${
+        className={`py-4 flex  ${
           !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
         }`}
       >
@@ -351,14 +378,14 @@ const AppSidebar: React.FC = () => {
                 className="dark:hidden"
                 src="/images/logo/logo.png"
                 alt="Logo"
-                width={150}
+                width={130}
                 height={40}
               />
               <Image
-                className="hidden dark:block"
+                className="hidden dark:block "
                 src="/images/logo/logo.png"
                 alt="Logo"
-                width={150}
+                width={130}
                 height={40}
               />
             </>

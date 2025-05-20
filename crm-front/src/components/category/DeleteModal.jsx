@@ -66,6 +66,7 @@ export default function DeleteModal({isOpen, onClose, handleDelete, selected}) {
             </button>
             <button
               type="button"
+              onClick={onClose}
               className="flex justify-center w-full px-4 py-3 text-sm font-medium border border-red-500 dark:text-white rounded-lg  shadow-theme-xs  sm:w-auto"
             >
              Cancel
