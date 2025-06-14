@@ -6,7 +6,7 @@ import Button from "../ui/button/Button";
 import { useState, useEffect } from "react";
 import { useCreateCustomerMutation } from "@/redux/actions/customerActions";
 
-export default function ProductCustomerModal({ 
+export default function CustomerModal({ 
   isOpen, 
   heading, 
   onClose, 
@@ -55,7 +55,7 @@ export default function ProductCustomerModal({
         // Create new customer
       const response = await createCustomer(formData);
         
-        if (response.data) {
+        if (response.data.message === "Customer created successfully") {
           setFormData({
             customer_name: "",
     industry: "",
@@ -72,7 +72,7 @@ export default function ProductCustomerModal({
           
           // Call the success callback with new data and operation type
           if (onSuccess) {
-            onSuccess(response.data);
+            onSuccess(response.data.customer);
           }
         }
       
@@ -95,8 +95,6 @@ export default function ProductCustomerModal({
 
 
   // Log the current form state for debugging
-  console.log("Current form state:", formData);
-  console.log("Current initialData:", initialData);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} className="max-w-[584px] p-5 lg:p-10 relative">

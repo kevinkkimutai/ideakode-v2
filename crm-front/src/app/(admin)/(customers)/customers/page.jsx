@@ -10,16 +10,19 @@ import { useRouter } from "next/navigation";
 import Notification from "@/components/ui/alert/Notification";
 import DeleteModal from "@/components/category/DeleteModal";
 import { useDeleteCustomerMutation, useGetAllCustomersMutation } from "@/redux/actions/customerActions";
+import CustomerModal from "@/components/customers/AddCustomerModal";
+import { setCustomers } from "@/redux/reducers/customerReducers";
 
 
 export default function page() {
   const dispatch = useDispatch();
   const [getCustomers] = useGetAllCustomersMutation();
-  const [customers, setCustomers] = useState([]);
+  const [customerz, setCustomerz] = useState([]);
   const [filteredCustomers, setFilteredCustomers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const [addModal, setAddModal] = useState(false);
 
 
   useEffect(() => {
@@ -29,7 +32,7 @@ export default function page() {
         const response = await getCustomers();
         if (response.data) {
         dispatch(setCustomers(response?.data.customers));
-        setCustomers(response?.data.customers);
+        setCustomerz(response?.data.customers);
         setFilteredCustomers(response?.data.customers);
         setLoading(false);
       } else if (response?.error) {
@@ -60,14 +63,14 @@ export default function page() {
 
   useEffect(() => {
     if (searchTerm) {
-      const filtered = customers.filter((customer) =>
+      const filtered = customerz.filter((customer) =>
         customer.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredCustomers(filtered);
     } else {
-      setFilteredCustomers(customers);
+      setFilteredCustomers(customerz);
     }
-  }, [searchTerm, customers]);
+  }, [searchTerm, customerz]);
 
 
   const { closeModal } = useModal();
@@ -95,7 +98,7 @@ export default function page() {
           title: "Success!",
           message: "Customer deleted successfully.",
         });
-        setCustomers((prev) => prev.filter((cat) => cat.id !== customerId));
+        setCustomerz((prev) => prev.filter((cat) => cat.id !== customerId));
         setFilteredCustomers((prev) => prev.filter((cat) => cat.id !== customerId));
       }
       setSelecetedDelete(null);
@@ -147,24 +150,24 @@ export default function page() {
 
   // Handle successful category operations (create/update)
   const handleCustomerChange = (updatedCustomer) => {
-    let updatedCustomers;
-
-    updatedCustomers = [...customers, updatedCustomer];
-    // Update all relevant states
-    setCustomers(updatedCustomers);
-    setFilteredCustomers(searchTerm ? 
-      updatedCustomers.filter(cust => 
-        category.name.toLowerCase().includes(searchTerm.toLowerCase())
-      ) : 
-      updatedCustomers
+    const updatedCustomers = [...customerz, updatedCustomer];
+  
+    setCustomerz(updatedCustomers);
+    setFilteredCustomers(searchTerm
+      ? updatedCustomers.filter(cust =>
+          cust.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : updatedCustomers
     );
-    
-    // Update the Redux store
+  
     dispatch(setCustomers(updatedCustomers));
-    
-    // Close modal
     setAddModal(false);
   };
+  
+
+  const handleModla = () => {
+    setAddModal(true)
+  }
 
 
   return (
@@ -172,9 +175,9 @@ export default function page() {
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-2">
         {/* Top Section */}
         <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
-          <Link href="/add-customer" className="inline-flex items-center font-medium justify-center text-sm gap-2 rounded-lg transition px-4 py-1.5 bg-green-800 text-white shadow-theme-xs hover:bg-green-900 disabled:bg-green-300">
+          <button onClick={handleModla} className="inline-flex items-center font-medium justify-center text-sm gap-2 rounded-lg transition px-4 py-1.5 bg-green-800 text-white shadow-theme-xs hover:bg-green-900 disabled:bg-green-300">
             + Add Customer
-          </Link>
+          </button>
 
           {/* Search Input */}
           <div className="relative">
@@ -290,7 +293,7 @@ export default function page() {
      {/* modal */}
      <div>
 
-     <ProjectCategoryModal
+     <CustomerModal
           isOpen={addModal}
           heading="Add Category"
           setAlertData={setAlertData}
