@@ -1,0 +1,759 @@
+{
+    "navbar": {
+        "home": "Home",
+        "solutions": "Solutions",
+        "about": "About",
+        "contact": "Contact Us",
+        "login": "Login",
+        "logout": "Logout",
+        "signup": "Sign Up"
+    },
+    "footer": {
+        "links": "Links",
+        "terms_of_service": "Terms of Service",
+        "privacy_policy": "Privacy Policy",
+        "help_center": "Help Center",
+        "faq": "Faqs",
+        "contact_us": "Contact Us",
+        "support": "Support",
+        "our_address": "Our Address",
+        "newsletter": "Sign up for our Newsletter",
+        "copyright": "© 2025 Easypay Moz. All rights reserved."
+    },
+    "homepage":{
+        "title": {
+            "start": "Start accepting",
+            "payments": "payments",
+            "end": "the easy way"
+        },
+        "description": "We help small businesses collect payments easily through mobile money, cards, and bank transfers.",
+        "cta": {
+            "get_the_app": "Get The App",
+            "sign_up": "Sign Up"
+        },
+        "tags": {
+            "fast_and_easy": "Easy setup in minutes",
+            "accept_payments": "Secure payments with encryption",
+            "central_bank_compliance": "Multiple payment options available"
+        },
+        "how_it_works": {
+            "title": "How It Works",
+            "steps": 
+            {
+                "step1": "Create an account",
+                "step2": "Create a payment link",
+                "step3": "Share payment link with your customers",
+                "step4": "Get paid and track everything in one place"
+            }
+        },
+        "key_features": {
+            "title": "Key Features",
+            "features": {
+                "feature1": {
+                    "title": "Payment Links & QR Codes",
+                    "description": "Easily generate and share payment links or QR codes with your customers, fast and secure"
+                },
+                "feature2": {
+                    "title": "Customer Management Tools",
+                    "description": "Keep a record of repeat customers, view their payment history, and simplify follow-ups."
+                },
+                "feature3": {
+                    "title": "Secure & Compliant",
+                    "description": "Bank-level encryption, local compliance, and data protection to ensure safe transactions every time."
+                },
+                "feature4": {
+                    "title": "Merchant page",
+                    "description": "Create a professional payment page that showcases your business, builds trust with customers."
+                }
+            }
+        },
+        "built_for_every_type_of_transaction": {
+            "title": "Built for Every Type of Transaction",
+            "b2b": {
+                "title": "Business-to-Business",
+                "description": "Streamlined payment flows for suppliers and vendors."
+            },
+            "b2c": {
+                "title": "Business-to-Consumer",
+                "description": "Businesses distributing payments to individual customers."
+            },
+            "c2b": {
+                "title": "Consumer-to-Business",
+                "description": "Ideal for customers paying for products or services."
+            },
+            "c2c": {
+                "title": "Consumer-to-Consumer",
+                "description": "Peer-to-peer payments for personal transactions."
+            },
+            "c2a": {
+                "title": "Consumer-to-Administration",
+                "description": "Ideal for payments to entities like schools."
+            },
+            "b2g": {
+                "title": "Business-to-Government",
+                "description": "For businesses handling permits, or official service contracts."
+            }
+        },
+        "testimonials": {
+            "title": "What Our Customers Say",
+            "testimonials_list": [
+                {
+                    "content": "I love how simple it was to set up. No tech skills needed — just a few clicks and I was ready to accept payments from my clients.",
+                    "name": "Fatima L",
+                    "role": "Business Owner"
+                },
+                {
+                    "content": "I used to lose customers because I couldn't offer mobile payments. With Easypay Moz, it's now effortless and professional — I get paid faster than ever.",
+                    "name": "Carlos M.",
+                    "role": "Freelancer"
+                },
+                {
+                    "content": "Easypay Moz made it super easy for me to grow my business and accept payments from anywhere",
+                    "name": "Maria C",
+                    "role": "Online Boutique Owner"
+                }
+            ]
+        },
+        "faqs": {
+            "title": "Frequently Asked Questions",
+            "subtitle": "For more information, please visit the Help Center.Find all faq's on our faq's page",
+            "questions": {
+                "question1": {
+                    "question": "How do I start accepting payments? ",
+                    "answer": "Simply sign up for an account, and you can start creating payment links immediately."
+                },
+                "question2": {
+                    "question": "Can I receive payments via M-Pesa or mobile money? ",
+                    "answer": "We support mobile money, cards, and bank transfers."
+                },
+                "question3": {
+                    "question": "Do I need a registered business to use Easypay Moz? ",
+                    "answer": "Yes, we charge a small transaction fee for each payment processed."
+                },
+                "question4": {
+                    "question": "What fees should I expect per transaction? ",
+                    "answer": "You can receive payments directly to your bank account or mobile money wallet."
+                }
+            }
+        },
+        "payment_action": {
+            "title": "Your payment is just a click away",
+            "description": "Start your journey of online payments",
+            "cta": {
+                "create_account": "Create Account"
+            }
+        }
+    },
+    "userinfo": {
+        "dashboard": "Dashboard",
+        "welcome": "Welcome to EasyPay"
+    },
+    "common": {
+        "loading": "Loading...",
+        "no_data": "No data available",
+        "error": "Error",
+        "success": "Success",
+        "cancel": "Cancel",
+        "save": "Save",
+        "edit": "Edit",
+        "delete": "Delete",
+        "confirm": "Confirm",
+        "close": "Close"
+    },
+    "verification": {
+        "kyc": {
+            "title": "KYC Verification",
+            "description": "We're required to verify your identity to keep your account secure.",
+            "start": "Start Verification",
+            "documents_required": "Documents Required",
+            "upload_documents": "Upload Documents",
+            "submit": "Submit for Review",
+            "success_message": "Your KYC documents have been submitted successfully. We will notify you once the verification is complete.",
+            "pending_message": "Your KYC documents are under review. You will be notified once the verification is complete.",
+            "pending_verification": "Pending Verification",
+            "error_message": "There was an error submitting your KYC documents. Please try again later."
+        },
+        "kyb": {
+            "title": "KYB Verification",
+            "description": "To comply with regulatory requirements we need to confirm your business identity.",
+            "start": "On Board Your Business",
+            "documents_required": "Documents Required",
+            "upload_documents": "Upload Documents",
+            "submit": "Submit for Review",
+            "success_message": "Your KYB documents have been submitted successfully. We will notify you once the verification is complete.",
+            "pending_message": "Your KYB documents are under review. You will be notified once the verification is complete.",
+            "pending_verification": "Pending Verification",
+            "error_message": "There was an error submitting your KYB documents. Please try again"
+        }
+    },
+    "account_linking": {
+            "title": "Account Linking",
+            "description": "To receive payouts from your customers, we need to know where to send the funds.",
+            "link_account": "Link Withdrawal Account",
+            "success_message": "Your account has been linked successfully.",
+            "pending_message": "Your account linking request is under review. You will be notified once it is approved.",
+            "pending_verification": "Pending Verification",
+            "error_message": "There was an error linking your account. Please try again later."
+        },
+    "quick_links": {
+            "title": "Quick Links",
+            "deposit": "Deposit",
+            "withdraw": "Withdraw",
+            "transfer": "Transfer",
+            "wallet": "Wallet"
+        },
+    "credit_actions": {
+        "deposit": "Deposit",
+        "withdrawal": "Withdrawal",
+        "transfer": "Transfer",
+        "request_payment": "Request Payment",
+        "wallets": "Wallets",
+        "errors": {
+            "no_wallets": "No wallets available. Please add a wallet first.",
+            "merchant_required": "Merchant privileges required to request payments.",
+            "failed_to_open_deposit": "Failed to open deposit modal.",
+            "failed_to_open_withdraw": "Failed to open withdraw modal.",
+            "failed_to_open_transfer": "Failed to open transfer modal.",
+            "failed_to_open_request_payment": "Failed to open request payment modal.",
+            "failed_to_open_bank_account": "Failed to open bank account modal.",
+            "failed_to_refresh_data": "Failed to refresh data after update.",
+            "failed_to_fetch_wallets": "Failed to fetch wallets.",
+            "failed_to_fetch_banks": "Failed to fetch banks.",
+            "failed_to_fetch_bank_accounts": "Failed to fetch bank accounts."
+        }
+    },
+    "signup": {
+        "back_to_homepage": "Back to homepage",
+        "get_started_today": "Get started today",
+        "welcome_back": "Welcome back",
+        "quick_details": "Just a few quick details — all fields are required to get you started.",
+        "login": "Login",
+        "signup": "Sign up",
+        "email": "Email",
+        "password": "Password",
+        "confirm_password": "Confirm Password",
+        "email_placeholder": "Email",
+        "password_placeholder": "Password",
+        "password_confirm_placeholder": "Confirm password",
+        "email_required_placeholder": "Email*",
+        "password_required_placeholder": "Password*",
+        "terms_acceptance": "I accept the",
+        "terms_and_conditions": "terms and conditions*",
+        "sign_up_button": "Sign up",
+        "log_in_button": "Log In",
+        "or": "Or",
+        "continue_with_google": "Continue With Google",
+        "forgot_password": "forgot password?",
+        "errors": {
+            "passwords_no_match": "Passwords do not match.",
+            "signup_failed": "Signup failed",
+            "login_failed": "Login failed",
+            "unexpected_error": "An unexpected error occurred."
+        },
+        "success": {
+            "account_created": "Account created successfully!",
+            "logged_in": "Logged in successfully!"
+        }
+    },
+    "bank_account_modal": {
+        "title": "Add Bank Account",
+        "description": "Link a bank account to your EasyPay account",
+        "select_bank": "Select Bank",
+        "select_bank_placeholder": "Select a bank",
+        "account_number": "Account Number",
+        "account_number_placeholder": "e.g., 1234567890",
+        "next": "Next",
+        "cancel": "Cancel",
+        "verify": "Verify",
+        "verification_title": "Two Step Verification",
+        "verification_description": "Enter the 6-digit code sent to your phone/email to continue.",
+        "code_not_received": "Didn't receive the code?",
+        "resend_code": "Resend Code",
+        "use_different_code": "Use a Different Code",
+        "errors": {
+            "form_invalid": "Please select a bank and enter an account number.",
+            "code_required": "Please enter a 6-character code.",
+            "code_invalid": "Code must be exactly 6 alphanumeric characters.",
+            "verification_invalid": "Please enter a valid verification code.",
+            "creation_failed": "Failed to link bank account.",
+            "processing_error": "An error occurred while processing the code."
+        }
+    },
+    "dashboard": {
+        "navigation": {
+            "home": "Home",
+            "analytics": "Analytics",
+            "payments": "Payments", 
+            "orders": "Orders",
+            "settings": "Settings",
+            "banks": "Banks",
+            "logout": "Logout"
+        },
+        "titles": {
+            "dashboard": "Dashboard",
+            "welcome": "Welcome",
+            "overview": "Overview",
+            "recent_transactions": "Recent Transactions",
+            "payment_links": "Payment Links",
+            "quick_actions": "Quick Actions"
+        }
+    },
+    "chart_view": {
+        "title": "Transaction Aggregates",
+        "total_amount": "Total Amount",
+        "by_transaction_type": "By Transaction Type",
+        "deposits": "Deposits",
+        "withdrawals": "Withdrawals",
+        "transfers": "Transfers",
+        "loading": "Loading aggregates...",
+        "no_data": "No transaction data available",
+        "errors": {
+            "failed_to_load": "Failed to load transaction aggregates. Please try again."
+        }
+    },
+    "credit_view": {
+        "title": "Wallets",
+        "filter": {
+            "all": "All",
+            "personal": "Personal",
+            "merchant": "Merchant",
+            "escrow": "Escrow",
+            "savings": "Savings",
+            "virtual": "Virtual"
+        },
+        "add_wallet": "Add Wallet",
+        "loading": "Loading wallets...",
+        "no_wallets": "No wallets found.",
+        "status_active": "Active",
+        "wallet_modal": {
+            "title": "Add Wallet",
+            "description": "Create your internal wallet to receive and store funds on EasyPay",
+            "bank_account_label": "Bank Account",
+            "bank_account_placeholder": "Select a bank account",
+            "wallet_name_label": "Wallet Name",
+            "wallet_name_placeholder": "e.g., Petty cash",
+            "next": "Next",
+            "cancel": "Cancel",
+            "verification_title": "Two-Step Verification",
+            "verification_code_label": "Verification Code (6 alphanumeric characters)",
+            "verification_code_placeholder": "Enter code",
+            "verify": "Verify",
+            "creating": "Creating..."
+        },
+        "transaction_history": {
+            "title": "Transaction History",
+            "show_all": "See all",
+            "show_less": "Show less",
+            "columns": {
+                "id": "ID",
+                "type": "Type",
+                "amount": "Amount",
+                "status": "Status",
+                "date": "Date"
+            }
+        },
+        "errors": {
+            "failed_to_fetch_wallets": "Failed to fetch wallets.",
+            "failed_to_fetch_bank_accounts": "Failed to fetch bank accounts.",
+            "failed_to_fetch_transactions": "Failed to fetch transactions.",
+            "no_bank_accounts": "No bank accounts available. Please add a bank account first.",
+            "wallet_form_invalid": "Please select a bank account and enter a wallet name.",
+            "code_required": "Please enter a 6-character code.",
+            "code_invalid": "Code must be exactly 6 alphanumeric characters.",
+            "verification_invalid": "Please enter a valid verification code.",
+            "wallet_creation_failed": "Failed to create wallet.",
+            "not_authenticated": "You are not authenticated. Please log in.",
+            "failed_to_refresh_data": "Failed to refresh data after update."
+        },
+        "success": {
+            "wallet_created": "Wallet created successfully!"
+        }
+    },
+    "request_payment_modal": {
+        "title": "Request Payment",
+        "description": "Request funds from another user",
+        "wallet_label": "Wallet",
+        "wallet_placeholder": "Select a wallet",
+        "amount_label": "Amount",
+        "amount_placeholder": "e.g., 100.00",
+        "customer_email_label": "Customer Email",
+        "customer_email_placeholder": "e.g., user@example.com",
+        "customer_name_label": "Customer Name (Optional)",
+        "customer_name_placeholder": "e.g., John Doe",
+        "description_label": "Description (Optional)",
+        "description_placeholder": "e.g., Payment for services",
+        "create_button": "Create Payment Request",
+        "creating_button": "Creating...",
+        "cancel_button": "Cancel",
+        "success_title": "Payment Request Created",
+        "success_description": "Your payment request has been created successfully. Share the link below with the customer:",
+        "qr_code_label": "Scan QR Code:",
+        "open_payment_link": "Open Payment Link",
+        "done_button": "Done",
+        "share_button": "Share",
+        "errors": {
+            "form_validation": "Please select a wallet, enter a valid amount, provide a valid customer email, and ensure merchant privileges.",
+            "creation_failed": "Failed to create payment request."
+        }
+    },
+    "kyb_start": {
+        "title": "Let's get your business verified",
+        "description": "To activate your account for full functionality, we'll need a few official details about your business. It will be quick.",
+        "what_you_need": "What You'll Need",
+        "business_details": "Your business details",
+        "tax_pin": "A valid tax authority pin",
+        "registration_number": "Business registration number",
+        "start_verification": "Start Verification",
+        "do_later": "Do this Later"
+    },
+    "kyc_start": {
+        "title": "Let's get you verified",
+        "description": "To keep your account secure and compliant, we'll guide you through a short verification process.",
+        "what_you_need": "What You'll Need",
+        "personal_details": "Your personal details",
+        "valid_id": "A valid ID (e.g., National ID, Passport)",
+        "camera_selfie": "A camera for a quick selfie",
+        "start_verification": "Start Verification",
+        "do_later": "Do this Later"
+    },
+    "kyb_details": {
+        "back": "Back",
+        "title": "Business Details",
+        "business_name": "Business Name",
+        "business_name_placeholder": "Business Name*",
+        "business_type": "Business Type",
+        "business_type_placeholder": "Business Type (e.g., LLC, Corporation)",
+        "registration_number": "Registration Number",
+        "registration_number_placeholder": "Registration Number*",
+        "phone": "Phone",
+        "phone_placeholder": "Phone Number*",
+        "tax_number": "Business Tax Number",
+        "tax_id_placeholder": "Tax ID*",
+        "email": "Email",
+        "email_placeholder": "Business Email",
+        "support_url": "Support Url",
+        "support_url_placeholder": "Support URL",
+        "country": "Country",
+        "country_placeholder": "Country*",
+        "industry": "Industry",
+        "industry_placeholder": "Industry*",
+        "street": "Street",
+        "street_placeholder": "Street Address*",
+        "city": "City",
+        "city_placeholder": "City*",
+        "submitting": "Submitting...",
+        "proceed": "Proceed",
+        "errors": {
+            "submission_failed": "Failed to submit business details.",
+            "load_failed": "Failed to load business details."
+        }
+    },
+    "kyb_documents": {
+        "back": "Back",
+        "business_registration_title": "Business Registration Document",
+        "business_registration_label": "Business Registration Document",
+        "tax_authority_title": "Tax Authority Document",
+        "tax_authority_label": "Tax Authority Document",
+        "or": "or",
+        "upload_button": "Upload",
+        "uploading_button": "Uploading...",
+        "errors": {
+            "select_both_documents": "Please select both documents.",
+            "upload_failed": "Failed to upload documents."
+        },
+        "success": {
+            "upload_success": "Documents uploaded successfully!"
+        }
+    },
+    "id_guide": {
+        "back": "Back",
+        "title": "Capture your ID/Passport",
+        "guide": "Guide",
+        "accepted_documents": "Accepted documents:",
+        "instructions": [
+            "Accepted documents: National ID (front and back) or Passport",
+            "Use a well-lit space – Natural light is best.",
+            "Place your ID on a flat surface",
+            "Make sure all corners are visible – No cropping!",
+            "Take a clear photo – No glare, blur, or shadow."
+        ],
+        "proceed": "Proceed",
+        "upload_file": "Upload a File Instead",
+        "upload_success": "ID document uploaded successfully!",
+        "upload_failed": "Failed to upload ID document."
+    },
+    "signup_fail": {
+        "back_to_homepage": "Back to homepage",
+        "something_went_wrong": "Something went wrong",
+        "description": "We couldn't create your account. Please try again later or contact support if the issue continues.",
+        "retry": "Retry",
+        "contact_support": "contact support"
+    },
+    "otp": {
+        "title": "Two Step Verification",
+        "description": "Enter the 6-digit code sent to your phone/email to continue.",
+        "verify_button": "Verify",
+        "code_not_received": "Didn't receive the code?",
+        "resend_code": "Resend Code",
+        "use_different_code": "Use a Different Code",
+        "method_selection": {
+            "title": "Two Step Verification",
+            "description": "Choose how you'd like to verify your profile",
+            "phone": {
+                "title": "Phone",
+                "description": "We'll send a verification code via text"
+            },
+            "email": {
+                "title": "Email",
+                "description": "Send code via email"
+            },
+            "google": {
+                "title": "Google",
+                "description": "Use the code from the authenticator app to verify"
+            }
+        },
+        "errors": {
+            "invalid_code": "Please enter a valid 6-digit code.",
+            "verification_failed": "Verification failed. Please try again.",
+            "resend_failed": "Failed to resend code. Please try again."
+        },
+        "success": {
+            "verification_complete": "Verification completed successfully!"
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "linked_bank_accounts": "Linked Bank Accounts",
+        "loading_bank_accounts": "Loading bank accounts...",
+        "no_bank_accounts": "No bank accounts linked.",
+        "errors": {
+            "not_authenticated": "You are not authenticated. Please log in.",
+            "failed_to_fetch": "Failed to fetch bank accounts."
+        }
+    },
+    "userinfo_additional": {
+        "loading": "Loading...",
+        "no_user_data": "No user data available."
+    },
+    "transfer_modal": {
+        "title": "Transfer Funds",
+        "description": "Transfer funds between wallets",
+        "source_wallet_label": "Source Wallet",
+        "source_wallet_placeholder": "Select a wallet",
+        "target_wallet_label": "Target Wallet",
+        "target_wallet_placeholder": "Select a wallet",
+        "amount_label": "Amount",
+        "amount_placeholder": "e.g., 100.00",
+        "next_button": "Next",
+        "cancel_button": "Cancel",
+        "verification_title": "Two-Step Verification",
+        "verification_code_label": "Verification Code (6 alphanumeric characters)",
+        "verification_code_placeholder": "Enter code",
+        "verify_button": "Verify",
+        "processing_button": "Processing...",
+        "errors": {
+            "form_validation": "Please select different wallets, enter a positive amount, and ensure sufficient balance.",
+            "code_required": "Please enter a 6-character code.",
+            "code_invalid": "Code must be exactly 6 alphanumeric characters.",
+            "verification_invalid": "Please enter a valid verification code.",
+            "transfer_failed": "Failed to transfer funds."
+        }
+    },
+    "deposit_modal": {
+        "title": "Deposit Funds",
+        "description": "Deposit funds to your wallet from a bank account",
+        "wallet_label": "Wallet",
+        "wallet_placeholder": "Select a wallet",
+        "bank_account_label": "Bank Account",
+        "bank_account_placeholder": "Select a bank account",
+        "amount_label": "Amount",
+        "amount_placeholder": "e.g., 100.00",
+        "next_button": "Next",
+        "cancel_button": "Cancel",
+        "verification_title": "Two-Step Verification",
+        "verification_code_label": "Verification Code (6 alphanumeric characters)",
+        "verification_code_placeholder": "Enter code",
+        "verify_button": "Verify",
+        "processing_button": "Processing...",
+        "no_wallets_error": "No wallets available. Please add a wallet first.",
+        "errors": {
+            "form_validation": "Please select a wallet, bank account, and enter a positive amount.",
+            "code_required": "Please enter a 6-character code.",
+            "code_invalid": "Code must be exactly 6 alphanumeric characters.",
+            "verification_invalid": "Please enter a valid verification code.",
+            "deposit_failed": "Failed to deposit funds."
+        }
+    },
+    "withdraw_modal": {
+        "title": "Withdraw Funds",
+        "description": "Withdraw funds from your wallet to a bank account",
+        "wallet_label": "Wallet",
+        "wallet_placeholder": "Select a wallet",
+        "bank_account_label": "Bank Account",
+        "bank_account_placeholder": "Select a bank account",
+        "amount_label": "Amount",
+        "amount_placeholder": "e.g., 100.00",
+        "next_button": "Next",
+        "cancel_button": "Cancel",
+        "verification_title": "Two-Step Verification",
+        "verification_code_label": "Verification Code (6 alphanumeric characters)",
+        "verification_code_placeholder": "Enter code",
+        "verify_button": "Verify",
+        "processing_button": "Processing...",
+        "errors": {
+            "form_validation": "Please select a wallet, bank account, and enter a positive amount.",
+            "code_required": "Please enter a 6-character code.",
+            "code_invalid": "Code must be exactly 6 alphanumeric characters.",
+            "verification_invalid": "Please enter a valid verification code.",
+            "withdraw_failed": "Failed to withdraw funds."
+        }
+    },
+    "banks_view": {
+        "title": "Banks",
+        "filter_all": "All",
+        "filter_standard": "Standard",
+        "add_bank_button": "Add Bank",
+        "loading": "Loading banks...",
+        "no_banks": "No banks found.",
+        "balance_label": "Balance",
+        "next_renewal": "Next Renewal:",
+        "modal": {
+            "title": "Add Bank",
+            "description": "Link a bank account to manage funds on EasyPay",
+            "bank_name_label": "Bank Name",
+            "bank_name_placeholder": "e.g., My Bank",
+            "description_label": "Description (optional)",
+            "description_placeholder": "e.g., Primary business account",
+            "public_key_label": "Public Key",
+            "public_key_placeholder": "Enter public key",
+            "private_key_label": "Private Key",
+            "private_key_placeholder": "Enter private key",
+            "ssl_link_label": "SSL Link (optional)",
+            "ssl_link_placeholder": "e.g., https://bank-api.com",
+            "next_renewal_label": "Next Renewal Date (optional)",
+            "next_button": "Next",
+            "cancel_button": "Cancel",
+            "verification_title": "Two-Step Verification",
+            "verification_code_label": "Verification Code (6 alphanumeric characters)",
+            "verification_code_placeholder": "Enter code",
+            "verify_button": "Verify"
+        },
+        "errors": {
+            "not_authenticated": "You are not authenticated. Please log in.",
+            "failed_to_fetch": "Failed to fetch banks.",
+            "form_invalid": "Please fill in all required fields.",
+            "code_required": "Please enter a 6-character code.",
+            "code_invalid": "Code must be exactly 6 alphanumeric characters.",
+            "verification_invalid": "Please enter a valid verification code.",
+            "creation_failed": "Failed to create bank."
+        }
+    },
+    "face_guide": {
+        "back": "Back",
+        "title": "Capture your Face",
+        "guide_title": "Guide",
+        "instructions": [
+            "Find a well-lit spot",
+            "Remove hats, sunglasses, or masks",
+            "Hold your phone steady and face the camera",
+            "Look straight ahead and follow the on-screen instructions"
+        ],
+        "proceed": "Proceed",
+        "upload_file": "Upload a File Instead"
+    },
+    "face_capture": {
+        "back": "Back",
+        "title": "Capture your Face",
+        "take_photo": "Take Photo",
+        "upload_file": "Upload a File Instead",
+        "camera_permission_error": "Failed to access camera. Please allow camera permissions or upload a file.",
+        "capture_error": "Failed to capture image.",
+        "upload_success": "Face image uploaded successfully!",
+        "upload_error": "Failed to upload face image."
+    },
+    "face_preview": {
+        "back": "Back",
+        "title": "Review Your Face Image",
+        "description": "Make sure your photo is clear, well-lit, and fully shows your face. You can retake it if needed",
+        "loading": "Loading image...",
+        "finish": "Finish",
+        "retry": "Retry",
+        "no_image": "No face image available.",
+        "upload_again": "Upload Again",
+        "no_image_error": "No face image found.",
+        "load_error": "Failed to load face image."
+    },
+    "id_capture": {
+        "title": "Capture your ID",
+        "take_photo": "Take Photo",
+        "upload_file": "Upload a File Instead",
+        "camera_permission_error": "Failed to access camera. Please allow camera permissions or upload a file.",
+        "capture_error": "Failed to capture image.",
+        "upload_success": "ID document uploaded successfully!",
+        "upload_error": "Failed to upload ID document."
+    },
+    "id_preview": {
+        "back": "Back",
+        "title": "Review Your Id Image",
+        "description": "Make sure your photo is clear, well-lit, and fully shows your ID. You can retake it if needed",
+        "loading": "Loading image...",
+        "proceed": "Proceed",
+        "retry": "Retry",
+        "no_image": "No ID document available.",
+        "upload_again": "Upload Again",
+        "no_image_error": "No ID document found.",
+        "load_error": "Failed to load ID document."
+    },
+    "kyc_end": {
+        "back": "Back",
+        "title": "Verification Complete",
+        "description": "Your KYC verification has been submitted successfully. We will review your documents and update your account status within 1-2 business days.",
+        "status_title": "Status",
+        "pending_verification": "Pending Verification",
+        "next_steps": "What's Next?",
+        "steps": [
+            "We'll review your submitted documents",
+            "You'll receive an email notification once verification is complete",
+            "Your account will be fully activated for all features"
+        ],
+        "continue_button": "Continue to Dashboard",
+        "upload_more": "Upload More Documents"
+    },
+    "kyc_details": {
+        "back": "Back",
+        "title": "Personal Details",
+        "first_name": "First Name",
+        "first_name_placeholder": "First Name*",
+        "middle_name": "Middle Name",
+        "middle_name_placeholder": "Middle Name",
+        "last_name": "Last Name",
+        "last_name_placeholder": "Last Name*",
+        "phone": "Phone",
+        "phone_placeholder": "Phone Number*",
+        "id_number": "ID Number",
+        "id_number_placeholder": "ID Document Number*",
+        "date_of_birth": "Date of Birth",
+        "date_of_birth_placeholder": "Date of Birth*",
+        "country": "Country",
+        "country_placeholder": "Country*",
+        "street": "Street",
+        "street_placeholder": "Street Address*",
+        "city": "City",
+        "city_placeholder": "City*",
+        "submitting": "Submitting...",
+        "proceed": "Proceed",
+        "errors": {
+            "submission_failed": "Failed to submit personal details.",
+            "load_failed": "Failed to load personal details."
+        }
+    },
+    "id_take": {
+        "title": "Capture your ID",
+        "take_photo": "Take Photo",
+        "upload_file": "Upload a File Instead",
+        "camera_permission_error": "Failed to access camera. Please allow camera permissions or upload a file.",
+        "capture_error": "Failed to capture image.",
+        "upload_success": "ID document uploaded successfully!",
+        "upload_error": "Failed to upload ID document."
+    }
+}

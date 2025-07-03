@@ -1,0 +1,758 @@
+{
+  "navbar": {
+    "home": "Início",
+    "solutions": "Soluções",
+    "about": "Sobre",
+    "contact": "Fale Conosco",
+    "login": "Entrar",
+    "logout": "Sair",
+    "signup": "Criar Conta"
+  },
+  "footer": {
+    "links": "Links",
+    "terms_of_service": "Termos de Serviço",
+    "privacy_policy": "Política de Privacidade",
+    "help_center": "Central de Ajuda",
+    "faq": "Faqs",
+    "contact_us": "Fale Conosco",
+    "support": "Suporte",
+    "our_address": "Nosso Endereço",
+    "newsletter": "Inscreva-se na nossa Newsletter",
+    "copyright": "© 2025 Easypay Moz. Todos os direitos reservados."
+  },
+  "homepage": {
+    "title": {
+      "start": "Comece a aceitar",
+      "payments": "pagamentos",
+      "end": "de forma simples"
+    },
+    "description": "Ajudamos pequenas empresas a receber pagamentos facilmente por meio de dinheiro móvel, cartões e transferências bancárias.",
+    "cta": {
+      "get_the_app": "Baixar o Aplicativo",
+      "sign_up": "Criar Conta"
+    },
+    "tags": {
+      "fast_and_easy": "Configuração rápida em minutos",
+      "accept_payments": "Pagamentos seguros com criptografia",
+      "central_bank_compliance": "Várias opções de pagamento disponíveis"
+    },
+    "how_it_works": {
+      "title": "Como Funciona",
+      "steps": {
+        "step1": "Crie uma conta",
+        "step2": "Crie um link de pagamento",
+        "step3": "Compartilhe o link de pagamento com seus clientes",
+        "step4": "Receba pagamentos e acompanhe tudo em um só lugar"
+      }
+    },
+    "key_features": {
+      "title": "Principais Funcionalidades",
+      "features": {
+        "feature1": {
+          "title": "Links de Pagamento e QR Codes",
+          "description": "Gere e compartilhe facilmente links de pagamento ou códigos QR com seus clientes, de forma rápida e segura"
+        },
+        "feature2": {
+          "title": "Ferramentas de Gestão de Clientes",
+          "description": "Registre clientes recorrentes, visualize o histórico de pagamentos e facilite os acompanhamentos."
+        },
+        "feature3": {
+          "title": "Seguro e em Conformidade",
+          "description": "Criptografia de nível bancário, conformidade local e proteção de dados para garantir transações seguras."
+        },
+        "feature4": {
+          "title": "Página do Comerciante",
+          "description": "Crie uma página de pagamento profissional que destaque seu negócio e gere confiança nos clientes."
+        }
+      }
+    },
+    "built_for_every_type_of_transaction": {
+      "title": "Construído para todos os tipos de transações",
+      "b2b": {
+        "title": "Empresa para Empresa",
+        "description": "Fluxos de pagamento otimizados para fornecedores e parceiros."
+      },
+      "b2c": {
+        "title": "Empresa para Consumidor",
+        "description": "Empresas distribuindo pagamentos a clientes individuais."
+      },
+      "c2b": {
+        "title": "Consumidor para Empresa",
+        "description": "Ideal para clientes que pagam por produtos ou serviços."
+      },
+      "c2c": {
+        "title": "Consumidor para Consumidor",
+        "description": "Pagamentos ponto-a-ponto para transações pessoais."
+      },
+      "c2a": {
+        "title": "Consumidor para Administração",
+        "description": "Ideal para pagamentos a entidades como escolas."
+      },
+      "b2g": {
+        "title": "Empresa para Governo",
+        "description": "Para empresas que lidam com licenças ou contratos de serviços oficiais."
+      }
+    },
+    "testimonials": {
+      "title": "O que dizem nossos clientes",
+      "testimonials_list": [
+        {
+          "content": "Adorei como foi simples de configurar. Não precisei de habilidades técnicas — apenas alguns cliques e já estava pronto para aceitar pagamentos dos meus clientes.",
+          "name": "Fatima L",
+          "role": "Proprietária de Negócio"
+        },
+        {
+          "content": "Costumava perder clientes porque não conseguia oferecer pagamentos móveis. Com o Easypay Moz, agora é fácil e profissional — recebo pagamentos mais rápido que nunca.",
+          "name": "Carlos M.",
+          "role": "Freelancer"
+        },
+        {
+          "content": "O Easypay Moz tornou super fácil para mim fazer crescer meu negócio e aceitar pagamentos de qualquer lugar",
+          "name": "Maria C",
+          "role": "Proprietária de Boutique Online"
+        }
+      ]
+    },
+    "faqs": {
+      "title": "Perguntas Frequentes",
+      "subtitle": "Para mais informações, visite a Central de Ajuda. Encontre também todas as perguntas frequentes em nossa página dedicada.",
+      "questions": {
+        "question1": {
+          "question": "Como começo a aceitar pagamentos? ",
+          "answer": "Basta criar uma conta e você poderá começar a criar links de pagamento imediatamente."
+        },
+        "question2": {
+          "question": "Posso receber pagamentos via M-Pesa ou dinheiro móvel? ",
+          "answer": "Sim, suportamos dinheiro móvel, cartões e transferências bancárias."
+        },
+        "question3": {
+          "question": "Preciso de uma empresa registrada para usar o Easypay Moz? ",
+          "answer": "Sim, cobramos uma pequena taxa por transação processada."
+        },
+        "question4": {
+          "question": "Quais taxas devo esperar por transação? ",
+          "answer": "Você pode receber pagamentos diretamente na sua conta bancária ou carteira de dinheiro móvel."
+        }
+      }
+    },
+    "payment_action": {
+      "title": "Seu pagamento está a um clique de distância",
+      "description": "Comece sua jornada de pagamentos online",
+      "cta": {
+        "create_account": "Criar Conta"
+      }
+    }
+  },
+  "userinfo": {
+    "dashboard": "Painel",
+    "welcome": "Bem-vindo ao EasyPay"
+  },
+  "verification": {
+    "kyc": {
+      "title": "Verificação KYC",
+      "description": "Somos obrigados a verificar sua identidade para manter sua conta segura.",
+      "start": "Iniciar Verificação",
+      "documents_required": "Documentos Necessários",
+      "upload_documents": "Enviar Documentos",
+      "submit": "Enviar para Análise",
+      "success_message": "Seus documentos KYC foram enviados com sucesso. Iremos notificá-lo quando a verificação estiver completa.",
+      "pending_message": "Seus documentos KYC estão sob análise. Você será notificado quando a verificação estiver completa.",
+      "pending_verification": "Verificação Pendente",
+      "error_message": "Houve um erro ao enviar seus documentos KYC. Tente novamente mais tarde."
+    },
+    "kyb": {
+      "title": "Verificação KYB",
+      "description": "Para atender aos requisitos regulamentares, precisamos confirmar a identidade do seu negócio.",
+      "start": "Integrar Seu Negócio",
+      "documents_required": "Documentos Necessários",
+      "upload_documents": "Enviar Documentos",
+      "submit": "Enviar para Análise",
+      "success_message": "Seus documentos KYB foram enviados com sucesso. Iremos notificá-lo quando a verificação estiver completa.",
+      "pending_message": "Seus documentos KYB estão sob análise. Você será notificado quando a verificação estiver completa.",
+      "pending_verification": "Verificação Pendente",
+      "error_message": "Houve um erro ao enviar seus documentos KYB. Tente novamente"
+    }
+  },
+  "account_linking": {
+    "title": "Vinculação de Conta",
+    "description": "Para receber pagamentos de seus clientes, precisamos saber onde enviar os fundos.",
+    "link_account": "Vincular Conta de Saque",
+    "success_message": "Sua conta foi vinculada com sucesso.",
+    "pending_message": "Sua solicitação de vinculação de conta está sob análise. Você será notificado quando for aprovada.",
+    "pending_verification": "Verificação Pendente",
+      "error_message": "Houve um erro ao vincular sua conta. Tente novamente mais tarde."
+    },
+    "common": {
+      "loading": "Carregando...",
+      "no_data": "Nenhum dado disponível",
+      "error": "Erro",
+      "success": "Sucesso",
+      "cancel": "Cancelar",
+      "save": "Salvar",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "confirm": "Confirmar",
+      "close": "Fechar"
+    },
+  "quick_links": {
+    "title": "Links Rápidos",
+    "deposit": "Depositar",
+    "withdraw": "Sacar",
+    "transfer": "Transferir",
+    "wallet": "Carteira"
+  },
+  "signup": {
+    "back_to_homepage": "Voltar para a página inicial",
+    "get_started_today": "Comece hoje",
+    "welcome_back": "Bem-vindo de volta",
+    "quick_details": "Apenas alguns detalhes rápidos — todos os campos são obrigatórios para começar.",
+    "login": "Entrar",
+    "signup": "Criar conta",
+    "email": "Email",
+    "password": "Senha",
+    "confirm_password": "Confirmar Senha",
+    "email_placeholder": "Email",
+    "password_placeholder": "Senha",
+    "password_confirm_placeholder": "Confirmar senha",
+    "email_required_placeholder": "Email*",
+    "password_required_placeholder": "Senha*",
+    "terms_acceptance": "Aceito os",
+    "terms_and_conditions": "termos e condições*",
+    "sign_up_button": "Criar conta",
+    "log_in_button": "Entrar",
+    "or": "Ou",
+    "continue_with_google": "Continuar com Google",
+    "forgot_password": "esqueceu a senha?",
+    "errors": {
+      "passwords_no_match": "As senhas não coincidem.",
+      "signup_failed": "Falha ao criar conta",
+      "login_failed": "Falha ao entrar",
+      "unexpected_error": "Ocorreu um erro inesperado."
+    },
+    "success": {
+      "account_created": "Conta criada com sucesso!",
+      "logged_in": "Login realizado com sucesso!"
+    }
+  },
+  "bank_account_modal": {
+    "title": "Adicionar Conta Bancária",
+    "description": "Vincule uma conta bancária à sua conta EasyPay",
+    "select_bank": "Selecionar Banco",
+    "select_bank_placeholder": "Selecione um banco",
+    "account_number": "Número da Conta",
+    "account_number_placeholder": "ex., 1234567890",
+    "next": "Próximo",
+    "cancel": "Cancelar",
+    "verify": "Verificar",
+    "verification_title": "Verificação em Duas Etapas",
+    "verification_description": "Digite o código de 6 dígitos enviado para seu telefone/email para continuar.",
+    "code_not_received": "Não recebeu o código?",
+    "resend_code": "Reenviar Código",
+    "use_different_code": "Usar um Código Diferente",
+    "errors": {
+      "form_invalid": "Por favor, selecione um banco e digite um número de conta.",
+      "code_required": "Por favor, digite um código de 6 caracteres.",
+      "code_invalid": "O código deve ter exatamente 6 caracteres alfanuméricos.",
+      "verification_invalid": "Por favor, digite um código de verificação válido.",
+      "creation_failed": "Falha ao vincular conta bancária.",
+      "processing_error": "Ocorreu um erro ao processar o código."
+    }
+  },
+  "credit_actions": {
+    "deposit": "Depositar",
+    "withdrawal": "Sacar",
+    "transfer": "Transferir",
+    "request_payment": "Solicitar Pagamento",
+    "wallets": "Carteiras",
+    "errors": {
+      "no_wallets": "Nenhuma carteira disponível. Adicione uma carteira primeiro.",
+      "merchant_required": "Privilégios de comerciante necessários para solicitar pagamentos.",
+      "failed_to_open_deposit": "Falha ao abrir modal de depósito.",
+      "failed_to_open_withdraw": "Falha ao abrir modal de saque.",
+      "failed_to_open_transfer": "Falha ao abrir modal de transferência.",
+      "failed_to_open_request_payment": "Falha ao abrir modal de solicitação de pagamento.",
+      "failed_to_open_bank_account": "Falha ao abrir modal de conta bancária.",
+      "failed_to_refresh_data": "Falha ao atualizar dados após a atualização.",
+      "failed_to_fetch_wallets": "Falha ao buscar carteiras.",
+      "failed_to_fetch_banks": "Falha ao buscar bancos.",
+      "failed_to_fetch_bank_accounts": "Falha ao buscar contas bancárias."
+    }
+  },
+  "dashboard": {
+    "navigation": {
+      "home": "Início",
+      "analytics": "Análises",
+      "payments": "Pagamentos",
+      "orders": "Pedidos",
+      "settings": "Configurações",
+      "banks": "Bancos",
+      "logout": "Sair"
+    },
+    "titles": {
+      "dashboard": "Painel",
+      "welcome": "Bem-vindo",
+      "overview": "Visão Geral",
+      "recent_transactions": "Transações Recentes",
+      "payment_links": "Links de Pagamento",
+      "quick_actions": "Ações Rápidas"
+    }
+  },
+  "chart_view": {
+    "title": "Agregados de Transações",
+    "total_amount": "Valor Total",
+    "by_transaction_type": "Por Tipo de Transação",
+    "deposits": "Depósitos",
+    "withdrawals": "Saques",
+    "transfers": "Transferências",
+    "loading": "Carregando agregados...",
+    "no_data": "Nenhum dado de transação disponível",
+    "errors": {
+      "failed_to_load": "Falha ao carregar agregados de transações. Tente novamente."
+    }
+  },
+  "credit_view": {
+    "title": "Carteiras",
+    "filter": {
+      "all": "Todas",
+      "personal": "Pessoal",
+      "merchant": "Comerciante",
+      "escrow": "Garantia",
+      "savings": "Poupança",
+      "virtual": "Virtual"
+    },
+    "add_wallet": "Adicionar Carteira",
+    "loading": "Carregando carteiras...",
+    "no_wallets": "Nenhuma carteira encontrada.",
+    "status_active": "Ativa",
+    "wallet_modal": {
+      "title": "Adicionar Carteira",
+      "description": "Crie sua carteira interna para receber e armazenar fundos no EasyPay",
+      "bank_account_label": "Conta Bancária",
+      "bank_account_placeholder": "Selecione uma conta bancária",
+      "wallet_name_label": "Nome da Carteira",
+      "wallet_name_placeholder": "ex., Dinheiro para gastos",
+      "next": "Próximo",
+      "cancel": "Cancelar",
+      "verification_title": "Verificação em Duas Etapas",
+      "verification_code_label": "Código de Verificação (6 caracteres alfanuméricos)",
+      "verification_code_placeholder": "Digite o código",
+      "verify": "Verificar",
+      "creating": "Criando..."
+    },
+    "transaction_history": {
+      "title": "Histórico de Transações",
+      "show_all": "Ver todas",
+      "show_less": "Ver menos",
+      "columns": {
+        "id": "ID",
+        "type": "Tipo",
+        "amount": "Valor",
+        "status": "Status",
+        "date": "Data"
+      }
+    },
+    "errors": {
+      "failed_to_fetch_wallets": "Falha ao buscar carteiras.",
+      "failed_to_fetch_bank_accounts": "Falha ao buscar contas bancárias.",
+      "failed_to_fetch_transactions": "Falha ao buscar transações.",
+      "no_bank_accounts": "Nenhuma conta bancária disponível. Adicione uma conta bancária primeiro.",
+      "wallet_form_invalid": "Selecione uma conta bancária e digite um nome para a carteira.",
+      "code_required": "Digite um código de 6 caracteres.",
+      "code_invalid": "O código deve ter exatamente 6 caracteres alfanuméricos.",
+      "verification_invalid": "Digite um código de verificação válido.",
+      "wallet_creation_failed": "Falha ao criar carteira.",
+      "not_authenticated": "Você não está autenticado. Faça login.",
+      "failed_to_refresh_data": "Falha ao atualizar dados após a atualização."
+    },
+    "success": {
+      "wallet_created": "Carteira criada com sucesso!"
+    }
+  },
+  "request_payment_modal": {
+    "title": "Solicitar Pagamento",
+    "description": "Solicitar fundos de outro usuário",
+    "wallet_label": "Carteira",
+    "wallet_placeholder": "Selecione uma carteira",
+    "amount_label": "Valor",
+    "amount_placeholder": "ex., 100.00",
+    "customer_email_label": "Email do Cliente",
+    "customer_email_placeholder": "ex., usuario@exemplo.com",
+    "customer_name_label": "Nome do Cliente (Opcional)",
+    "customer_name_placeholder": "ex., João Silva",
+    "description_label": "Descrição (Opcional)",
+    "description_placeholder": "ex., Pagamento por serviços",
+    "create_button": "Criar Solicitação de Pagamento",
+    "creating_button": "Criando...",
+    "cancel_button": "Cancelar",
+    "success_title": "Solicitação de Pagamento Criada",
+    "success_description": "Sua solicitação de pagamento foi criada com sucesso. Compartilhe o link abaixo com o cliente:",
+    "qr_code_label": "Escaneie o Código QR:",
+    "open_payment_link": "Abrir Link de Pagamento",
+    "done_button": "Concluído",
+    "share_button": "Compartilhar",
+    "errors": {
+      "form_validation": "Selecione uma carteira, digite um valor válido, forneça um email de cliente válido e garanta privilégios de comerciante.",
+      "creation_failed": "Falha ao criar solicitação de pagamento."
+    }
+  },
+  "kyb_start": {
+    "title": "Vamos verificar o seu negócio",
+    "description": "Para ativar sua conta com funcionalidade completa, precisaremos de alguns detalhes oficiais sobre seu negócio. Será rápido.",
+    "what_you_need": "O Que Você Vai Precisar",
+    "business_details": "Detalhes do seu negócio",
+    "tax_pin": "Um PIN válido da autoridade tributária",
+    "registration_number": "Número de registro empresarial",
+    "start_verification": "Iniciar Verificação",
+    "do_later": "Fazer Depois"
+  },
+  "kyc_start": {
+    "title": "Vamos verificar você",
+    "description": "Para manter sua conta segura e em conformidade, iremos guiá-lo através de um processo curto de verificação.",
+    "what_you_need": "O Que Você Vai Precisar",
+    "personal_details": "Seus dados pessoais",
+    "valid_id": "Um documento válido (ex., RG, Passaporte)",
+    "camera_selfie": "Uma câmera para uma selfie rápida",
+    "start_verification": "Iniciar Verificação",
+    "do_later": "Fazer Depois"
+  },
+  "kyb_details": {
+    "back": "Voltar",
+    "title": "Detalhes do Negócio",
+    "business_name": "Nome da Empresa",
+    "business_name_placeholder": "Nome da Empresa*",
+    "business_type": "Tipo de Empresa",
+    "business_type_placeholder": "Tipo de Empresa (ex., Ltda, S.A.)",
+    "registration_number": "Número de Registro",
+    "registration_number_placeholder": "Número de Registro*",
+    "phone": "Telefone",
+    "phone_placeholder": "Número de Telefone*",
+    "tax_number": "Número de Imposto Empresarial",
+    "tax_id_placeholder": "CNPJ*",
+    "email": "Email",
+    "email_placeholder": "Email Empresarial",
+    "support_url": "URL de Suporte",
+    "support_url_placeholder": "URL de Suporte",
+    "country": "País",
+    "country_placeholder": "País*",
+    "industry": "Indústria",
+    "industry_placeholder": "Setor*",
+    "street": "Rua",
+    "street_placeholder": "Endereço da Rua*",
+    "city": "Cidade",
+    "city_placeholder": "Cidade*",
+    "submitting": "Enviando...",
+    "proceed": "Prosseguir",
+    "errors": {
+      "submission_failed": "Falha ao enviar detalhes do negócio.",
+      "load_failed": "Falha ao carregar detalhes do negócio."
+    }
+  },
+  "kyb_documents": {
+    "back": "Voltar",
+    "business_registration_title": "Documento de Registro Empresarial",
+    "business_registration_label": "Documento de Registro Empresarial",
+    "tax_authority_title": "Documento da Autoridade Tributária",
+    "tax_authority_label": "Documento da Autoridade Tributária",
+    "or": "ou",
+    "upload_button": "Enviar",
+    "uploading_button": "Enviando...",
+    "errors": {
+      "select_both_documents": "Por favor, selecione ambos os documentos.",
+      "upload_failed": "Falha ao enviar documentos."
+    },
+    "success": {
+      "upload_success": "Documentos enviados com sucesso!"
+    }
+  },
+  "id_guide": {
+    "back": "Voltar",
+    "title": "Capture seu RG/Passaporte",
+    "guide": "Guia",
+    "accepted_documents": "Documentos aceitos:",
+    "instructions": [
+      "Documentos aceitos: RG (frente e verso) ou Passaporte",
+      "Use um espaço bem iluminado – Luz natural é melhor.",
+      "Coloque seu documento em uma superfície plana",
+      "Certifique-se de que todos os cantos estejam visíveis – Sem cortes!",
+      "Tire uma foto clara – Sem brilho, desfoque ou sombra."
+    ],
+    "proceed": "Prosseguir",
+    "upload_file": "Fazer Upload de um Arquivo",
+    "upload_success": "Documento de identidade enviado com sucesso!",
+    "upload_failed": "Falha ao fazer upload do documento de identidade."
+  },
+  "signup_fail": {
+    "back_to_homepage": "Voltar para a página inicial",
+    "something_went_wrong": "Algo deu errado",
+    "description": "Não conseguimos criar sua conta. Tente novamente mais tarde ou entre em contato com o suporte se o problema persistir.",
+    "retry": "Tentar Novamente",
+    "contact_support": "entrar em contato com o suporte"
+  },
+    "otp": {
+        "title": "Verificação em Duas Etapas",
+        "description": "Digite o código de 6 dígitos enviado para seu telefone/email para continuar.",
+        "verify_button": "Verificar",
+        "code_not_received": "Não recebeu o código?",
+        "resend_code": "Reenviar Código",
+        "use_different_code": "Usar um Código Diferente",
+        "method_selection": {
+            "title": "Verificação em Duas Etapas",
+            "description": "Escolha como você gostaria de verificar seu perfil",
+            "phone": {
+                "title": "Telefone",
+                "description": "Enviaremos um código de verificação via SMS"
+            },
+            "email": {
+                "title": "Email",
+                "description": "Enviar código por email"
+            },
+            "google": {
+                "title": "Google",
+                "description": "Use o código do aplicativo autenticador para verificar"
+            }
+        },
+        "errors": {
+            "invalid_code": "Por favor, digite um código de 6 dígitos válido.",
+            "verification_failed": "Verificação falhou. Tente novamente.",
+            "resend_failed": "Falha ao reenviar código. Tente novamente."
+        },
+        "success": {
+            "verification_complete": "Verificação concluída com sucesso!"
+        }
+    },
+    "settings": {
+        "title": "Configurações",
+        "linked_bank_accounts": "Contas Bancárias Vinculadas",
+        "loading_bank_accounts": "Carregando contas bancárias...",
+        "no_bank_accounts": "Nenhuma conta bancária vinculada.",
+        "errors": {
+            "not_authenticated": "Você não está autenticado. Faça login.",
+            "failed_to_fetch": "Falha ao buscar contas bancárias."
+        }
+    },
+    "userinfo_additional": {
+        "loading": "Carregando...",
+        "no_user_data": "Nenhum dado de usuário disponível."
+    },
+    "transfer_modal": {
+        "title": "Transferir Fundos",
+        "description": "Transferir fundos entre carteiras",
+        "source_wallet_label": "Carteira de Origem",
+        "source_wallet_placeholder": "Selecione uma carteira",
+        "target_wallet_label": "Carteira de Destino",
+        "target_wallet_placeholder": "Selecione uma carteira",
+        "amount_label": "Valor",
+        "amount_placeholder": "ex., 100.00",
+        "next_button": "Próximo",
+        "cancel_button": "Cancelar",
+        "verification_title": "Verificação em Duas Etapas",
+        "verification_code_label": "Código de Verificação (6 caracteres alfanuméricos)",
+        "verification_code_placeholder": "Digite o código",
+        "verify_button": "Verificar",
+        "processing_button": "Processando...",
+        "errors": {
+            "form_validation": "Selecione carteiras diferentes, digite um valor positivo e garanta saldo suficiente.",
+            "code_required": "Digite um código de 6 caracteres.",
+            "code_invalid": "O código deve ter exatamente 6 caracteres alfanuméricos.",
+            "verification_invalid": "Digite um código de verificação válido.",
+            "transfer_failed": "Falha ao transferir fundos."
+        }
+    },
+    "deposit_modal": {
+        "title": "Depositar Fundos",
+        "description": "Depositar fundos em sua carteira de uma conta bancária",
+        "wallet_label": "Carteira",
+        "wallet_placeholder": "Selecione uma carteira",
+        "bank_account_label": "Conta Bancária",
+        "bank_account_placeholder": "Selecione uma conta bancária",
+        "amount_label": "Valor",
+        "amount_placeholder": "ex., 100.00",
+        "next_button": "Próximo",
+        "cancel_button": "Cancelar",
+        "verification_title": "Verificação em Duas Etapas",
+        "verification_code_label": "Código de Verificação (6 caracteres alfanuméricos)",
+        "verification_code_placeholder": "Digite o código",
+        "verify_button": "Verificar",
+        "processing_button": "Processando...",
+        "no_wallets_error": "Nenhuma carteira disponível. Adicione uma carteira primeiro.",
+        "errors": {
+            "form_validation": "Selecione uma carteira, conta bancária e digite um valor positivo.",
+            "code_required": "Digite um código de 6 caracteres.",
+            "code_invalid": "O código deve ter exatamente 6 caracteres alfanuméricos.",
+            "verification_invalid": "Digite um código de verificação válido.",
+            "deposit_failed": "Falha ao depositar fundos."
+        }
+    },
+    "withdraw_modal": {
+        "title": "Sacar Fundos",
+        "description": "Sacar fundos de sua carteira para uma conta bancária",
+        "wallet_label": "Carteira",
+        "wallet_placeholder": "Selecione uma carteira",
+        "bank_account_label": "Conta Bancária",
+        "bank_account_placeholder": "Selecione uma conta bancária",
+        "amount_label": "Valor",
+        "amount_placeholder": "ex., 100.00",
+        "next_button": "Próximo",
+        "cancel_button": "Cancelar",
+        "verification_title": "Verificação em Duas Etapas",
+        "verification_code_label": "Código de Verificação (6 caracteres alfanuméricos)",
+        "verification_code_placeholder": "Digite o código",
+        "verify_button": "Verificar",
+        "processing_button": "Processando...",
+        "errors": {
+            "form_validation": "Selecione uma carteira, conta bancária e digite um valor positivo.",
+            "code_required": "Digite um código de 6 caracteres.",
+            "code_invalid": "O código deve ter exatamente 6 caracteres alfanuméricos.",
+            "verification_invalid": "Digite um código de verificação válido.",
+            "withdraw_failed": "Falha ao sacar fundos."
+        }
+    },
+    "banks_view": {
+        "title": "Bancos",
+        "filter_all": "Todos",
+        "filter_standard": "Padrão",
+        "add_bank_button": "Adicionar Banco",
+        "loading": "Carregando bancos...",
+        "no_banks": "Nenhum banco encontrado.",
+        "balance_label": "Saldo",
+        "next_renewal": "Próxima Renovação:",
+        "modal": {
+            "title": "Adicionar Banco",
+            "description": "Vincular uma conta bancária para gerenciar fundos no EasyPay",
+            "bank_name_label": "Nome do Banco",
+            "bank_name_placeholder": "ex., Meu Banco",
+            "description_label": "Descrição (opcional)",
+            "description_placeholder": "ex., Conta comercial principal",
+            "public_key_label": "Chave Pública",
+            "public_key_placeholder": "Digite a chave pública",
+            "private_key_label": "Chave Privada",
+            "private_key_placeholder": "Digite a chave privada",
+            "ssl_link_label": "Link SSL (opcional)",
+            "ssl_link_placeholder": "ex., https://bank-api.com",
+            "next_renewal_label": "Data da Próxima Renovação (opcional)",
+            "next_button": "Próximo",
+            "cancel_button": "Cancelar",
+            "verification_title": "Verificação em Duas Etapas",
+            "verification_code_label": "Código de Verificação (6 caracteres alfanuméricos)",
+            "verification_code_placeholder": "Digite o código",
+            "verify_button": "Verificar"
+        },
+        "errors": {
+            "not_authenticated": "Você não está autenticado. Faça login.",
+            "failed_to_fetch": "Falha ao buscar bancos.",
+            "form_invalid": "Preencha todos os campos obrigatórios.",
+            "code_required": "Digite um código de 6 caracteres.",
+            "code_invalid": "O código deve ter exatamente 6 caracteres alfanuméricos.",
+            "verification_invalid": "Digite um código de verificação válido.",
+            "creation_failed": "Falha ao criar banco."
+        }
+    },
+    "face_guide": {
+        "back": "Voltar",
+        "title": "Capture seu Rosto",
+        "guide_title": "Guia",
+        "instructions": [
+            "Encontre um local bem iluminado",
+            "Remova chapéus, óculos de sol ou máscaras",
+            "Segure seu telefone firme e vire para a câmera",
+            "Olhe diretamente para frente e siga as instruções na tela"
+        ],
+        "proceed": "Prosseguir",
+        "upload_file": "Fazer Upload de um Arquivo"
+    },
+    "face_capture": {
+        "back": "Voltar",
+        "title": "Capture seu Rosto",
+        "take_photo": "Tirar Foto",
+        "upload_file": "Fazer Upload de um Arquivo",
+        "camera_permission_error": "Falha ao acessar a câmera. Permita o acesso à câmera ou faça upload de um arquivo.",
+        "capture_error": "Falha ao capturar imagem.",
+        "upload_success": "Imagem do rosto enviada com sucesso!",
+        "upload_error": "Falha ao enviar imagem do rosto."
+    },
+    "face_preview": {
+        "back": "Voltar",
+        "title": "Revisar Sua Imagem do Rosto",
+        "description": "Certifique-se de que sua foto está clara, bem iluminada e mostra completamente seu rosto. Você pode tirar novamente se necessário",
+        "loading": "Carregando imagem...",
+        "finish": "Finalizar",
+        "retry": "Tentar Novamente",
+        "no_image": "Nenhuma imagem do rosto disponível.",
+        "upload_again": "Fazer Upload Novamente",
+        "no_image_error": "Nenhuma imagem do rosto encontrada.",
+        "load_error": "Falha ao carregar imagem do rosto."
+    },
+    "id_capture": {
+        "title": "Capture seu RG",
+        "take_photo": "Tirar Foto",
+        "upload_file": "Fazer Upload de um Arquivo",
+        "camera_permission_error": "Falha ao acessar a câmera. Permita o acesso à câmera ou faça upload de um arquivo.",
+        "capture_error": "Falha ao capturar imagem.",
+        "upload_success": "Documento de identidade enviado com sucesso!",
+        "upload_error": "Falha ao enviar documento de identidade."
+    },
+    "id_preview": {
+        "back": "Voltar",
+        "title": "Revisar Sua Imagem do RG",
+        "description": "Certifique-se de que sua foto está clara, bem iluminada e mostra completamente seu RG. Você pode tirar novamente se necessário",
+        "loading": "Carregando imagem...",
+        "proceed": "Prosseguir",
+        "retry": "Tentar Novamente",
+        "no_image": "Nenhum documento de identidade disponível.",
+        "upload_again": "Fazer Upload Novamente",
+        "no_image_error": "Nenhum documento de identidade encontrado.",
+        "load_error": "Falha ao carregar documento de identidade."
+    },
+    "kyc_end": {
+        "back": "Voltar",
+        "title": "Verificação Concluída",
+        "description": "Sua verificação KYC foi enviada com sucesso. Analisaremos seus documentos e atualizaremos o status da sua conta em 1-2 dias úteis.",
+        "status_title": "Status",
+        "pending_verification": "Verificação Pendente",
+        "next_steps": "Próximos Passos?",
+        "steps": [
+            "Analisaremos os documentos enviados",
+            "Você receberá uma notificação por email quando a verificação estiver completa",
+            "Sua conta será totalmente ativada para todos os recursos"
+        ],
+        "continue_button": "Continuar para o Painel",
+        "upload_more": "Enviar Mais Documentos"
+    },
+    "kyc_details": {
+        "back": "Voltar",
+        "title": "Dados Pessoais",
+        "first_name": "Nome",
+        "first_name_placeholder": "Nome*",
+        "middle_name": "Nome do Meio",
+        "middle_name_placeholder": "Nome do Meio",
+        "last_name": "Sobrenome",
+        "last_name_placeholder": "Sobrenome*",
+        "phone": "Telefone",
+        "phone_placeholder": "Número de Telefone*",
+        "id_number": "Número do RG",
+        "id_number_placeholder": "Número do Documento de Identidade*",
+        "date_of_birth": "Data de Nascimento",
+        "date_of_birth_placeholder": "Data de Nascimento*",
+        "country": "País",
+        "country_placeholder": "País*",
+        "street": "Rua",
+        "street_placeholder": "Endereço da Rua*",
+        "city": "Cidade",
+        "city_placeholder": "Cidade*",
+        "submitting": "Enviando...",
+        "proceed": "Prosseguir",
+        "errors": {
+            "submission_failed": "Falha ao enviar dados pessoais.",
+            "load_failed": "Falha ao carregar dados pessoais."
+        }
+    },
+    "id_take": {
+        "title": "Capture seu RG",
+        "take_photo": "Tirar Foto",
+        "upload_file": "Fazer Upload de um Arquivo",
+        "camera_permission_error": "Falha ao acessar a câmera. Permita o acesso à câmera ou faça upload de um arquivo.",
+        "capture_error": "Falha ao capturar imagem.",
+        "upload_success": "Documento de identidade enviado com sucesso!",
+        "upload_error": "Falha ao enviar documento de identidade."
+    }
+}

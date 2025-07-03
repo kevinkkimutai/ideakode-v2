@@ -2,6 +2,21 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  i18n: {
+    locales: ['en', 'pt'],
+    defaultLocale: 'en',
+    // localeDetection: true,
+  },
+  async rewrites() {
+    return [
+      // Keep URLs clean - no locale prefixes
+      {
+        source: '/:path*',
+        destination: '/:path*',
+      },
+    ];
+    },
+    
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
