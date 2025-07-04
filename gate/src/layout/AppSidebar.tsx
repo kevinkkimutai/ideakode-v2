@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSidebar } from "../context/SidebarContext";
+import logo from '@/assets/logos/logo.png'
 import {
   AlertIcon,
   BoxCubeIcon,
@@ -33,65 +34,36 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    path: "/",
+    path: "/dashboard",
    
   },
   {
-    icon: <CalenderIcon />,
-    name: "Calendar",
-    path: "/calendar",
+    icon: <GridIcon />,
+    name: "Dashboard",
+    path: "/dashboard4",
+   
   },
   {
-    name: "Project Category",
-    icon: <ListIcon />,
-    path: "/project-categories",
+    icon: <GridIcon />,
+    name: "Dashboard",
+    path: "/dashboard3",
+   
   },
   {
-    name: "Projects",
-    icon: <PageIcon />,
-    subItems: [
-      { 
-      name: "All Projects",
-       path: "/projects", 
-       pro: false 
-      },
-      { 
-        name: "Add Project",
-         path: "/add-project", 
-         pro: false 
-        }
-    ],
+    icon: <GridIcon />,
+    name: "Dashboard",
+    path: "/dashboard2",
+   
   },
  
-  {
-    name: "Support Category",
-    icon: <InfoIcon />,
-    path: "/support-category", 
-  },
-  {
-    icon: <ShootingStarIcon />,
-    name: "Support Tickets",
-    path: "/support-tickets",
+ {
+    icon: <GridIcon />,
+    name: "Dashboard",
+    path: "/dashboard1",
+   
   },
 
-  // {
-  //   name: "Forms",
-  //   icon: <ListIcon />,
-  //   subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
-  // },
-  // {
-  //   name: "Tables",
-  //   icon: <TableIcon />,
-  //   subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-  // },
-  // {
-  //   name: "Pages",
-  //   icon: <PageIcon />,
-  //   subItems: [
-  //     { name: "Blank Page", path: "/blank", pro: false },
-  //     { name: "404 Error", path: "/error-404", pro: false },
-  //   ],
-  // },
+
 ];
 
 const othersItems: NavItem[] = [
@@ -329,7 +301,7 @@ const AppSidebar: React.FC = () => {
       className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
         ${
           isExpanded || isMobileOpen
-            ? "w-[290px]"
+            ? "w-[290px] "
             : isHovered
             ? "w-[290px]"
             : "w-[90px]"
@@ -347,27 +319,21 @@ const AppSidebar: React.FC = () => {
         <Link href="/">
           {isExpanded || isHovered || isMobileOpen ? (
             <>
+              
               <Image
-                className="dark:hidden"
-                src="/images/logo/logo.png"
+                className="hidde dark:block"
+                src={logo}
                 alt="Logo"
-                width={150}
-                height={40}
-              />
-              <Image
-                className="hidden dark:block"
-                src="/images/logo/logo.png"
-                alt="Logo"
-                width={150}
+                width={50}
                 height={40}
               />
             </>
           ) : (
             <Image
-              src="/images/logo/logo-icon.svg"
+              src={logo}
               alt="Logo"
-              width={32}
-              height={32}
+               width={50}
+                height={40}
             />
           )}
         </Link>
@@ -392,7 +358,7 @@ const AppSidebar: React.FC = () => {
               {renderMenuItems(navItems, "main")}
             </div>
 
-            <div className="">
+            <div className="hidden">
               <h2
                 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
                   !isExpanded && !isHovered

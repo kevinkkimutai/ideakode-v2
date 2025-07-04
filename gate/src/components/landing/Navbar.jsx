@@ -44,12 +44,12 @@ export default function Navbar() {
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button type="button" className="hover:border border-white px-4 py-2 rounded-md text-slate-900 dark:text-white text-[15px] font-medium transition-colors">
+            <a href="/signin"  className="hover:border border-white px-4 py-2 rounded-md text-slate-900 dark:text-white text-[15px] font-medium transition-colors">
               Login
-            </button>
-            <button type="button" className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-white text-[15px] font-medium transition-colors">
+            </a>
+            <a href="/signin"  className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-white text-[15px] font-medium transition-colors">
               Signup
-            </button>
+            </a>
             <div>
               <ThemeTogglerTwo />
             </div>
@@ -140,13 +140,13 @@ export default function Navbar() {
             {/* Mobile Actions */}
             <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
               <div className="flex flex-col space-y-3">
-                <button 
+                <a href="/signin" 
                   type="button" 
-                  onClick={closeMenu}
+                 
                   className="w-full py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-md text-slate-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
                 >
                   Login
-                </button>
+                </a>
                 <button 
                   type="button" 
                   onClick={closeMenu}

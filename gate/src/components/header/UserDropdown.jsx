@@ -32,13 +32,14 @@ console.log("user", user);
         onClick={toggleDropdown} 
         className="flex items-center text-gray-700 dark:text-gray-400 dropdown-toggle"
       >
-        <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
-          <Image
+        <span className="mr-3 overflow-hidden bg-gray-400 rounded-full h-11 w-11 flex items-center justify-center">
+          img
+          {/* <Image
             width={44}
             height={44}
             src="/images/user/owner.jpg"
             alt="User"
-          />
+          /> */}
         </span>
 
         <span className="block mr-1 font-medium text-theme-sm">

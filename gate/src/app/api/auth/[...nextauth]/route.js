@@ -20,7 +20,10 @@ const handler = NextAuth({
               password: credentials.password,
             }),
           });
-
+ if (!credentials?.email || !credentials?.password) {
+          console.log('❌ Missing credentials')
+          return null
+        }
           const data = await res.json();
           if (!res.ok || !data.user) return null;
 

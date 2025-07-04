@@ -26,7 +26,7 @@ export async function middleware(req) {
     
     // CRITICAL: Update to match your actual frontend URL path (/signin)
     // But also include the path from NextAuth config (/login) to handle both
-    const unprotectedPaths = ["/", "/signin", "/login", "/forgot-password", "/reset-password"];
+    const unprotectedPaths = ["/", "/dashboard", "/signin", "/login", "/forgot-password", "/reset-password"];
     const isAuthPage = unprotectedPaths.some(path => 
       pathname === path || pathname === `${path}/`
     );
