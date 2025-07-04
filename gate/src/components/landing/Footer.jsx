@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div>
         <footer className="tracking-wide bg-gradient-to-r from-[#0F2740] via-[#093355] to-[#035A91] px-8 sm:px-12 pt-12 pb-6">
-      <div className="grid min-[1200px]:grid-cols-3 gap-12 xl:gap-16 py-20 max-md:py-10 max-w-[1280px] mx-auto">
+      <div className="grid min-[1200px]:grid-cols-3 gap-12 xl:gap-16 py-20 max-md:py-20 max-w-[1280px] mx-auto">
         <div className="min-[1200px]:max-w-sm max-w-lg w-full">
           <a href='#' className='t'>
             {/* <img src="https://readymadeui.com/readymadeui.svg" alt="logo" className="w-36" /> */}
@@ -44,7 +44,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="min-[1200px]:col-span-2 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="min-[1200px]:col-span-2 grid grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="max-lg:min-w-[140px]">
             <h4 className="text-gray-200 font-semibold text-base relative">Links</h4>
 
@@ -74,9 +74,9 @@ export default function Footer() {
               <li>
                 <a href='#' className="hover:text-gray-200 text-white text-sm font-normal">Contact Us</a>
               </li>
-              <li>
+              {/* <li>
                 <a href='#' className="hover:text-gray-200 text-white text-sm font-normal">Support</a>
-              </li>
+              </li> */}
             </ul>
           </div>
 

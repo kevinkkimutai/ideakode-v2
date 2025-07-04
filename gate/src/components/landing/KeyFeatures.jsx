@@ -14,7 +14,7 @@ const FeatureCard = ({ feature, index }) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center'>
       {/* Image section */}
-      <div className={`rounded-lg shadow-sm shadow-white overflow-clip ${!isImageLeft ? 'order-2' : ''}`}>
+      <div className={`rounded-lg shadow-sm shadow-white overflow-clip ${!isImageLeft ? 'md:order-2' : ''}`}>
         <Image 
           className='w-full h-auto'
           src={feature.image}
@@ -25,7 +25,7 @@ const FeatureCard = ({ feature, index }) => {
       </div>
       
       {/* Content section */}
-      <div className={!isImageLeft ? 'order-1' : ''}>
+      <div className={!isImageLeft ? 'md:order-1' : ''}>
         <h3 className='font-semibold text-[22px] mb-2 text-white'>
           {t(`homepage.key_features.features.${feature.key}.title`)}
         </h3>
