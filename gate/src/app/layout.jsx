@@ -15,7 +15,7 @@ const outfit = Outfit({
 export default function RootLayout({ children }){
   return (
     <html lang="en">
-      <body className={`${outfit.variable} dark:bg-gray-900`}>
+      <body className={`${outfit.variable} dark:bg-gradient-to-r from-[#0F2740] via-[#093355] to-[#035A91]`}>
       <TranslationProvider>
       <ReduxProvider>
         <ClientProvider>
@@ -25,7 +25,7 @@ export default function RootLayout({ children }){
           
             {children}
           
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
           </SidebarProvider>
         </ThemeProvider>
         </ClientProvider>

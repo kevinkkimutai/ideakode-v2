@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import signLogo from "@/assets/auth/a1.png"
 
 export default function AuthLayout({
   children,
@@ -12,26 +13,25 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
+    <div className="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0 md:h-screen overflow-hidden flex items-center justify-center">
       <ThemeProvider>
-        <div className="relative flex lg:flex-row w-full h-screen justify-center flex-col  dark:bg-gray-900 sm:p-0">
+        <div className="relative flex lg:flex-row w-full h-screen justify-center flex-col  dark:bg-gray-900 sm:p-0 md:w-[80%] md:h-[80%] overflow-hidden">
           {children}
-          <div className="lg:w-1/2 w-full h-full bg-success-950 dark:bg-white/5 lg:grid items-center hidden">
+          <div className="lg:w-1/2 w-full h-full lg:grid items-center hidden">
             <div className="relative items-center justify-center  flex z-1">
               {/* <!-- ===== Common Grid Shape Start ===== --> */}
               <GridShape />
-              <div className="flex flex-col items-center max-w-xs">
-                <Link href="/" className="block mb-4">
+              <div className="flex flex-col items-center ">
+                
                   <Image
-                    width={231}
-                    height={48}
-                    src="/images/logo/logo.png"
+                    width={2231}
+                    height={248}
+                    src={signLogo}
+                    className="object-contain w-[80%] h-auto"
                     alt="Logo"
                   />
-                </Link>
-                <p className="text-center text-gray-400 dark:text-white/60">
-                Securely log in to access the admin dashboard.
-                </p>
+              
+                
               </div>
             </div>
           </div>

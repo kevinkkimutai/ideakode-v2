@@ -7,8 +7,8 @@ import flash from "@/assets/hero/Flash_ 1.svg"
 export default function FastAndEasy() {
     const { t, language } = useTranslation()
   return (
-    <div className='bg-white  dark:bg-gray-800 '>
-        <div className='flex gap-8 shadow-lg max-w-[1280px] w-full mx-auto p-6 md:p-12 items-center justify-center '>
+    <div className='bg-white dark:bg-gradient-to-r from-[#0F2740] via-[#093355] to-[#035A91]'>
+        <div className='flex gap-8 shadow-lg rounded-md max-w-[1280px] bg-[#02619B] w-full mx-auto p-6 md:p-12 items-center justify-center '>
             <div className='flex gap-4 items-center justify-center '>
             <svg width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clipPath="url(#clip0_1058_9858)">
@@ -25,7 +25,7 @@ export default function FastAndEasy() {
 </defs>
 </svg>
 
-                <p>
+                <p className='dark:text-white'>
                 {t('homepage.tags.fast_and_easy')}
                 </p>
 
@@ -51,7 +51,7 @@ export default function FastAndEasy() {
 </svg>
 
 
-                <p>
+                <p className='dark:text-white'>
                 { t('homepage.tags.accept_payments') }
                 </p>
 
@@ -63,7 +63,7 @@ export default function FastAndEasy() {
 </svg>
 
 
-                <p>
+                <p className='dark:text-white'>
                 { t('homepage.tags.central_bank_compliance') }
                 </p>
 

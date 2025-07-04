@@ -48,11 +48,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.netiqa.co.ke"
+        hostname: "api.gateway.co.ke"
       },
       {
         protocol: "https",
-        hostname: "netiqa.co.ke"
+        hostname: "gateway.co.ke"
       }
     ],
   },

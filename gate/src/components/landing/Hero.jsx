@@ -12,7 +12,7 @@ export default function Hero() {
 
   
   return (
-    <div className='bg-[#37b0fb]'>
+    <div className=' bg-gradient-to-r from-[#0F2740] via-[#093355] to-[#035A91]'>
       <div className='max-w-[1200px] pt-40 mx-auto max-2xl:px-4 py-20 items-center text-center grid grid-cols-1 lg:grid-cols-2 gap-8'>
        <div className='flex flex-col  text-start'>
        <h1 className="text-[64px] font-bold mb-4 dark:text-white leading-[72px] w-[80%]">{ t('homepage.title.start') }

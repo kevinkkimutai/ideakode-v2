@@ -121,7 +121,7 @@ export default function AddProjects() {
             </div>
             <div className="col-span-1">
               <Label>Link</Label>
-              <Input type="text" name="demolink" placeholder="https://netiqa.com" value={formData?.demolink} onChange={handleChange} />
+              <Input type="text" name="demolink" placeholder="https://gateway.com" value={formData?.demolink} onChange={handleChange} />
             </div>
             <div className="col-span-1">
   <Label>Category</Label>

@@ -9,8 +9,8 @@ import DemographicCard from "@/components/ecommerce/DemographicCard";
 
 export const metadata: Metadata = {
   title:
-    "Next.js E-commerce Dashboard | Netiqa - Next.js Dashboard Template",
-  description: "This is Next.js Home for Netiqa Dashboard Template",
+    "Next.js E-commerce Dashboard | gateway - Next.js Dashboard Template",
+  description: "This is Next.js Home for gateway Dashboard Template",
 };
 
 export default function Ecommerce() {

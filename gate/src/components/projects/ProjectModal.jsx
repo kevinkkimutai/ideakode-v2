@@ -23,7 +23,7 @@ export default function ProjectModal({ isOpen, onClose, formData, categories, ha
             </div>
             <div className="col-span-1">
               <Label>Link</Label>
-              <Input type="text" name="demolink" placeholder="https://netiqa.com" defaultValue={formData?.demolink} onChange={handleChange} />
+              <Input type="text" name="demolink" placeholder="https://gateway.com" defaultValue={formData?.demolink} onChange={handleChange} />
             </div>
             <div className="col-span-1">
   <Label>Category</Label>
