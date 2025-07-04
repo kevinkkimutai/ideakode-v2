@@ -1,5 +1,8 @@
-'use client'// components/LanguageSwitcher.js
-import { useTranslation } from '@/hooks/useTranslation'
+'use client'
+import { useTranslation } from "@/hooks/useTranslation"
+
+// components/LanguageSwitcher.js
+
 
 export default function LanguageSwitcher() {
   const { language, changeLanguage } = useTranslation()
