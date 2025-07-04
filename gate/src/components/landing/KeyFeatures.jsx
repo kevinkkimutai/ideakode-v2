@@ -64,7 +64,7 @@ export default function KeyFeatures() {
   ]
 
   return (
-    <div className='bg-[#1170AC] mt-10 md:mt-20'>
+    <div className='bg-[#1170AC] dark:bg-transparent mt-10 md:mt-20'>
       <div className='max-w-[1280px] mx-auto px-4 py-10 md:py-20'>
         <h2 className='text-[32px] font-bold mb-6 md:mb-12 text-white text-center'>
           {t('homepage.key_features.title')}

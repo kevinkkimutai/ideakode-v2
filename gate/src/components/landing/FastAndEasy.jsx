@@ -7,8 +7,8 @@ import flash from "@/assets/hero/Flash_ 1.svg"
 export default function FastAndEasy() {
     const { t, language } = useTranslation()
   return (
-    <div className='bg-white dark:bg-gradient-to-r from-[#0F2740] via-[#093355] to-[#035A91]'>
-        <div className='flex max-md:flex-col gap-8 shadow-lg rounded-md max-w-[1280px] bg-[#02619B] w-full mx-auto p-6 md:p-12 items-center md:justify-center  max-lg:px-4'>
+    <div className=''>
+        <div className='flex max-md:flex-col gap-8 shadow-lg rounded-md max-w-[1280px] dark:bg-[#02619B] w-full mx-auto p-6 md:p-12 items-center md:justify-center  max-lg:px-4'>
             <div className='flex gap-4 items-center max-md:w-full md:justify-center'>
             <svg width="51" height="50" viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clipPath="url(#clip0_1058_9858)">

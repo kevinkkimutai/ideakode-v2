@@ -43,7 +43,7 @@ export default function Faqs() {
     );
   };
   return (
-    <div className='py-10 md:py-16 dark:bg-[#0f415f]'>
+    <div className='py-10 md:py-20 dark:bg-[#0f415f] '>
     <div className='max-w-[1280px] mx-auto max-2xl:px-4'>
   
 

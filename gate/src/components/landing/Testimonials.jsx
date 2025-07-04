@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
+import Image from 'next/image';
 
 export default function Testimonials() {
     const { t, language } = useTranslation()
@@ -20,29 +21,29 @@ export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
   const agents = [
     {
-        title: "Talent Screening",
-        description: "Our HRMS simplifies and accelerates recruitment through automated candidate screening and AI-powered interview technology. By eliminating manual shortlisting and introducing data-driven assessments, businesses can make faster, smarter hiring decisions.",
+        title: "Fatima L",
+        description: "I love how simple it was to set up. No tech skills needed — just a few clicks and I was ready to accept payments from my clients.",
         image: "/New-Home/hrms/Talent Screening Icon .mp4",
-        float: "efficient teams"
+        float: "Business owner"
     },
     {
-      title: "HR Administration",
-      description: "The platform centralizes core HR operations, including employee records, contract management, approval workflows, and document tracking. With everything securely managed in one place, you gain full operational visibility, enhancing overall data integrity and compliance.",
+      title: "Carlos M.",
+      description: "I used to lose customers because I couldn’t offer mobile payments. With Easypay Moz, it’s now effortless and professional — I get paid faster than ever.",
       image: "/New-Home/hrms/HR Administration Icon .mp4",
-      float: "trusted AI adoption"
+      float: "Freelancer"
   },
     {
-        title: "Payroll",
-        description: "Our payroll module automates the entire process, from salary calculations and overtime tracking to statutory deductions and payslip generation. Designed to support multi-country compliance, it ensures accurate, timely payments that meet both local and global standards.",
+        title: "Maria C",
+        description: "Easypay Moz made it super easy for me to grow my business and accept payments from anywhere.",
         image: "/New-Home/hrms/Payroll Icon Design .mp4",
-        float: "integration"
+        float: "Online Boutique Owner"
     },
-    {
-      title: "Employee Self-Service (ESS)",
-      description: "The ESS feature enables employees to handle their own HR needs, from submitting leave requests and tracking attendance to updating personal details and filing claims. Reducing routine workloads for HR while giving employees more autonomy.",
-      image: "/New-Home/hrms/Employee Self-Service Icon .mp4",
-      float: "efficient teams"
-  }
+      {
+        title: "Fatima L",
+        description: "I love how simple it was to set up. No tech skills needed — just a few clicks and I was ready to accept payments from my clients.",
+        image: "/New-Home/hrms/Talent Screening Icon .mp4",
+        float: "Business owner"
+    },
    
 ]
   return (
@@ -90,18 +91,32 @@ export default function Testimonials() {
             }}
           >
             {agents.map((agent, index) => (
-              <SwiperSlide key={index} className="flex w-full h-[267px] items-center justify-center">
+              <SwiperSlide key={index} className="flex w-full h-[277px] items-center justify-center">
                   <div
                 key={index}
-                className="p-8 w-full lg:p-8 flex flex-col gap-10 bg-[#0F415F]  rounded-md "
+                className="p-8 w-full lg:p-8 flex flex-col gap-2 h-[274px] bg-[#0F415F]  rounded-md "
               >
-                <div className="relative overflow-clip flex items-center justify-center rounded-3xl h-[263px]">
-         
+                <div className='flex items-center gap-3'>
+                    <Image
+    src={agent.image}
+    alt={agent.title}
+    width={100}
+    height={100}
+    className="object-cover  bg-blue-600 w-10 h-10 rounded-full"
+  />
+  ⭐️  ⭐️ ⭐️  ⭐️  ⭐️
+<div>
+
+</div>
                 </div>
-                <div className="text-white flex flex-col gap-4">
+                <div className="relative text-white overflow-clip flex items-center justify-center ">
+         {agent.description}
+                </div>
+                <div className="text-white flex flex-col gap-4 fixed bottom-2">
                   <h3 className="text-[14px] md:text-[16px] font-extrabold">
                     {agent.title}
                   </h3>
+                  {agent.float}
                   
                 </div>
               </div>

@@ -12,8 +12,10 @@ export default function Hero() {
 
   
   return (
-    <div className='bg-[#37b0fb] dark:bg-gradient-to-r from-[#0F2740] via-[#093355] to-[#035A91]'>
-      <div className='max-w-[1200px] pt-40 mx-auto max-2xl:px-4 py-20 items-center text-center grid grid-cols-1 lg:grid-cols-2 gap-8'>
+<div
+  className="bg-[#1170AC] dark:bg-[linear-gradient(117deg,#0F2740_5.97%,#093355_50.93%,#035A91_76.56%)] bg-[linear-gradient(117deg,#1170AC_2.5%,#1170AC_20%,#1170AC_70%)]"
+>
+      <div className='max-w-[1200px] pt-40 mx-auto max-2xl:px-4 py-4 md:py-40 items-center text-center grid grid-cols-1 lg:grid-cols-2 gap-8'>
        <div className='flex flex-col  text-start'>
        <h1 className="text-[32px] md:text-[64px] font-bold mb-4 dark:text-white md:leading-[72px] w-[80%]">{ t('homepage.title.start') }
         <span className="dark:text-[#1170AC] text-white"> { t('homepage.title.payments') } </span> 

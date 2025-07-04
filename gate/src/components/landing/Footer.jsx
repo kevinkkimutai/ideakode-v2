@@ -1,4 +1,6 @@
 import React from 'react'
+import logo from '@/assets/logos/logo.png'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -7,14 +9,20 @@ export default function Footer() {
       <div className="grid min-[1200px]:grid-cols-3 gap-12 xl:gap-16 py-20 max-md:py-20 max-w-[1280px] mx-auto">
         <div className="min-[1200px]:max-w-sm max-w-lg w-full">
           <a href='#' className='t'>
-            {/* <img src="https://readymadeui.com/readymadeui.svg" alt="logo" className="w-36" /> */}
-            Logo
-          </a>
+             <Image 
+             className='w-14 md:w-20'
+               src={logo}
+               alt="Logo"
+               width={100}
+               height={40}
+             />
+</a>
           <div className="mt-6">
             <p className="text-white leading-relaxed text-lg">
               support@easypay.com<br />
               254 71 234-5678<br />
             </p>
+            
           </div>
           <ul className="mt-6 flex space-x-5">
             <li>
@@ -42,6 +50,10 @@ export default function Footer() {
               </a>
             </li>
           </ul>
+           <button type="button" className="mt-10 bg-[#377DA8] px-4 py-2 rounded-md text-white text-[15px] font-medium flex items-center justify-center gap-2 cursor-pointer">
+            
+            Get the App
+          </button>
         </div>
 
         <div className="min-[1200px]:col-span-2 grid grid-cols-2 lg:grid-cols-3 gap-8">
