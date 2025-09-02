@@ -6,12 +6,19 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:analyze": "ANALYZE=true next build",
+    "sitemap": "next-sitemap",
+    "seo:audit": "lighthouse --only-categories=seo --chrome-flags=\"--headless\" http://localhost:3000",
+    "seo:test": "npm run build && npm run start & sleep 10 && npm run seo:audit",
+    "crawler:test": "echo 'Testing crawler detection...' && curl -H 'User-Agent: GPTBot/1.0' http://localhost:3000"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^15.5.2",
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.515.0",
     "next": "15.3.3",
+    "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0"
