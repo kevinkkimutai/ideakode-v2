@@ -3,6 +3,9 @@ import crawlerAnalytics from '../../../../lib/crawler-analytics';
 
 export async function GET(request) {
   try {
+    // Load data from file if available
+    await crawlerAnalytics.loadDataFromFile();
+    
     const url = new URL(request.url);
     const limitParam = url.searchParams.get('limit');
     const limit = limitParam ? parseInt(limitParam, 10) : 50;
