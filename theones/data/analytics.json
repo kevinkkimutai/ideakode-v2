@@ -1,6 +1,15 @@
 {
   "visits": [
     {
+      "id": 1756847334431.2173,
+      "endpoint": "/portfolio",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T21:08:54.431Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
       "id": 1756846687600.1868,
       "endpoint": "/dashboard",
       "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
@@ -73,6 +82,6 @@
       "country": null
     }
   ],
-  "lastUpdated": "2025-09-02T20:58:07.605Z",
-  "totalVisits": 8
+  "lastUpdated": "2025-09-02T21:08:54.434Z",
+  "totalVisits": 9
 }

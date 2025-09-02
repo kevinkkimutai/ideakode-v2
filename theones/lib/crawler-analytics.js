@@ -12,6 +12,12 @@ class CrawlerAnalytics {
   async loadDataFromFile() {
     if (!this.isNode) return;
     
+    // Skip file operations in production/serverless environments
+    if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+      console.log('Production environment detected - using in-memory storage only');
+      return;
+    }
+    
     try {
       const fs = await import('fs');
       const path = await import('path');
@@ -19,7 +25,7 @@ class CrawlerAnalytics {
       const dataDir = path.join(process.cwd(), 'data');
       const dataFile = path.join(dataDir, 'analytics.json');
 
-      // Create data directory if it doesn't exist
+      // Create data directory if it doesn't exist (development only)
       if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir, { recursive: true });
       }
@@ -33,6 +39,7 @@ class CrawlerAnalytics {
       }
     } catch (error) {
       console.error('Error loading analytics data:', error);
+      // Continue with empty array - don't fail
       this.visits = [];
     }
   }
@@ -41,6 +48,11 @@ class CrawlerAnalytics {
   async saveDataToFile() {
     if (!this.isNode) return;
     
+    // Skip file operations in production/serverless environments
+    if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+      return; // Silently skip saving in production
+    }
+    
     try {
       const fs = await import('fs');
       const path = await import('path');
@@ -48,7 +60,7 @@ class CrawlerAnalytics {
       const dataDir = path.join(process.cwd(), 'data');
       const dataFile = path.join(dataDir, 'analytics.json');
       
-      // Create data directory if it doesn't exist
+      // Create data directory if it doesn't exist (development only)
       if (!fs.existsSync(dataDir)) {
         fs.mkdirSync(dataDir, { recursive: true });
       }
@@ -62,6 +74,7 @@ class CrawlerAnalytics {
       fs.writeFileSync(dataFile, JSON.stringify(data, null, 2), 'utf8');
     } catch (error) {
       console.error('Error saving analytics data:', error);
+      // Don't fail - just continue with in-memory storage
     }
   }
 
@@ -184,8 +197,8 @@ class CrawlerAnalytics {
   async clearData() {
     this.visits = [];
     
-    // Also clear the JSON file if in Node.js environment
-    if (this.isNode) {
+    // Also clear the JSON file if in Node.js environment and not in production
+    if (this.isNode && !process.env.VERCEL && process.env.NODE_ENV !== 'production') {
       try {
         const fs = await import('fs');
         const path = await import('path');
