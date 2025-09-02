@@ -33,6 +33,19 @@ const nextConfig = {
         ],
         
       },
+      // Ensure GEO files are properly served
+      async rewrites() {
+        return [
+          {
+            source: '/robots.txt',
+            destination: '/robots.txt'
+          },
+          {
+            source: '/llm.txt', 
+            destination: '/llm.txt'
+          }
+        ];
+      },
       
 };
 
