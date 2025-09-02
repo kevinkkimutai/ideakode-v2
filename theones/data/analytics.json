@@ -1,0 +1,78 @@
+{
+  "visits": [
+    {
+      "id": 1756846687600.1868,
+      "endpoint": "/dashboard",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T20:58:07.600Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1756846677648.965,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T20:57:57.648Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1756846328408.1794,
+      "endpoint": "/portfolio",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T20:52:08.408Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1756846325511.1506,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T20:52:05.511Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1756846279237.674,
+      "endpoint": "/dashboard",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T20:51:19.237Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1756846263670.4785,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T20:51:03.670Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1756845469798.0833,
+      "endpoint": "/dashboard",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.102.0 Chrome/134.0.6998.205 Electron/35.6.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T20:37:49.798Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1756845438694.459,
+      "endpoint": "/dashboard",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.102.0 Chrome/134.0.6998.205 Electron/35.6.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2025-09-02T20:37:18.694Z",
+      "botType": "Human/Browser",
+      "country": null
+    }
+  ],
+  "lastUpdated": "2025-09-02T20:58:07.605Z",
+  "totalVisits": 8
+}
