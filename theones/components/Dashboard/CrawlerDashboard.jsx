@@ -122,7 +122,7 @@ export default function CrawlerDashboard() {
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <StatCard
-              title="Total Visits"
+              title="Total Page Visits"
               value={analytics.totalVisits}
               icon={Activity}
               color="blue"
@@ -140,24 +140,38 @@ export default function CrawlerDashboard() {
               color="orange"
             />
             <StatCard
-              title="Unique Bots"
-              value={Object.keys(analytics.visitsByBot).length}
-              icon={Bot}
+              title="Unique Pages"
+              value={Object.keys(analytics.visitsByEndpoint).length}
+              icon={Globe}
               color="purple"
             />
           </div>
 
           {/* Charts Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Visits by Endpoint */}
+            {/* Visits by Page/Endpoint */}
             <div className="bg-white p-6 rounded-lg shadow-sm border">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Visits by Endpoint</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Visits by Page</h3>
               <div className="space-y-3">
-                {Object.entries(analytics.visitsByEndpoint).map(([endpoint, count]) => (
+                {Object.entries(analytics.visitsByEndpoint)
+                  .sort((a, b) => b[1] - a[1]) // Sort by visit count
+                  .map(([endpoint, count]) => (
                   <div key={endpoint} className="flex items-center justify-between">
                     <div className="flex items-center">
                       <Globe className="h-4 w-4 text-gray-400 mr-2" />
-                      <span className="text-sm font-medium">/{endpoint}</span>
+                      <span className="text-sm font-medium">
+                        {endpoint === 'robots.txt' ? '/robots.txt (GEO)' :
+                         endpoint === 'llm.txt' ? '/llm.txt (GEO)' :
+                         endpoint === '/' ? 'Home Page' :
+                         endpoint === '/about' ? 'About Page' :
+                         endpoint === '/contact' ? 'Contact Page' :
+                         endpoint === '/portfolio' ? 'Portfolio Page' :
+                         endpoint === '/blog' ? 'Blog Page' :
+                         endpoint === '/get-a-quote' ? 'Quote Page' :
+                         endpoint === '/faqs' ? 'FAQs Page' :
+                         endpoint.startsWith('/(pages)/(services)') ? `Service: ${endpoint.split('/').pop()}` :
+                         endpoint}
+                      </span>
                     </div>
                     <span className="text-sm text-gray-600">{count} visits</span>
                   </div>
