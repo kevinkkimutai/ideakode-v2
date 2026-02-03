@@ -35,32 +35,54 @@ export default function BlogListing() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative py-24 md:py-32 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50"
+        className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-green-600 via-emerald-600 to-teal-600"
       >
-        <div className="container max-w-[1280px] w-full mx-auto max-lg:px-4 pt-20">
+        {/* Animated background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+
+        <div className="container max-w-[1280px] w-full mx-auto max-lg:px-4 pt-20 relative z-10">
           <div className="text-center">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6"
+            >
+              <span className="w-2 h-2 bg-green-300 rounded-full animate-pulse"></span>
+              <span className="text-white text-sm font-medium">Expert Insights & Resources</span>
+            </motion.div>
+
             <motion.h1
-              initial={{ y: -50, opacity: 0 }}
+              initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 100, delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold mb-6 text-gray-900"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
             >
-              Netiqa <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Blog</span>
+              Knowledge Hub for{' '}
+              <span className="block md:inline bg-gradient-to-r from-yellow-200 to-green-200 bg-clip-text text-transparent">
+                Digital Success
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
+              className="text-lg md:text-xl text-green-50 max-w-3xl mx-auto mb-12 leading-relaxed"
             >
-              Insights, tips, and strategies for web development, SEO, and digital marketing
+              Discover actionable insights, expert tips, and proven strategies to elevate your digital presence. 
+              From cutting-edge web development to powerful SEO tactics and digital marketing trends.
             </motion.p>
 
             {/* Search Bar */}
@@ -70,23 +92,56 @@ export default function BlogListing() {
               transition={{ delay: 0.6 }}
               className="max-w-2xl mx-auto"
             >
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <div className="relative group">
+                <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 group-focus-within:text-green-600 transition-colors" />
                 <input
                   type="text"
-                  placeholder="Search articles..."
+                  placeholder="Search articles, topics, or keywords..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-4 rounded-full border-2 border-gray-200 focus:border-green-500 focus:outline-none transition-all"
+                  className="w-full pl-14 pr-6 py-5 rounded-2xl border-0 shadow-2xl focus:ring-4 focus:ring-green-300/50 focus:outline-none transition-all text-gray-900 placeholder:text-gray-400 bg-white"
                 />
+              </div>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="flex flex-wrap justify-center gap-8 mt-12 text-white"
+            >
+              <div className="text-center">
+                <div className="text-3xl font-bold">{blogsData.length}+</div>
+                <div className="text-green-100 text-sm">Articles</div>
+              </div>
+              <div className="w-px bg-green-400/30"></div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">{categories.length - 1}</div>
+                <div className="text-green-100 text-sm">Categories</div>
+              </div>
+              <div className="w-px bg-green-400/30"></div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">100%</div>
+                <div className="text-green-100 text-sm">Free Access</div>
               </div>
             </motion.div>
           </div>
         </div>
 
-        {/* Animated background elements */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+        {/* Decorative elements */}
+        <div className="absolute -bottom-1 left-0 right-0">
+          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="url(#paint0_linear)" fillOpacity="0.3"/>
+            <path d="M0 120L60 112C120 104 240 88 360 80C480 72 600 72 720 76C840 80 960 88 1080 92C1200 96 1320 96 1380 96L1440 96V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f9fafb"/>
+            <defs>
+              <linearGradient id="paint0_linear" x1="720" y1="60" x2="720" y2="120" gradientUnits="userSpaceOnUse">
+                <stop stopColor="white" stopOpacity="0.5"/>
+                <stop offset="1" stopColor="white" stopOpacity="0.1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
       </motion.section>
 
       {/* Category Filter */}

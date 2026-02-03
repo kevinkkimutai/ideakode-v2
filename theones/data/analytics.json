@@ -1,6 +1,51 @@
 {
   "visits": [
     {
+      "id": 1770150368026.8818,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:26:08.026Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770150353177.032,
+      "endpoint": "/blogs",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:25:53.177Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770150348183.9846,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:25:48.183Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770150318372.4346,
+      "endpoint": "/blogs",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:25:18.372Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770150314039.223,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:25:14.039Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
       "id": 1770149966199.1924,
       "endpoint": "/blogs",
       "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
@@ -37,6 +82,6 @@
       "country": null
     }
   ],
-  "lastUpdated": "2026-02-03T20:19:26.227Z",
-  "totalVisits": 4
+  "lastUpdated": "2026-02-03T20:26:08.032Z",
+  "totalVisits": 9
 }
