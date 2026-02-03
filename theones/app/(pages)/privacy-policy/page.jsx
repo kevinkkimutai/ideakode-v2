@@ -113,7 +113,7 @@ export default function Page() {
             </p>
             <div className="mt-4 text-gray-700">
               <p><strong>Email:</strong> kelvin@netiqa.co.ke</p>
-              <p><strong>Phone:</strong> +254 746 645 142</p>
+              <p><strong>Phone:</strong> +254 722 214 567</p>
               <p><strong>Address:</strong> Nairobi, Kenya</p>
             </div>
           </section>

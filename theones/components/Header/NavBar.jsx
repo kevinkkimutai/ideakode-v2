@@ -43,12 +43,12 @@ const menuData = [
           path: "/branding-design",
           newTab: false,
         },
-        // {
-        //   id: 43,
-        //   title: "SEO",
-        //   path: "/seo",
-        //   newTab: false,
-        // },
+        {
+          id: 43,
+          title: "SEO",
+          path: "/seo",
+          newTab: false,
+        },
       ],
     },
     {
@@ -65,7 +65,7 @@ const menuData = [
     },
     {
       id: 3,
-      title: "Contact-Us",
+      title: "Contact Us",
       path: "/contact",
       newTab: false,
     },
@@ -111,8 +111,8 @@ const NavBar = () => {
         }`}
       >
         <div className=" border- max-w-[1280px] w-full mx-auto px-2">
-          <div className="relative -mx-4 flex items-center justify-between">
-            <div className="w-60 max-w-full px-4 xl:mr-12">
+          <div className="relative  flex items-center justify-between">
+            <div className="w-40 max-w-full px-4 ">
               <Link
                 href="/"
                 className={`navBar-logo block w-full font-bold text-xl ${
@@ -135,7 +135,7 @@ const NavBar = () => {
                 />
               </Link>
             </div>
-            <div className="flex w-full items-center justify-between px-4 ">
+            <div className="flex  items-center px-4">
               <div>
                 <button
                   onClick={navbarToggleHandler}
@@ -161,13 +161,13 @@ const NavBar = () => {
                 </button>
                 <nav
                   id="navbarCollapse"
-                  className={`navbar absolute lg:ms-16 right-0 !z-[9999] w-[250px] bg-white max-md:rounded-b-xl rounded border-[.5px] border-body-color/50  py-4 px-6 duration-300  lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
+                  className={`navbar absolute  right-0 !z-[9999] w-[250px] bg-white max-md:rounded-b-xl rounded border-[.5px] border-body-color/50  py-4 px-6 duration-300  lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
                       ? "visibility top-full opacity-100"
                       : "invisible top-[120%] opacity-0"
                   }`}
                 >
-                  <ul className="block lg:flex lg:space-x-12 mx-auto">
+                  <ul className="block lg:flex lg:space-x-6 mx-auto">
                     {menuData.map((menuItem, index) => (
                       <li key={menuItem.id} className="group relative">
                         {menuItem.path ? (
@@ -215,7 +215,9 @@ const NavBar = () => {
                   </ul>
                 </nav>
               </div>
-              <div className="flex items-center justify-end pr-16 lg:pr-0">
+             
+            </div>
+             <div className="flex items-center justify-end pr-16 lg:pr-0">
                 
                 <button
                   // href="/get-a-quote"
@@ -228,7 +230,6 @@ const NavBar = () => {
                   {/* <ThemeToggler /> */}
                 </div>
               </div>
-            </div>
           </div>
         </div>
       </nav>

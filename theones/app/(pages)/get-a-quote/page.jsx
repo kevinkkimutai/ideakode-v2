@@ -140,7 +140,7 @@ export default function GetAQuote() {
                     <div>
                       <p className="font-semibold text-gray-900">Call Us</p>
                       <a href="tel:+254746645142" className="text-gray-600 hover:text-green-600 transition">
-                        +254 746 645 142
+                        +254 722 214 567
                       </a>
                     </div>
                   </div>

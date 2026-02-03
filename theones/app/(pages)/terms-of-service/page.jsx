@@ -144,7 +144,7 @@ export default function Page() {
             <div className="mt-4 text-gray-700">
               <p><strong>Netiqa</strong></p>
               <p><strong>Email:</strong> kelvin@netiqa.co.ke</p>
-              <p><strong>Phone:</strong> +254 746 645 142</p>
+              <p><strong>Phone:</strong> +254 722 214 567</p>
               <p><strong>Website:</strong> www.netiqa.co.ke</p>
             </div>
           </section>

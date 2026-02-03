@@ -39,7 +39,7 @@ export default function Footer() {
                   <div className="w-10 h-10 rounded-full bg-green-100 group-hover:bg-green-600 flex items-center justify-center transition-colors">
                     <Phone className="w-5 h-5 text-green-600 group-hover:text-white transition-colors" />
                   </div>
-                  <span className="text-sm">+254 746 645 142</span>
+                  <span className="text-sm">+254 722 214 567</span>
                 </a>
                 <div className="flex items-center gap-3 text-gray-600">
                   <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">

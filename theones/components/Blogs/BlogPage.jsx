@@ -3,43 +3,41 @@ import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import QuickLinks from "./QuickLinks";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 
 const BlogComp = ({ data }) => {
   if (!data || !data.blocks) return <p>No content available</p>;
 
   return (
-    <div className="flex">
-      {/* Blog Content */}
-      <div className="prose lg:prose-lg max-w-none space-y-6 flex-1">
-        {data.blocks.map((block) => {
-          switch (block.type) {
-            // case "header":
-            //   return React.createElement(
-            //     `h${block.data.level}`,
-            //     {
-            //       key: block.id,
-            //       id: `header-${block.id}`, // Ensure ID for scrolling
-            //       className: "font-bold text-2xl mt-4 text-gray-900",
-            //     },
-            //     block.data.text
-            //   );
+    <div className="max-w-4xl mx-auto">
+      {/* Back to Blog Link */}
+      <Link href="/blog" className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 mb-8 font-semibold">
+        <ArrowLeft className="w-4 h-4" />
+        Back to Blog
+      </Link>
 
-            case "header":
-  return React.createElement(
-    `h${block.data.level}`,
-    {
-      key: block.id,
-      id: `header-${block.id}`,
-      className: "font-bold text-2xl mt-4 text-gray-900",
-      dangerouslySetInnerHTML: {
-        __html: block.data.text.replace(
-          /<a /g,
-          '<a className="underline text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer" '
-        ),
-      },
-    }
-  );
+      <div className="flex gap-8">
+        {/* Blog Content */}
+        <div className="prose lg:prose-lg max-w-none space-y-6 flex-1 bg-white p-8 rounded-2xl shadow-sm">
+          {data.blocks.map((block) => {
+            switch (block.type) {
+              case "header":
+                return React.createElement(
+                  `h${block.data.level}`,
+                  {
+                    key: block.id,
+                    id: `header-${block.id}`,
+                    className: `font-bold ${block.data.level === 2 ? 'text-3xl' : 'text-2xl'} mt-8 mb-4 text-gray-900`,
+                    dangerouslySetInnerHTML: {
+                      __html: block.data.text.replace(
+                        /<a /g,
+                        '<a className="underline text-green-600 hover:text-green-800" target="_blank" rel="noopener noreferrer" '
+                      ),
+                    },
+                  }
+                );
 
             
 
@@ -48,8 +46,13 @@ const BlogComp = ({ data }) => {
               return (
                 <p
                   key={block.id}
-                  className="text-gray-700 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: block.data.text }}
+                  className="text-gray-700 leading-relaxed text-lg mb-4"
+                  dangerouslySetInnerHTML={{ 
+                    __html: block.data.text.replace(
+                      /<a /g,
+                      '<a className="text-green-600 hover:text-green-800 underline font-semibold" '
+                    )
+                  }}
                 />
               );
 

@@ -210,7 +210,7 @@ This project is proprietary and confidential.
 **Netiqa** - Software Development Company
 - Website: [https://www.netiqa.co.ke](https://www.netiqa.co.ke)
 - Email: kelvin@netiqa.co.ke
-- Phone: +254 746 645 142
+- Phone: +254 722 214 567
 
 ## 🐛 Bug Reports
 
