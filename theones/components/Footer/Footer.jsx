@@ -35,7 +35,7 @@ export default function Footer() {
                   </div>
                   <span className="text-sm">kelvin@netiqa.co.ke</span>
                 </a>
-                <a href="tel:+254746645142" className="flex items-center gap-3 text-gray-600 hover:text-green-600 transition-colors group">
+                <a href="tel:+254722214567" className="flex items-center gap-3 text-gray-600 hover:text-green-600 transition-colors group">
                   <div className="w-10 h-10 rounded-full bg-green-100 group-hover:bg-green-600 flex items-center justify-center transition-colors">
                     <Phone className="w-5 h-5 text-green-600 group-hover:text-white transition-colors" />
                   </div>

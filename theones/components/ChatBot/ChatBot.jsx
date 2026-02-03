@@ -10,7 +10,7 @@ export default function ChatBot() {
   const boxContainerRef = useRef(null);
   
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "254722214567";
-  const supportPhone = process.env.NEXT_PUBLIC_SUPPORT_PHONE || "254746645142";
+  const supportPhone = process.env.NEXT_PUBLIC_SUPPORT_PHONE || "254722214567";
 
   const handleToggleChat = () => {
     setIsOnChat(!isOnChat);

@@ -1,6 +1,42 @@
 {
   "visits": [
     {
+      "id": 1770152105941.1174,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:55:05.941Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770152089944.054,
+      "endpoint": "/blogs",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:54:49.944Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770151966852.8386,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:52:46.852Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770151904541.2527,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:51:44.541Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
       "id": 1770151762444.8313,
       "endpoint": "/blogs/website-speed-optimization",
       "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
@@ -244,6 +280,6 @@
       "country": null
     }
   ],
-  "lastUpdated": "2026-02-03T20:49:22.446Z",
-  "totalVisits": 27
+  "lastUpdated": "2026-02-03T20:55:05.944Z",
+  "totalVisits": 31
 }

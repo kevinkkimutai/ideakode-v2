@@ -139,7 +139,7 @@ export default function GetAQuote() {
                     </div>
                     <div>
                       <p className="font-semibold text-gray-900">Call Us</p>
-                      <a href="tel:+254746645142" className="text-gray-600 hover:text-green-600 transition">
+                      <a href="tel:+254722214567" className="text-gray-600 hover:text-green-600 transition">
                         +254 722 214 567
                       </a>
                     </div>
