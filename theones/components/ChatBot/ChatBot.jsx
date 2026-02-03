@@ -39,9 +39,9 @@ export default function ChatBot() {
   };
 
   return (
-    <div className="">
+    <div className="absolute">
       <div
-  className="fixed bottom-2 group md:bottom-5 right-5 md:right-20 cursor-pointer bg-green-100 rounded-full flex items-center justify-around p-4 max-w-72 z-50"
+  className="fixed bottom-2 group md:bottom-5 right-5 md:right-8 cursor-pointer bg-green-100 rounded-full flex items-center justify-around p-4 max-w-72 z-50"
   onClick={handleToggleChat}
 >
   <FaWhatsapp size={25} className="text-[#25d366]" />

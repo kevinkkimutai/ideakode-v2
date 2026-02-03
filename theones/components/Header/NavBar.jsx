@@ -2,6 +2,7 @@
 import { useSelectedQuote } from "@/context/SelectedQuoteContext";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 // import ThemeToggler from "./ThemeToggler";
 
@@ -73,6 +74,11 @@ const menuData = [
   ];
 const NavBar = () => {
   const { isQuoteOpen, handleOpenQuote } = useSelectedQuote();
+  const pathname = usePathname();
+  
+  // Check if current page should have white text
+  const isWhiteText = pathname === '/' || pathname === '/blogs';
+  
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
@@ -108,7 +114,7 @@ const NavBar = () => {
         className={`navBa top-0 left-0 z-40 flex w-full  items-center  ${
           sticky
             ? "!fixed !z-[9999] bg-white/50 shadow-black backdrop-blur-sm !transition "
-            : "absolute"
+            : "absolute bg-white/10 shadow-black backdrop-blur-sm"
         }`}
       >
         <div className=" border- max-w-[1280px] w-full mx-auto px-2">
@@ -145,19 +151,19 @@ const NavBar = () => {
                   className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] lg:hidden"
                 >
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[20px] bg-black transition-all duration-300  ${
+                    className={`relative my-1.5 block h-0.5 w-[20px] transition-all duration-300  ${
                       navbarOpen ? " top-[7px] rotate-45" : " "
-                    }`}
+                    } ${isWhiteText && !sticky ? "bg-white" : "bg-black"}`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[20px] bg-black transition-all duration-300  ${
+                    className={`relative my-1.5 block h-0.5 w-[20px] transition-all duration-300  ${
                       navbarOpen ? "opacity-0 " : " "
-                    }`}
+                    } ${isWhiteText && !sticky ? "bg-white" : "bg-black"}`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[20px] bg-black transition-all duration-300  ${
+                    className={`relative my-1.5 block h-0.5 w-[20px] transition-all duration-300  ${
                       navbarOpen ? " top-[-8px] -rotate-45" : " "
-                    }`}
+                    } ${isWhiteText && !sticky ? "bg-white" : "bg-black"}`}
                   />
                 </button>
                 <nav
@@ -174,7 +180,9 @@ const NavBar = () => {
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
-                            className={`flex py-2 text-base text-dark group-hover:opacity-70  lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+                            className={`flex py-2 text-base group-hover:opacity-70 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 ${
+                              isWhiteText && !sticky ? "text-white" : "text-dark"
+                            }`}
                           >
                             {menuItem.title}
                           </Link>
@@ -182,7 +190,9 @@ const NavBar = () => {
                           <>
                             <a
                               onClick={() => handleSubmenu(index)}
-                              className="flex cursor-pointer items-center justify-between py-2 text-base text-black group-hover:opacity-70  lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
+                              className={`flex cursor-pointer items-center justify-between py-2 text-base group-hover:opacity-70 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 ${
+                                isWhiteText && !sticky ? "text-white" : "text-black"
+                              }`}
                             >
                               {menuItem.title}
                               <span className="pl-3">

@@ -242,7 +242,7 @@ export default function BlogListing() {
                     </div>
 
                     {/* Read More */}
-                    <Link href={`/blog/${blog.slug}`}>
+                    <Link href={`/blogs/${blog.slug}`}>
                       <button className="text-green-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all">
                         Read More
                         <ArrowRight className="w-4 h-4" />

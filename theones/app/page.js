@@ -14,7 +14,7 @@ export default function HomePage() {
   const { isQuoteOpen } = useSelectedQuote();
 
   return (
-    <div className='flex flex-col gap-10 md:gap-20'>
+    <div className='flex flex-col '>
       <ChatBot />
      <Hero />
      <About />

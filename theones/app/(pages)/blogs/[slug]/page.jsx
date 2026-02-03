@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }) {
     <div className="min-h-screen bg-gray-50">
       <div className="container max-w-[1280px] mx-auto px-6 py-12 pt-32">
         {/* Blog Header */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-5xl mx-auto mb-12">
           <div className="mb-6">
             <span className="bg-green-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold">
               {blog.category}
@@ -79,7 +79,7 @@ export default async function BlogPostPage({ params }) {
         </div>
 
         {/* Featured Image */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-5xl mx-auto mb-12">
           <img
             src={blog.featuredImage}
             alt={blog.title}

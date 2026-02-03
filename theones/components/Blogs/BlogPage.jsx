@@ -11,11 +11,11 @@ const BlogComp = ({ data }) => {
   if (!data || !data.blocks) return <p>No content available</p>;
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       {/* Back to Blog Link */}
-      <Link href="/blog" className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 mb-8 font-semibold">
+      <Link href="/blogs" className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 mb-8 font-semibold">
         <ArrowLeft className="w-4 h-4" />
-        Back to Blog
+        Back to Blogs
       </Link>
 
       <div className="flex gap-8">
