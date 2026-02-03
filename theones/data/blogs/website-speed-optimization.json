@@ -1,0 +1,271 @@
+{
+  "id": "website-speed-optimization",
+  "title": "Why Your Website Speed Matters (And How to Fix It)",
+  "slug": "website-speed-optimization",
+  "excerpt": "A slow website costs you customers and rankings. Learn proven techniques to dramatically improve your site's performance and user experience.",
+  "author": "Netiqa Tech Team",
+  "date": "2026-01-25",
+  "readTime": "7 min read",
+  "category": "Web Development",
+  "tags": ["Performance", "Web Development", "Speed Optimization", "UX"],
+  "featuredImage": "https://assets.netiqa.co.ke/netiqa.jpg",
+  "content": {
+    "time": 1737849600000,
+    "blocks": [
+      {
+        "id": "intro",
+        "type": "paragraph",
+        "data": {
+          "text": "Every second counts when it comes to website performance. Studies show that a <b>1-second delay</b> in page load time can result in a <b>7% reduction in conversions</b>. Let's explore why speed matters and how to optimize your site."
+        }
+      },
+      {
+        "id": "header1",
+        "type": "header",
+        "data": {
+          "text": "The Real Cost of Slow Websites",
+          "level": 2
+        }
+      },
+      {
+        "id": "list1",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "<b>53% of mobile users</b> abandon sites that take over 3 seconds to load" },
+            { "content": "<b>Google penalizes</b> slow sites in search rankings" },
+            { "content": "<b>Bounce rates increase by 32%</b> as page load time goes from 1s to 3s" },
+            { "content": "<b>Lost revenue:</b> Amazon loses $1.6 billion annually for every second of delay" }
+          ]
+        }
+      },
+      {
+        "id": "header2",
+        "type": "header",
+        "data": {
+          "text": "1. Optimize Images",
+          "level": 2
+        }
+      },
+      {
+        "id": "para1",
+        "type": "paragraph",
+        "data": {
+          "text": "Images typically account for <b>50-60% of page weight</b>. Proper optimization can dramatically reduce load times without sacrificing visual quality."
+        }
+      },
+      {
+        "id": "list2",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "Use <b>WebP format</b> for 30% smaller file sizes vs JPEG" },
+            { "content": "Implement <b>lazy loading</b> for images below the fold" },
+            { "content": "Compress images with tools like TinyPNG or ImageOptim" },
+            { "content": "Use responsive images with srcset for different screen sizes" },
+            { "content": "Set explicit width and height to prevent layout shifts" }
+          ]
+        }
+      },
+      {
+        "id": "header3",
+        "type": "header",
+        "data": {
+          "text": "2. Minimize HTTP Requests",
+          "level": 2
+        }
+      },
+      {
+        "id": "para2",
+        "type": "paragraph",
+        "data": {
+          "text": "Each file your website loads requires a separate HTTP request. Reducing these requests is one of the fastest ways to improve performance."
+        }
+      },
+      {
+        "id": "list3",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "Combine CSS and JavaScript files" },
+            { "content": "Use CSS sprites for multiple icons" },
+            { "content": "Inline critical CSS" },
+            { "content": "Remove unnecessary plugins and third-party scripts" },
+            { "content": "Use icon fonts or SVGs instead of image icons" }
+          ]
+        }
+      },
+      {
+        "id": "header4",
+        "type": "header",
+        "data": {
+          "text": "3. Enable Browser Caching",
+          "level": 2
+        }
+      },
+      {
+        "id": "para3",
+        "type": "paragraph",
+        "data": {
+          "text": "Browser caching stores static files locally so returning visitors don't have to download them again. This can reduce load times by <b>50-80%</b> for repeat visitors."
+        }
+      },
+      {
+        "id": "code1",
+        "type": "raw",
+        "data": {
+          "html": "# Add to .htaccess for Apache\n<IfModule mod_expires.c>\n  ExpiresActive On\n  ExpiresByType image/jpg \"access plus 1 year\"\n  ExpiresByType image/jpeg \"access plus 1 year\"\n  ExpiresByType image/gif \"access plus 1 year\"\n  ExpiresByType image/png \"access plus 1 year\"\n  ExpiresByType text/css \"access plus 1 month\"\n  ExpiresByType application/javascript \"access plus 1 month\"\n</IfModule>"
+        }
+      },
+      {
+        "id": "header5",
+        "type": "header",
+        "data": {
+          "text": "4. Use a Content Delivery Network (CDN)",
+          "level": 2
+        }
+      },
+      {
+        "id": "para4",
+        "type": "paragraph",
+        "data": {
+          "text": "CDNs distribute your content across multiple servers worldwide, delivering files from the location nearest to your users. This reduces latency and improves load times globally."
+        }
+      },
+      {
+        "id": "list4",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "<b>Popular CDNs:</b> Cloudflare, AWS CloudFront, Fastly" },
+            { "content": "<b>Benefits:</b> Faster load times, DDoS protection, reduced bandwidth costs" },
+            { "content": "<b>Easy setup:</b> Most CDNs integrate in minutes with DNS changes" }
+          ]
+        }
+      },
+      {
+        "id": "header6",
+        "type": "header",
+        "data": {
+          "text": "5. Minify CSS, JavaScript, and HTML",
+          "level": 2
+        }
+      },
+      {
+        "id": "para5",
+        "type": "paragraph",
+        "data": {
+          "text": "Minification removes unnecessary characters (spaces, comments, line breaks) from your code without affecting functionality. This can reduce file sizes by <b>20-30%</b>."
+        }
+      },
+      {
+        "id": "header7",
+        "type": "header",
+        "data": {
+          "text": "6. Optimize Database Queries",
+          "level": 2
+        }
+      },
+      {
+        "id": "para6",
+        "type": "paragraph",
+        "data": {
+          "text": "For dynamic websites, slow database queries can be a major bottleneck. Optimize your database to serve content faster."
+        }
+      },
+      {
+        "id": "list5",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "Index frequently queried columns" },
+            { "content": "Remove unused tables and data" },
+            { "content": "Use database caching (Redis, Memcached)" },
+            { "content": "Optimize WordPress database with WP-Optimize" },
+            { "content": "Limit post revisions and clean up spam comments" }
+          ]
+        }
+      },
+      {
+        "id": "header8",
+        "type": "header",
+        "data": {
+          "text": "7. Implement Server-Side Rendering (SSR)",
+          "level": 2
+        }
+      },
+      {
+        "id": "para7",
+        "type": "paragraph",
+        "data": {
+          "text": "For React and Next.js applications, server-side rendering delivers pre-rendered HTML to users, resulting in faster initial page loads and better SEO."
+        }
+      },
+      {
+        "id": "quote1",
+        "type": "quote",
+        "data": {
+          "text": "Speed is a feature. A really important feature.",
+          "caption": "— Wesley Hales, Web Performance Expert",
+          "alignment": "left"
+        }
+      },
+      {
+        "id": "header9",
+        "type": "header",
+        "data": {
+          "text": "Measuring Your Website Speed",
+          "level": 2
+        }
+      },
+      {
+        "id": "para8",
+        "type": "paragraph",
+        "data": {
+          "text": "Use these free tools to measure and monitor your website's performance:"
+        }
+      },
+      {
+        "id": "list6",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "<b>Google PageSpeed Insights:</b> Comprehensive performance analysis with actionable recommendations" },
+            { "content": "<b>GTmetrix:</b> Detailed reports with waterfall charts" },
+            { "content": "<b>WebPageTest:</b> Advanced testing from multiple locations" },
+            { "content": "<b>Chrome DevTools:</b> Built-in browser performance profiling" }
+          ]
+        }
+      },
+      {
+        "id": "conclusion",
+        "type": "header",
+        "data": {
+          "text": "Take Action Today",
+          "level": 2
+        }
+      },
+      {
+        "id": "para9",
+        "type": "paragraph",
+        "data": {
+          "text": "Website speed optimization is not a one-time task—it requires ongoing monitoring and improvements. Start with the quick wins (image optimization, caching) and gradually implement more advanced techniques."
+        }
+      },
+      {
+        "id": "cta",
+        "type": "paragraph",
+        "data": {
+          "text": "Need help optimizing your website for peak performance? <a href=\"/get-a-quote\">Contact Netiqa</a> for a free speed audit and expert optimization services."
+        }
+      }
+    ],
+    "version": "2.30.7"
+  }
+}

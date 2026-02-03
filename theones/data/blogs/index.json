@@ -1,0 +1,38 @@
+[
+  {
+    "id": "seo-guide-2026",
+    "title": "Complete SEO Guide for 2026: Ranking Strategies That Actually Work",
+    "slug": "seo-guide-2026",
+    "excerpt": "Discover the latest SEO strategies and best practices to dominate search rankings in 2026. From AI-driven optimization to Core Web Vitals.",
+    "author": "Netiqa Team",
+    "date": "2026-02-01",
+    "readTime": "8 min read",
+    "category": "SEO",
+    "tags": ["SEO", "Digital Marketing", "Google", "Search Rankings"],
+    "featuredImage": "https://assets.netiqa.co.ke/Asset%209.png"
+  },
+  {
+    "id": "web-design-trends-2026",
+    "title": "Top 10 Web Design Trends Dominating 2026",
+    "slug": "web-design-trends-2026",
+    "excerpt": "Explore the cutting-edge web design trends shaping the digital landscape in 2026, from AI-powered interfaces to immersive 3D experiences.",
+    "author": "Netiqa Design Team",
+    "date": "2026-01-28",
+    "readTime": "6 min read",
+    "category": "Web Design",
+    "tags": ["Web Design", "UI/UX", "Trends", "Design"],
+    "featuredImage": "https://assets.netiqa.co.ke/ui%3Aux.jpg"
+  },
+  {
+    "id": "website-speed-optimization",
+    "title": "Why Your Website Speed Matters (And How to Fix It)",
+    "slug": "website-speed-optimization",
+    "excerpt": "A slow website costs you customers and rankings. Learn proven techniques to dramatically improve your site's performance and user experience.",
+    "author": "Netiqa Tech Team",
+    "date": "2026-01-25",
+    "readTime": "7 min read",
+    "category": "Web Development",
+    "tags": ["Performance", "Web Development", "Speed Optimization", "UX"],
+    "featuredImage": "https://assets.netiqa.co.ke/netiqa.jpg"
+  }
+]

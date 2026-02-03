@@ -1,0 +1,245 @@
+{
+  "id": "web-design-trends-2026",
+  "title": "Top 10 Web Design Trends Dominating 2026",
+  "slug": "web-design-trends-2026",
+  "excerpt": "Explore the cutting-edge web design trends shaping the digital landscape in 2026, from AI-powered interfaces to immersive 3D experiences.",
+  "author": "Netiqa Design Team",
+  "date": "2026-01-28",
+  "readTime": "6 min read",
+  "category": "Web Design",
+  "tags": ["Web Design", "UI/UX", "Trends", "Design"],
+  "featuredImage": "https://assets.netiqa.co.ke/ui%3Aux.jpg",
+  "content": {
+    "time": 1738108800000,
+    "blocks": [
+      {
+        "id": "intro",
+        "type": "paragraph",
+        "data": {
+          "text": "The web design landscape in 2026 is characterized by bold experimentation, AI integration, and a renewed focus on user experience. Let's explore the trends that are reshaping how we design and interact with websites."
+        }
+      },
+      {
+        "id": "trend1",
+        "type": "header",
+        "data": {
+          "text": "1. AI-Powered Personalization",
+          "level": 2
+        }
+      },
+      {
+        "id": "para1",
+        "type": "paragraph",
+        "data": {
+          "text": "Websites now adapt in real-time to user behavior, preferences, and browsing history. AI algorithms customize content, layout, and even color schemes to match individual user preferences, creating truly unique experiences for each visitor."
+        }
+      },
+      {
+        "id": "trend2",
+        "type": "header",
+        "data": {
+          "text": "2. Immersive 3D Elements",
+          "level": 2
+        }
+      },
+      {
+        "id": "para2",
+        "type": "paragraph",
+        "data": {
+          "text": "Three-dimensional graphics and animations have moved beyond gaming. Modern websites incorporate <b>WebGL and Three.js</b> to create interactive 3D product showcases, virtual showrooms, and engaging storytelling experiences that captivate visitors."
+        }
+      },
+      {
+        "id": "list1",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "Interactive product visualizations with 360° rotation" },
+            { "content": "Parallax scrolling with depth and dimension" },
+            { "content": "Micro-interactions that respond to user gestures" },
+            { "content": "Smooth transitions between 2D and 3D elements" }
+          ]
+        }
+      },
+      {
+        "id": "trend3",
+        "type": "header",
+        "data": {
+          "text": "3. Dark Mode as Standard",
+          "level": 2
+        }
+      },
+      {
+        "id": "para3",
+        "type": "paragraph",
+        "data": {
+          "text": "Dark mode is no longer optional—it's expected. <b>82% of users</b> prefer dark mode for reduced eye strain and better battery life. Modern websites implement intelligent theme switching that respects system preferences."
+        }
+      },
+      {
+        "id": "trend4",
+        "type": "header",
+        "data": {
+          "text": "4. Minimalist Maximalism",
+          "level": 2
+        }
+      },
+      {
+        "id": "para4",
+        "type": "paragraph",
+        "data": {
+          "text": "This paradoxical trend combines clean, minimal layouts with bold typography, vibrant colors, and striking visual elements. The result? Designs that are both simple and attention-grabbing."
+        }
+      },
+      {
+        "id": "list2",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "<b>Large, bold typography:</b> Headlines that make statements" },
+            { "content": "<b>Strategic use of white space:</b> Let elements breathe" },
+            { "content": "<b>Vibrant accent colors:</b> Pops of color against neutral backgrounds" },
+            { "content": "<b>Simplified navigation:</b> Fewer menu items, clearer paths" }
+          ]
+        }
+      },
+      {
+        "id": "trend5",
+        "type": "header",
+        "data": {
+          "text": "5. Micro-Animations & Motion Design",
+          "level": 2
+        }
+      },
+      {
+        "id": "para5",
+        "type": "paragraph",
+        "data": {
+          "text": "Subtle animations guide users, provide feedback, and add personality to interfaces. From hover effects to loading states, motion design makes websites feel alive and responsive."
+        }
+      },
+      {
+        "id": "trend6",
+        "type": "header",
+        "data": {
+          "text": "6. Glassmorphism & Neumorphism",
+          "level": 2
+        }
+      },
+      {
+        "id": "para6",
+        "type": "paragraph",
+        "data": {
+          "text": "These design styles create depth through frosted glass effects, soft shadows, and subtle gradients. The result is modern, elegant interfaces that feel tactile and three-dimensional."
+        }
+      },
+      {
+        "id": "trend7",
+        "type": "header",
+        "data": {
+          "text": "7. Voice User Interface (VUI)",
+          "level": 2
+        }
+      },
+      {
+        "id": "para7",
+        "type": "paragraph",
+        "data": {
+          "text": "With voice search growing exponentially, websites now integrate voice commands for navigation, search, and content consumption. This accessibility feature benefits all users, particularly those with disabilities."
+        }
+      },
+      {
+        "id": "trend8",
+        "type": "header",
+        "data": {
+          "text": "8. Sustainable Web Design",
+          "level": 2
+        }
+      },
+      {
+        "id": "para8",
+        "type": "paragraph",
+        "data": {
+          "text": "Eco-conscious design minimizes carbon footprint through optimized images, efficient code, and green hosting. Brands increasingly showcase their environmental commitment through sustainable design choices."
+        }
+      },
+      {
+        "id": "list3",
+        "type": "list",
+        "data": {
+          "style": "unordered",
+          "items": [
+            { "content": "Compressed images and WebP formats" },
+            { "content": "Minimal JavaScript and CSS" },
+            { "content": "Server-side rendering for faster loads" },
+            { "content": "Energy-efficient animations" }
+          ]
+        }
+      },
+      {
+        "id": "trend9",
+        "type": "header",
+        "data": {
+          "text": "9. Asymmetric Layouts",
+          "level": 2
+        }
+      },
+      {
+        "id": "para9",
+        "type": "paragraph",
+        "data": {
+          "text": "Breaking free from traditional grid systems, asymmetric designs create visual interest and guide user attention through unconventional layouts. This trend works especially well for creative agencies and portfolios."
+        }
+      },
+      {
+        "id": "trend10",
+        "type": "header",
+        "data": {
+          "text": "10. Integrated Chatbots & AI Assistants",
+          "level": 2
+        }
+      },
+      {
+        "id": "para10",
+        "type": "paragraph",
+        "data": {
+          "text": "AI-powered chatbots have evolved beyond basic FAQ responses. Modern assistants understand context, provide personalized recommendations, and seamlessly integrate into the overall design without disrupting user experience."
+        }
+      },
+      {
+        "id": "quote1",
+        "type": "quote",
+        "data": {
+          "text": "Design is not just what it looks like and feels like. Design is how it works.",
+          "caption": "— Steve Jobs",
+          "alignment": "left"
+        }
+      },
+      {
+        "id": "conclusion",
+        "type": "header",
+        "data": {
+          "text": "Implementing Trends Strategically",
+          "level": 2
+        }
+      },
+      {
+        "id": "para11",
+        "type": "paragraph",
+        "data": {
+          "text": "While these trends are exciting, remember that <b>good design serves your audience first</b>. Don't implement trends just because they're popular—choose elements that enhance user experience and align with your brand identity."
+        }
+      },
+      {
+        "id": "cta",
+        "type": "paragraph",
+        "data": {
+          "text": "Ready to redesign your website with cutting-edge trends? <a href=\"/get-a-quote\">Contact our design team</a> for a free consultation and transform your online presence."
+        }
+      }
+    ],
+    "version": "2.30.7"
+  }
+}
