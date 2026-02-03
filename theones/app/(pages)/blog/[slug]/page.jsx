@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { notFound } from 'next/navigation';
 import blogsIndex from '@/data/blogs/index.json';
 
-const BlogComp = dynamic(() => import("@/components/Blogs/BlogPage"), { ssr: false });
+const BlogComp = dynamic(() => import("@/components/Blogs/BlogPage"));
 
 export async function generateStaticParams() {
   return blogsIndex.map((blog) => ({
