@@ -142,7 +142,7 @@ export default function Footer() {
       
       <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <span className="text-sm text-gray-600 text-center md:text-left">
-            © {currentYear} <Link href="/" className="hover:text-green-600 font-semibold">Netiqa™</Link>. All Rights Reserved. | Built with 💚 in Nairobi
+            © {currentYear} <Link href="/" className="hover:text-green-600 font-semibold">Netiqa™</Link>. All Rights Reserved.
           </span>
           
           <div className="flex gap-4">

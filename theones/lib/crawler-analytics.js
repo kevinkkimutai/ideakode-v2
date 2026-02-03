@@ -5,12 +5,15 @@ class CrawlerAnalytics {
   constructor() {
     this.visits = [];
     this.maxVisits = 10000; // Limit memory usage
-    this.isNode = typeof process !== 'undefined' && process.versions && process.versions.node;
+    // Check if we're in Edge Runtime (middleware) or Node.js (API routes)
+    this.isEdgeRuntime = typeof EdgeRuntime !== 'undefined' || typeof process === 'undefined';
+    this.isNode = !this.isEdgeRuntime && typeof process !== 'undefined' && process.versions && process.versions.node;
   }
 
   // Only available in Node.js runtime (API routes)
   async loadDataFromFile() {
-    if (!this.isNode) return;
+    // Skip entirely in Edge Runtime
+    if (this.isEdgeRuntime || !this.isNode) return;
     
     // Skip file operations in production/serverless environments
     if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
@@ -43,7 +46,8 @@ class CrawlerAnalytics {
 
   // Only available in Node.js runtime (API routes)
   async saveDataToFile() {
-    if (!this.isNode) return;
+    // Skip entirely in Edge Runtime
+    if (this.isEdgeRuntime || !this.isNode) return;
     
     // Skip file operations in production/serverless environments
     if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
@@ -70,7 +74,6 @@ class CrawlerAnalytics {
       
       fs.writeFileSync(dataFile, JSON.stringify(data, null, 2), 'utf8');
     } catch (error) {
-      console.error('Error saving analytics data:', error);
       // Don't fail - just continue with in-memory storage
     }
   }
@@ -94,8 +97,10 @@ class CrawlerAnalytics {
     }
 
     // Save to file if in Node.js environment (async, don't wait)
-    if (this.isNode) {
-      this.saveDataToFile().catch(console.error);
+    if (this.isNode && !this.isEdgeRuntime) {
+      this.saveDataToFile().catch(() => {
+        // Silently fail - edge runtime doesn't support this
+      });
     }
 
     return visit;
@@ -195,7 +200,7 @@ class CrawlerAnalytics {
     this.visits = [];
     
     // Also clear the JSON file if in Node.js environment and not in production
-    if (this.isNode && !process.env.VERCEL && process.env.NODE_ENV !== 'production') {
+    if (!this.isEdgeRuntime && this.isNode && !process.env.VERCEL && process.env.NODE_ENV !== 'production') {
       try {
         const fs = await import('fs');
         const path = await import('path');
@@ -205,10 +210,9 @@ class CrawlerAnalytics {
         
         if (fs.existsSync(dataFile)) {
           fs.unlinkSync(dataFile);
-          console.log('Analytics JSON file cleared');
         }
       } catch (error) {
-        console.error('Error clearing analytics file:', error);
+        // Silently fail in Edge Runtime
       }
     }
   }

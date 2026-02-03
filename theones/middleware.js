@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import crawlerAnalytics from './lib/crawler-analytics';
+import crawlerAnalytics from './lib/crawler-analytics-edge';
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
