@@ -52,7 +52,7 @@ export default function Services() {
   ]
       
   return (
-    <div className='max-w-[1280px] w-full mx-auto max-lg:px-4 flex flex-col lg:items-center justify-center'>
+    <div className='max-w-[1280px] py-10 md:py-20 w-full mx-auto max-lg:px-4 flex flex-col lg:items-center justify-center'>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

@@ -1,5 +1,8 @@
-import Link from 'next/link'
-import React from 'react'
+'use client';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Rocket, ArrowRight } from 'lucide-react';
+import React from 'react';
 
 export default function CallToAction() {
   return (

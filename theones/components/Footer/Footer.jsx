@@ -11,7 +11,7 @@ export default function Footer() {
     <path fill="#10b981" fillOpacity="0.5" d="M0,64L48,96C96,128,192,192,288,192C384,192,480,128,576,112C672,96,768,128,864,138.7C960,149,1056,139,1152,154.7C1248,171,1344,213,1392,234.7L1440,256L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
   </svg>
 
-<footer className="w-full mx-auto bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+<footer className="w-full mx-auto bg-green-100/50 shadow-black backdrop-blur-sm">
     <div className="mx-auto w-full max-w-[1280px] px-6 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Company Info */}
