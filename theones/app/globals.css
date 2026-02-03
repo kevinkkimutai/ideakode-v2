@@ -12,7 +12,13 @@
 
 
 body {
-  background: var(--background);
+  background: linear-gradient(
+  to right,
+  #f0fdf4,
+  #ecfdf5,
+  #f0fdfa
+);
+
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }

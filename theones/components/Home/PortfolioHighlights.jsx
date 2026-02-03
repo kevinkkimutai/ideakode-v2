@@ -79,9 +79,13 @@ export default function PortfolioHighlights() {
 
     return (
         <div className='industries max-w-[1280px] w-full mx-auto max-lg:px-4 flex flex-col lg:items-center justify-center'>
-            <h2 className="text-3xl text-green-900 font-bold mb-2">Our Work Speaks for Itself</h2>
-            <hr className="w-10 h-[3px] bg-green-800" />
-            <p className="text-gray-800 mt-5 mb-20 lg:w-[65%] flex lg:text-center lg:text-lg">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 rounded-full mb-6">
+                <span className="text-sm font-semibold text-green-700">Our Portfolio</span>
+            </div>
+            <h2 className="text-4xl font-bold mb-4 text-center">
+                Our Work <span className="text-green-600">Speaks for Itself</span>
+            </h2>
+            <p className="text-gray-600 mt-5 mb-20 lg:w-[65%] flex lg:text-center lg:text-lg">
                 Explore our portfolio of cutting-edge web, software, and design projects.
                 From sleek websites to powerful applications, our work showcases innovation,
                 creativity, and functionality. See how we bring ideas to life!

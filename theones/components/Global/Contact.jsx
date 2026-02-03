@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { useCreateContactMutation } from '@/redux/actions/contactActions';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle2, Mail, Phone, MapPin, Clock, Send, Linkedin, Instagram, Twitter, Facebook } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ContactUs() {
   const [sendContact] = useCreateContactMutation();
@@ -59,164 +60,366 @@ export default function ContactUs() {
     }
   };
 
+  const contactInfo = [
+    {
+      icon: Mail,
+      title: 'Email Us',
+      value: 'kelvin@netiqa.co.ke',
+      href: 'mailto:kelvin@netiqa.co.ke',
+      description: 'Send us an email anytime'
+    },
+    {
+      icon: Phone,
+      title: 'Call Us',
+      value: '+254 722 214 567',
+      href: 'tel:+254722214567',
+      description: 'Mon-Fri from 8am to 6pm'
+    },
+    {
+      icon: MapPin,
+      title: 'Visit Us',
+      value: 'Nairobi, Kenya',
+      href: null,
+      description: 'Come say hello at our office'
+    },
+    {
+      icon: Clock,
+      title: 'Working Hours',
+      value: 'Mon - Fri: 8AM - 6PM',
+      href: null,
+      description: 'Weekend support available'
+    },
+  ];
+
+  const socialLinks = [
+    { icon: Linkedin, href: '#', color: 'hover:bg-blue-600' },
+    { icon: Instagram, href: '#', color: 'hover:bg-pink-600' },
+    { icon: Twitter, href: '#', color: 'hover:bg-blue-400' },
+    { icon: Facebook, href: '#', color: 'hover:bg-blue-700' },
+  ];
+
+  const quickFAQs = [
+    {
+      question: 'How quickly can you start my project?',
+      answer: 'Most projects can start within 1-2 weeks after initial consultation and agreement.'
+    },
+    {
+      question: 'Do you offer free consultations?',
+      answer: 'Yes! We offer free initial consultations to discuss your project needs and provide recommendations.'
+    },
+    {
+      question: 'What are your payment terms?',
+      answer: 'We typically work with a 50% upfront deposit and 50% upon completion, with flexible payment plans available.'
+    },
+    {
+      question: 'Do you provide ongoing support?',
+      answer: 'Yes, we offer maintenance packages and 24/7 support to keep your digital assets running smoothly.'
+    },
+  ];
+
   return (
-    <div className="w-full max-w-[1280px] mx-auto px-6 py-20 lg:py-12 lg:pt-40">
-      <div className="font-[sans-serif] max-w-6xl mx-auto relative rounded-lg py-6 lg:py-32">
-        <div className="grid lg:grid-cols-3 items-center">
-          {/* Contact Info Cards (unchanged) */}
-          <div className="grid grid-cols-2 gap-4 z-20 relative lg:left-16 max-lg:px-4">
-          <div className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(34,197,94,0.3)]">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-blue-600" viewBox="0 0 512 512">
-              <path d="M341.476 338.285c54.483-85.493 47.634-74.827 49.204-77.056C410.516 233.251 421 200.322 421 166 421 74.98 347.139 0 256 0 165.158 0 91 74.832 91 166c0 34.3 10.704 68.091 31.19 96.446l48.332 75.84C118.847 346.227 31 369.892 31 422c0 18.995 12.398 46.065 71.462 67.159C143.704 503.888 198.231 512 256 512c108.025 0 225-30.472 225-90 0-52.117-87.744-75.757-139.524-83.715zm-194.227-92.34a15.57 15.57 0 0 0-.517-.758C129.685 221.735 121 193.941 121 166c0-75.018 60.406-136 135-136 74.439 0 135 61.009 135 136 0 27.986-8.521 54.837-24.646 77.671-1.445 1.906 6.094-9.806-110.354 172.918L147.249 245.945zM256 482c-117.994 0-195-34.683-195-60 0-17.016 39.568-44.995 127.248-55.901l55.102 86.463a14.998 14.998 0 0 0 25.298 0l55.101-86.463C411.431 377.005 451 404.984 451 422c0 25.102-76.313 60-195 60z" data-original="#000000"></path>
-              <path d="M256 91c-41.355 0-75 33.645-75 75s33.645 75 75 75 75-33.645 75-75-33.645-75-75-75zm0 120c-24.813 0-45-20.187-45-45s20.187-45 45-45 45 20.187 45 45-20.187 45-45 45z" data-original="#000000"></path>
-            </svg>
-            <h4 className="text-gray-800 text-sm font-bold mt-4">Visit office</h4>
-            <p className="text-xs text-gray-600 mt-1"> 123 Main Street, City, Country</p>
-          </div>
-          <div className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(34,197,94,0.3)]">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-blue-600" viewBox="0 0 473.806 473.806">
-              <path d="M374.456 293.506c-9.7-10.1-21.4-15.5-33.8-15.5-12.3 0-24.1 5.3-34.2 15.4l-31.6 31.5c-2.6-1.4-5.2-2.7-7.7-4-3.6-1.8-7-3.5-9.9-5.3-29.6-18.8-56.5-43.3-82.3-75-12.5-15.8-20.9-29.1-27-42.6 8.2-7.5 15.8-15.3 23.2-22.8 2.8-2.8 5.6-5.7 8.4-8.5 21-21 21-48.2 0-69.2l-27.3-27.3c-3.1-3.1-6.3-6.3-9.3-9.5-6-6.2-12.3-12.6-18.8-18.6-9.7-9.6-21.3-14.7-33.5-14.7s-24 5.1-34 14.7l-.2.2-34 34.3c-12.8 12.8-20.1 28.4-21.7 46.5-2.4 29.2 6.2 56.4 12.8 74.2 16.2 43.7 40.4 84.2 76.5 127.6 43.8 52.3 96.5 93.6 156.7 122.7 23 10.9 53.7 23.8 88 26 2.1.1 4.3.2 6.3.2 23.1 0 42.5-8.3 57.7-24.8.1-.2.3-.3.4-.5 5.2-6.3 11.2-12 17.5-18.1 4.3-4.1 8.7-8.4 13-12.9 9.9-10.3 15.1-22.3 15.1-34.6 0-12.4-5.3-24.3-15.4-34.3l-54.9-55.1zm35.8 105.3c-.1 0-.1.1 0 0-3.9 4.2-7.9 8-12.2 12.2-6.5 6.2-13.1 12.7-19.3 20-10.1 10.8-22 15.9-37.6 15.9-1.5 0-3.1 0-4.6-.1-29.7-1.9-57.3-13.5-78-23.4-56.6-27.4-106.3-66.3-147.6-115.6-34.1-41.1-56.9-79.1-72-119.9-9.3-24.9-12.7-44.3-11.2-62.6 1-11.7 5.5-21.4 13.8-29.7l34.1-34.1c4.9-4.6 10.1-7.1 15.2-7.1 6.3 0 11.4 3.8 14.6 7l.3.3c6.1 5.7 11.9 11.6 18 17.9 3.1 3.2 6.3 6.4 9.5 9.7l27.3 27.3c10.6 10.6 10.6 20.4 0 31-2.9 2.9-5.7 5.8-8.6 8.6-8.4 8.6-16.4 16.6-25.1 24.4-.2.2-.4.3-.5.5-8.6 8.6-7 17-5.2 22.7l.3.9c7.1 17.2 17.1 33.4 32.3 52.7l.1.1c27.6 34 56.7 60.5 88.8 80.8 4.1 2.6 8.3 4.7 12.3 6.7 3.6 1.8 7 3.5 9.9 5.3.4.2.8.5 1.2.7 3.4 1.7 6.6 2.5 9.9 2.5 8.3 0 13.5-5.2 15.2-6.9l34.2-34.2c3.4-3.4 8.8-7.5 15.1-7.5 6.2 0 11.3 3.9 14.4 7.3l.2.2 55.1 55.1c10.3 10.2 10.3 20.7.1 31.3zm-154.2-286.1c26.2 4.4 50 16.8 69 35.8s31.3 42.8 35.8 69c1.1 6.6 6.8 11.2 13.3 11.2.8 0 1.5-.1 2.3-.2 7.4-1.2 12.3-8.2 11.1-15.6-5.4-31.7-20.4-60.6-43.3-83.5s-51.8-37.9-83.5-43.3c-7.4-1.2-14.3 3.7-15.6 11s3.5 14.4 10.9 15.6zm217.2 96.3c-8.9-52.2-33.5-99.7-71.3-137.5s-85.3-62.4-137.5-71.3c-7.3-1.3-14.2 3.7-15.5 11-1.2 7.4 3.7 14.3 11.1 15.6 46.6 7.9 89.1 30 122.9 63.7 33.8 33.8 55.8 76.3 63.7 122.9 1.1 6.6 6.8 11.2 13.3 11.2.8 0 1.5-.1 2.3-.2 7.3-1.1 12.3-8.1 11-15.4z" data-original="#000000"></path>
-            </svg>
-            <h4 className="text-gray-800 text-sm font-bold mt-4">Call us</h4>
-            <a href="tel:+254746645142" className="text-xs text-gray-600 mt-1">+254-722-214-567</a>
-          </div>
-          <div className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(34,197,94,0.3)]">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-blue-600" viewBox="0 0 32 32">
-              <path d="M8 30a1.001 1.001 0 0 1-1-1v-5H4c-1.654 0-3-1.346-3-3V5c0-1.654 1.346-3 3-3h24c1.654 0 3 1.346 3 3v16c0 1.654-1.346 3-3 3H15.851l-7.226 5.781A.998.998 0 0 1 8 30zM4 4c-.552 0-1 .449-1 1v16c0 .551.448 1 1 1h4a1 1 0 0 1 1 1v3.92l5.875-4.701A1 1 0 0 1 15.5 22H28c.552 0 1-.449 1-1V5c0-.551-.448-1-1-1z" data-original="#000000"></path>
-              <path d="M24 12H8a1 1 0 1 1 0-2h16a1 1 0 1 1 0 2zm-8 4H8a1 1 0 1 1 0-2h8a1 1 0 1 1 0 2z" data-original="#000000"></path>
-            </svg>
-            <h4 className="text-gray-800 text-sm font-bold mt-4">Chat to us</h4>
-            <a href="mailto:info@flairtips.com" className="text-xs text-gray-600 mt-1">info@netiqa.com</a>
-          </div>
-          <div className="grid grid-cols-2  items-center justify-center rounded-lg w-full h-44 p-3 md:p-8 py-8 text-center bg-white shadow-[0_2px_10px_-3px_rgba(34,197,94,0.3)]">
-         <div className='flex items-center justify-center'>
-         <a href="tel:+254746645142" className="text-xs h-12 w-12 bg-blue-200 flex items-center justify-center rounded-full text-gray-600 mt-1">
-         <svg className="w-6 h-6 text-blue-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-  <path fillRule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clipRule="evenodd"/>
-  <path d="M7.2 8.809H4V19.5h3.2V8.809Z"/>
-</svg>
-
-         </a>
-         </div>
-
-         <div className='flex items-center justify-center'>
-         <a href="tel:+254746645142" className="text-xs h-12 w-12 bg-red-100 flex items-center justify-center rounded-full text-gray-600 mt-1">
-         <svg className="w-6 h-6 text-red-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-  <path fill="currentColor" fillRule="evenodd" d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" clipRule="evenodd"/>
-</svg>
-
-         </a>
-         </div>
-         
-
-         <div className='flex items-center justify-center'>
-         <a href="tel:+254746645142" className="text-xs h-12 w-12 bg-black/15 flex items-center justify-center rounded-full text-gray-600 mt-1">
-         <svg className="w-5 h-5 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M13.795 10.533 20.68 2h-3.073l-5.255 6.517L7.69 2H1l7.806 10.91L1.47 22h3.074l5.705-7.07L15.31 22H22l-8.205-11.467Zm-2.38 2.95L9.97 11.464 4.36 3.627h2.31l4.528 6.317 1.443 2.02 6.018 8.409h-2.31l-4.934-6.89Z"/>
-</svg>
-
-         </a>
-         </div>
-
-         <div className='flex items-center justify-center'>
-         <a href="tel:+254746645142" className="text-xs h-12 w-12 bg-blue-200 flex items-center justify-center rounded-full text-gray-600 mt-1">
-         <svg className="w-6 h-6 text-blue-800 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-  <path fillRule="evenodd" d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z" clipRule="evenodd"/>
-</svg>
-
-         </a>
-         </div>
- 
-        </div>
-        </div>
-
-          {/* Contact Form */}
-          <div className="lg:col-span-2 bg-gradient-to-r from-green-500 via-green-600 to-green-800 rounded-lg sm:p-10 p-4 z-10 max-lg:-order-1 max-lg:mb-8">
-            <h2 className="text-2xl sm:text-3xl text-white text-center font-bold mb-6">Contact us</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="max-w-md mx-auto space-y-2">
-                <input 
-                  type="text" 
-                  name="name"
-                  placeholder="Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none"
-                />
-                <input 
-                  type="email" 
-                  name="email"
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none"
-                />
-                <input 
-                  type="tel" 
-                  name="phone"
-                  placeholder="Phone No."
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full bg-white rounded-md py-3 px-4 text-sm outline-none"
-                />
-                <textarea 
-                  name="description"
-                  placeholder="Message" 
-                  rows="6"
-                  value={formData.description}
-                  onChange={handleChange}
-                  className="w-full bg-white rounded-md px-4 text-sm pt-3 outline-none"
-                ></textarea>
-                <button 
-                  type="submit"
-                  disabled={loading}
-                  className="text-white w-full relative bg-black hover:bg-[#111] rounded-md text-sm px-6 py-3 !mt-4 flex items-center justify-center"
-                >
-                  {loading ? (
-                    <span className="flex items-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Sending...
-                    </span>
-                  ) : (
-                    <>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="currentColor" className="mr-2 inline" viewBox="0 0 548.244 548.244">
-                        <path fillRule="evenodd" d="M392.19 156.054 211.268 281.667 22.032 218.58C8.823 214.168-.076 201.775 0 187.852c.077-13.923 9.078-26.24 22.338-30.498L506.15 1.549c11.5-3.697 24.123-.663 32.666 7.88 8.542 8.543 11.577 21.165 7.879 32.666L390.89 525.906c-4.258 13.26-16.575 22.261-30.498 22.338-13.923.076-26.316-8.823-30.728-22.032l-63.393-190.153z" clipRule="evenodd" />
-                      </svg>
-                      Send Message
-                    </>
-                  )}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-       {/* Success Modal */}
-       {showSuccessModal && (
-        <div className="fixed inset-0 bg-black/50 bg-opacity-50 flex items-center justify-center z-[9999] p-4">
+    <div className="pt-20 lg:pt-32 w-full overflow-clip">
+      {/* Hero Section */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 opacity-50 -z-10"></div>
+        
+        <div className="max-w-[1280px] mx-auto px-6">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="bg-white rounded-xl p-8 max-w-md w-full mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center max-w-3xl mx-auto"
           >
-            <div className="flex justify-center mb-4">
-              <CheckCircle className="h-16 w-16 text-green-500" />
+            <div className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold mb-4">
+              Netiqa™ - Your Digital Growth Partner
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
-            <p className="text-gray-600 mb-6">
-              Thank you for contacting us. We'll get back to you soon.
+            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Let's Start a <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Conversation</span>
+            </h1>
+            <p className="text-lg text-gray-600 mb-2">
+              Have a question or ready to start your project? We'd love to hear from you.
             </p>
-            <button
-              onClick={() => setShowSuccessModal(false)}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
+            <p className="text-sm text-gray-500">
+              Based in Nairobi, Kenya | Serving clients globally | Response time: Within 24 hours
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Info Cards */}
+      <section className="py-12">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {contactInfo.map((info, index) => {
+              const IconComponent = info.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white rounded-2xl p-6 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center mb-4">
+                    <IconComponent className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{info.title}</h3>
+                  {info.href ? (
+                    <a href={info.href} className="text-green-600 hover:text-green-700 font-semibold block mb-1">
+                      {info.value}
+                    </a>
+                  ) : (
+                    <p className="text-gray-900 font-semibold mb-1">{info.value}</p>
+                  )}
+                  <p className="text-sm text-gray-500">{info.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick FAQs Section */}
+      <section className="py-12 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Quick Answers</h2>
+            <p className="text-gray-600">Common questions we receive from our clients</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {quickFAQs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-xl p-6 shadow-sm border border-green-100"
+              >
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">{faq.question}</h3>
+                <p className="text-gray-600">{faq.answer}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-8"
+          >
+            <Link
+              href="/faqs"
+              className="inline-block text-green-600 hover:text-green-700 font-semibold"
             >
-              Close
-            </button>
+              View All FAQs →
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Contact Form Section */}
+      <section className="py-12 pb-20">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Column - Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="lg:sticky lg:top-24"
+            >
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Send Us a Message</h2>
+                <p className="text-gray-600 leading-relaxed mb-3">
+                  Fill out the form and our team will get back to you within 24 hours. We're excited to learn about your project and how we can help bring your vision to life.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Web Development</span>
+                  <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Branding & Design</span>
+                  <span className="px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-semibold">SEO Services</span>
+                  <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Support & Maintenance</span>
+                </div>
+              </div>
+
+              {/* Why Choose Us */}
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 mb-8">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Why Work With Netiqa?</h3>
+                <ul className="space-y-3">
+                  {[
+                    '24-hour response guarantee',
+                    'Free project consultation and detailed quote',
+                    '5+ years of industry experience',
+                    'Transparent pricing with no hidden fees',
+                    'Ongoing support and maintenance included',
+                    '100+ successful projects delivered',
+                    'Based in Nairobi, serving global clients'
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Social Links */}
+              <div>
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Follow Us</h3>
+                <div className="flex gap-3">
+                  {socialLinks.map((social, index) => {
+                    const IconComponent = social.icon;
+                    return (
+                      <a
+                        key={index}
+                        href={social.href}
+                        className={`w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center transition-all duration-300 ${social.color} hover:text-white`}
+                      >
+                        <IconComponent className="w-5 h-5" />
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column - Form */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
+              <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 shadow-lg border border-green-100">
+                <div className="space-y-6">
+                  {/* Name */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      placeholder="John Doe"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition"
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      placeholder="+254 712 345 678"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition"
+                    />
+                  </div>
+
+                  {/* Message */}
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Your Message *
+                    </label>
+                    <textarea
+                      name="description"
+                      value={formData.description}
+                      onChange={handleChange}
+                      required
+                      rows="6"
+                      placeholder="Tell us about your project or inquiry..."
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent transition resize-none"
+                    ></textarea>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-full font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="w-5 h-5" />
+                      </>
+                    )}
+                  </button>
+
+                  <p className="text-sm text-gray-500 text-center">
+                    We respect your privacy and will never share your information.
+                  </p>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-4">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-white rounded-3xl p-12 max-w-md w-full mx-auto text-center shadow-2xl"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+              className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center"
+            >
+              <CheckCircle2 className="w-12 h-12 text-white" />
+            </motion.div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">Message Sent!</h3>
+            <p className="text-gray-600 mb-8">
+              Thank you for reaching out. We'll get back to you within 24 hours.
+            </p>
+            <div className="space-y-3">
+              <button
+                onClick={() => setShowSuccessModal(false)}
+                className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:shadow-lg text-white font-semibold py-3 px-6 rounded-full transition-all duration-300"
+              >
+                Close
+              </button>
+              <Link
+                href="/"
+                className="block text-green-600 hover:text-green-700 font-medium"
+              >
+                Back to Home
+              </Link>
+            </div>
           </motion.div>
         </div>
       )}

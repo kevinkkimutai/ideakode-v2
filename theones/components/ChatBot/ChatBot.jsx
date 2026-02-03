@@ -8,6 +8,9 @@ export default function ChatBot() {
   const [isOnChat, setIsOnChat] = useState(false);
   const [enquiry, setEnquiry] = useState("");
   const boxContainerRef = useRef(null);
+  
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "254722214567";
+  const supportPhone = process.env.NEXT_PUBLIC_SUPPORT_PHONE || "254746645142";
 
   const handleToggleChat = () => {
     setIsOnChat(!isOnChat);
@@ -17,11 +20,22 @@ export default function ChatBot() {
   };
 
   const submitQuery = () => {
+    if (!enquiry.trim()) return;
+    const encodedMessage = encodeURIComponent(enquiry);
     const anchor = document.createElement("a");
-    anchor.href = `https://wa.me/254722214567?text=${enquiry}`;
+    anchor.href = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     anchor.target = "_blank";
+    anchor.rel = "noopener noreferrer";
     anchor.click();
+    setEnquiry("");
     handleToggleChat();
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      submitQuery();
+    }
   };
 
   return (
@@ -64,7 +78,7 @@ export default function ChatBot() {
             </h2>
             <p className="font-light text-base">
             We are a leading software company providing hyper-customized web solutions to businesses countrywide. 
-            Chat with us on WhatsApp or call directly at +254746645142
+            Chat with us on WhatsApp or call directly at +{supportPhone}
             </p>
           </div>
           <div className="p-5 bg-gray-200 flex flex-col space-y-4">
@@ -78,20 +92,23 @@ export default function ChatBot() {
                 </div>
               </div>
             </div>
-            <form className="flex flex-col space-y-2">
+            <form className="flex flex-col space-y-2" onSubmit={(e) => e.preventDefault()}>
               <input
                 id="userInput"
-                className="p-2 w-full bg-white border border-gray-300 rounded-md"
+                className="p-2 w-full bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Send a message to our sales consultant!"
                 value={enquiry}
                 onChange={(e) => setEnquiry(e.target.value)}
+                onKeyPress={handleKeyPress}
+                maxLength={500}
               />
               <button
-                className="bg-[#0c0c0c] text-white p-2 rounded-md"
+                className="bg-[#0c0c0c] hover:bg-green-700 text-white p-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={(e) => {
                   e.preventDefault();
                   submitQuery();
                 }}
+                disabled={!enquiry.trim()}
               >
                 Send
               </button>

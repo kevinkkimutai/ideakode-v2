@@ -11,8 +11,6 @@ export async function GET(request) {
   
   // Store in analytics system
   crawlerAnalytics.logVisit('robots.txt', userAgent, clientIP, timestamp);
-  
-  console.log(`[${timestamp}] robots.txt accessed - User-Agent: ${userAgent}, IP: ${clientIP}`);
 
   const robotsTxt = `User-agent: *
 Allow: /

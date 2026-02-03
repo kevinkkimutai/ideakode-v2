@@ -14,7 +14,6 @@ class CrawlerAnalytics {
     
     // Skip file operations in production/serverless environments
     if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
-      console.log('Production environment detected - using in-memory storage only');
       return;
     }
     
@@ -35,10 +34,8 @@ class CrawlerAnalytics {
         const rawData = fs.readFileSync(dataFile, 'utf8');
         const data = JSON.parse(rawData);
         this.visits = data.visits || [];
-        console.log(`Loaded ${this.visits.length} visits from analytics.json`);
       }
     } catch (error) {
-      console.error('Error loading analytics data:', error);
       // Continue with empty array - don't fail
       this.visits = [];
     }

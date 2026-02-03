@@ -121,9 +121,7 @@ export default function QuoteModal() {
       budget: ""
     });
     setCurrentStep(0);
-    handleOpenQuote()
-    console.log("clicked");
-    
+    handleOpenQuote();
   };
 
 

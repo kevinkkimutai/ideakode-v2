@@ -11,8 +11,6 @@ export async function GET(request) {
   
   // Store in analytics system
   crawlerAnalytics.logVisit('llm.txt', userAgent, clientIP, timestamp);
-  
-  console.log(`[${timestamp}] llm.txt accessed - User-Agent: ${userAgent}, IP: ${clientIP}`);
 
   const llmTxt = `# LLM.txt for https://www.netiqa.co.ke
 

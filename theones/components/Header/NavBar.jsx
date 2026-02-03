@@ -104,9 +104,9 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className={`navBar top-0 left-0 z-40 flex w-full  items-center  ${
+        className={`navBa top-0 left-0 z-40 flex w-full  items-center  ${
           sticky
-            ? "!fixed !z-[9999] bg-white shadow-black backdrop-blur-sm !transition "
+            ? "!fixed !z-[9999] bg-white/50 shadow-black backdrop-blur-sm !transition "
             : "absolute"
         }`}
       >

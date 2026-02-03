@@ -18,8 +18,6 @@ export function middleware(request) {
     
     // Log the page visit
     crawlerAnalytics.logVisit(pathname, userAgent, clientIP, timestamp);
-    
-    console.log(`[${timestamp}] Page visit: ${pathname} - User-Agent: ${userAgent}, IP: ${clientIP}`);
   }
 
   return NextResponse.next();

@@ -10,7 +10,7 @@ import Services from '@/components/Home/Services'
 import Testimonials from '@/components/Home/Testimonials'
 import { useSelectedQuote } from '@/context/SelectedQuoteContext'
 import React from 'react'
-export default function page() {
+export default function HomePage() {
   const { isQuoteOpen } = useSelectedQuote();
 
   return (
