@@ -1,51 +1,42 @@
 {
   "visits": [
     {
-      "id": 1770149853509.106,
-      "endpoint": "/blog/seo-guide-2026",
-      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-      "ip": "::1",
-      "timestamp": "2026-02-03T20:17:33.509Z",
-      "botType": "Human/Browser",
-      "country": null
-    },
-    {
-      "id": 1770149833975.4744,
-      "endpoint": "/blog",
-      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-      "ip": "::1",
-      "timestamp": "2026-02-03T20:17:13.974Z",
-      "botType": "Human/Browser",
-      "country": null
-    },
-    {
-      "id": 1770149805227.6465,
-      "endpoint": "/Blogs",
-      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
-      "ip": "::1",
-      "timestamp": "2026-02-03T20:16:45.227Z",
-      "botType": "Human/Browser",
-      "country": null
-    },
-    {
-      "id": 1770149785708.6675,
+      "id": 1770149966199.1924,
       "endpoint": "/blogs",
       "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
       "ip": "::1",
-      "timestamp": "2026-02-03T20:16:25.708Z",
+      "timestamp": "2026-02-03T20:19:26.199Z",
       "botType": "Human/Browser",
       "country": null
     },
     {
-      "id": 1770149778986.737,
-      "endpoint": "/about",
+      "id": 1770149960320.2798,
+      "endpoint": "/",
       "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
       "ip": "::1",
-      "timestamp": "2026-02-03T20:16:18.986Z",
+      "timestamp": "2026-02-03T20:19:20.320Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770149936326.5571,
+      "endpoint": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:18:56.326Z",
+      "botType": "Human/Browser",
+      "country": null
+    },
+    {
+      "id": 1770149928771.1985,
+      "endpoint": "/blog/seo-guide-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+      "ip": "::1",
+      "timestamp": "2026-02-03T20:18:48.771Z",
       "botType": "Human/Browser",
       "country": null
     }
   ],
-  "lastUpdated": "2026-02-03T20:17:33.512Z",
-  "totalVisits": 5
+  "lastUpdated": "2026-02-03T20:19:26.227Z",
+  "totalVisits": 4
 }

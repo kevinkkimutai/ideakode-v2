@@ -19,12 +19,7 @@ const menuData = [
       path: "/about",
       newTab: false,
     },
-    // {
-    //   id: 33,
-    //   title: "Blog",
-    //   path: "/blog",
-    //   newTab: false,
-    // },
+   
    
     {
       id: 4,
@@ -55,6 +50,12 @@ const menuData = [
       id: 5,
       title: "Portfolio",
       path: "/portfolio",
+      newTab: false,
+    },
+     {
+      id: 33,
+      title: "Blogs",
+      path: "/blogs",
       newTab: false,
     },
     {
