@@ -171,12 +171,13 @@ const BlogComp = ({ data }) => {
 
             default:
               return null;
-          }
-        })}
-      </div>
+            }
+          })}
+        </div>
 
-      {/* Quick Links Sidebar */}
-      <QuickLinks blocks={data.blocks} />
+        {/* Quick Links Sidebar */}
+        <QuickLinks blocks={data.blocks} />
+      </div>
     </div>
   );
 };
